@@ -1,12 +1,23 @@
-﻿int[] inventory = { 200, 450, 700, 175, 250 };
-int total = 0;
-int bin = 0;
+﻿/*
+This code is converting the string into char array then reverse it and counting o's amount.
+After this it will pring the amount of o's in that string.
+*/
+string originalMessage = "The quick brown fox jumps over the lazy dog.";
 
-foreach (int num in inventory)
+char[] message = originalMessage.ToCharArray();
+Array.Reverse(message);
+
+int letterCount = 0;
+
+foreach (char letter in message)
 {
-    total += num;
-    bin++;
-    Console.WriteLine($"Bin {bin} = {num} items (Running total: {total})");
-};
+    if (letter == 'o')
+    {
+        letterCount++;
+    }
+}
 
-Console.WriteLine($"We have {total} items in inventory.");
+string new_message = new String(message);
+
+Console.WriteLine(new_message);
+Console.WriteLine($"'o' appears {letterCount} times.");
