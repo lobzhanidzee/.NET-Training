@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Projects\\C#\\training-project\\TestProject\\TestProject.csproj",
+      "projectUniqueName": "E:\\Projects\\C#\\TestProject\\TestProject.csproj",
       "projectName": "TestProject",
-      "projectPath": "E:\\Projects\\C#\\training-project\\TestProject\\TestProject.csproj",
+      "projectPath": "E:\\Projects\\C#\\TestProject\\TestProject.csproj",
       "packagesPath": "C:\\Users\\datol\\.nuget\\packages\\",
-      "outputPath": "E:\\Projects\\C#\\training-project\\TestProject\\obj\\",
+      "outputPath": "E:\\Projects\\C#\\TestProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\datol\\AppData\\Roaming\\NuGet\\NuGet.Config"
