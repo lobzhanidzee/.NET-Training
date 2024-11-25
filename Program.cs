@@ -1,138 +1,167 @@
-﻿Console.Clear();
-// string message = "Find what is (inside the parentheses)";
-
-// int openingPosition = message.IndexOf('(');
-// int closingPosition = message.IndexOf(')');
-
-// // Console.WriteLine(openingPosition);
-// // Console.WriteLine(closingPosition);
-
-// openingPosition += 1;
-
-// int length = closingPosition - openingPosition;
-// Console.WriteLine(message.Substring(openingPosition, length));
-
-// string message = "What is the value <span>between the tags</span>?";
-
-// const string openSpan = "<span>";
-// const string closeSpan = "</span>";
-
-// int openingPosition = message.IndexOf(openSpan);
-// int closingPosition = message.IndexOf(closeSpan);
-
-// openingPosition += openSpan.Length;
-// int length = closingPosition - openingPosition;
-// Console.WriteLine(message.Substring(openingPosition, length));
-
-// string message = "hello there!";
-
-// int first_h = message.IndexOf('h');
-// int last_h = message.LastIndexOf('h');
-
-// Console.WriteLine($"For the message : '{message}', the first 'h' is at position {first_h} and the last 'h' is at position {last_h}");
-
-// string message = "(What if) I am (only interested) in the last (set of parentheses)?";
-// int openingPosition = message.LastIndexOf('(');
-
-// openingPosition += 1;
-// int closingPosition = message.LastIndexOf(')');
-// int length = closingPosition - openingPosition;
-// Console.WriteLine(message.Substring(openingPosition, length));
-
-// string message = "(What if) there are (more than) one (set of parentheses)?";
-// while (true)
-// {
-//     int openingPosition = message.IndexOf('(');
-//     if (openingPosition == -1) break;
-
-//     openingPosition += 1;
-//     int closingPosition = message.IndexOf(')');
-//     int length = closingPosition - openingPosition;
-//     Console.WriteLine(message.Substring(openingPosition, length));
-
-//     message = message.Substring(closingPosition + 1);
-// }
+﻿// the ourAnimals array will store the following: 
+string animalSpecies = "";
+string animalID = "";
+string animalAge = "";
+string animalPhysicalDescription = "";
+string animalPersonalityDescription = "";
+string animalNickname = "";
+string suggestedDonation = "";
 
 
-// string message = "Help (find) the {opening symbols}";
-// Console.WriteLine($"Searching THIS Message: {message}");
+// variables that support data entry
+int maxPets = 8;
+string? readResult;
+string menuSelection = "";
+decimal decimalDonation = 0.00m;
 
-// char[] openSymbols = { '[', '{', '(' };
-// int startPosition = 5;
-// int openingPosition = message.IndexOfAny(openSymbols);
-// Console.WriteLine($"Found WITHOUT using startPosition: {message.Substring(openingPosition)}");
+// array used to store runtime data, there is no persisted data
+string[,] ourAnimals = new string[maxPets, 7];
 
-// openingPosition = message.IndexOfAny(openSymbols, startPosition);
-// Console.WriteLine($"Found WITH using startPosotion {startPosition}:  {message.Substring(openingPosition)}");
+// create sample data ourAnimals array entries
+for (int i = 0; i < maxPets; i++)
+{
+    switch (i)
+    {
+        case 0:
+            animalSpecies = "dog";
+            animalID = "d1";
+            animalAge = "2";
+            animalPhysicalDescription = "medium sized cream colored female golden retriever weighing about 45 pounds. housebroken.";
+            animalPersonalityDescription = "loves to have her belly rubbed and likes to chase her tail. gives lots of kisses.";
+            animalNickname = "lola";
+            suggestedDonation = "85.00";
+            break;
 
+        case 1:
+            animalSpecies = "dog";
+            animalID = "d2";
+            animalAge = "9";
+            animalPhysicalDescription = "large reddish-brown male golden retriever weighing about 85 pounds. housebroken.";
+            animalPersonalityDescription = "loves to have his ears rubbed when he greets you at the door, or at any time! loves to lean-in and give doggy hugs.";
+            animalNickname = "gus";
+            suggestedDonation = "49.99";
+            break;
 
+        case 2:
+            animalSpecies = "cat";
+            animalID = "c3";
+            animalAge = "1";
+            animalPhysicalDescription = "small white female weighing about 8 pounds. litter box trained.";
+            animalPersonalityDescription = "friendly";
+            animalNickname = "snow";
+            suggestedDonation = "40.00";
+            break;
 
-// string message = "(What if) I have [different symbols] but every {open symbol} needs a [matching closing symbol]?";
+        case 3:
+            animalSpecies = "cat";
+            animalID = "c4";
+            animalAge = "3";
+            animalPhysicalDescription = "Medium sized, long hair, yellow, female, about 10 pounds. Uses litter box.";
+            animalPersonalityDescription = "A people loving cat that likes to sit on your lap.";
+            animalNickname = "Lion";
+            suggestedDonation = "";
+            break;
 
-// char[] openSymbols = { '[', '{', '(' };
+        default:
+            animalSpecies = "";
+            animalID = "";
+            animalAge = "";
+            animalPhysicalDescription = "";
+            animalPersonalityDescription = "";
+            animalNickname = "";
+            suggestedDonation = "";
+            break;
 
-// int closingPosition = 0;
+    }
 
-// while (true)
-// {
-//     int openingPosition = message.IndexOfAny(openSymbols, closingPosition);
+    ourAnimals[i, 0] = "ID #: " + animalID;
+    ourAnimals[i, 1] = "Species: " + animalSpecies;
+    ourAnimals[i, 2] = "Age: " + animalAge;
+    ourAnimals[i, 3] = "Nickname: " + animalNickname;
+    ourAnimals[i, 4] = "Physical description: " + animalPhysicalDescription;
+    ourAnimals[i, 5] = "Personality: " + animalPersonalityDescription;
 
-//     if (openingPosition == -1) break;
+    if (!decimal.TryParse(suggestedDonation, out decimalDonation))
+    {
+        decimalDonation = 45.00m; // if suggestedDonation NOT a number, default to 45.00
+    }
+    ourAnimals[i, 6] = $"Suggested Donation: {decimalDonation:C2}";
+}
 
-//     string currentSymbol = message.Substring(openingPosition, 1);
+do
+{
+    Console.Clear();
 
-//     char matchingSymbol = ' ';
+    Console.WriteLine("Welcome to the Contoso PetFriends app. Your main menu options are:");
+    Console.WriteLine(" 1. List all of our current pet information");
+    Console.WriteLine(" 2. Display all dogs with a specified characteristic");
+    Console.WriteLine();
+    Console.WriteLine("Enter your selection number (or type Exit to exit the program)");
 
-//     switch (currentSymbol)
-//     {
+    readResult = Console.ReadLine();
+    if (readResult != null)
+    {
+        menuSelection = readResult.ToLower();
+    }
 
-//         case "[":
-//             matchingSymbol = ']';
-//             break;
-//         case "{":
-//             matchingSymbol = '}';
-//             break;
-//         case "(":
-//             matchingSymbol = ')';
-//             break;
-//     }
+    switch (menuSelection)
+    {
+        case "1":
+            // list all pet info
+            for (int i = 0; i < maxPets; i++)
+            {
+                if (ourAnimals[i, 0] != "ID #: ")
+                {
+                    Console.WriteLine();
+                    for (int j = 0; j < 7; j++)
+                    {
+                        Console.WriteLine(ourAnimals[i, j]);
+                    }
+                }
+            }
+            Console.WriteLine("\n\rPress the Enter key to continue");
+            readResult = Console.ReadLine();
 
-//     openingPosition += 1;
-//     closingPosition = message.IndexOf(matchingSymbol, openingPosition);
+            break;
 
-//     int length = closingPosition - openingPosition;
-//     Console.WriteLine(message.Substring(openingPosition, length));
-// }
+        case "2":
+            // Display all dogs with a specified characteristic
+            string dogCharacteristic = "";
 
+            while (dogCharacteristic == "")
+            {
+                Console.WriteLine($"\nEnter one desired dog characteristics to search for");
+                readResult = Console.ReadLine();
+                if (readResult != null) dogCharacteristic = readResult.ToLower().Trim();
 
-// string data = "12345John Smith          5000  3  ";
+            }
 
-// string updatedData = data.Remove(5, 20);
-// Console.WriteLine(updatedData);
+            string dogDescription = "";
+            bool noMatchesDog = true;
 
+            for (int i = 0; i < maxPets; i++)
+            {
+                if (ourAnimals[i, 1].Contains("dog"))
+                {
+                    dogDescription = ourAnimals[i, 4] + "\n" + ourAnimals[i, 5];
+                    if (dogDescription.ToLower().Contains(dogCharacteristic))
+                    {
+                        Console.WriteLine($"\nOur dog {ourAnimals[i, 3]} is a match!");
+                        Console.WriteLine(dogDescription);
 
-// string message = "This--is--ex-amp-le--da-ta";
-// message = message.Replace("--", " ").Replace("-", "");
-// Console.WriteLine(message);
+                        noMatchesDog = false;
+                    }
+                }
+            }
 
-const string input = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
+            if (noMatchesDog) Console.WriteLine("None of our dogs are a match found for: " + dogCharacteristic);
 
-string quantity = "";
-string output = "";
+            Console.WriteLine("\nPress the Enter key to continue.");
+            readResult = Console.ReadLine();
+            break;
 
-// Your work here
-int spanIndex = input.IndexOf("<span>") + 6;
-int spanEndIndex = input.IndexOf("</span>");
-int length = spanEndIndex - spanIndex;
+        default:
+            break;
+    }
 
-quantity = input.Substring(spanIndex, length);
-
-int divIndex = input.IndexOf("<div>") + 5;
-int divEndIndex = input.IndexOf("</div>");
-length = divEndIndex - divIndex;
-
-output = input.Substring(divIndex, length).Replace("&trade", "&reg");
-
-
-Console.WriteLine(quantity);
-Console.WriteLine(output);
+} while (menuSelection != "exit");
