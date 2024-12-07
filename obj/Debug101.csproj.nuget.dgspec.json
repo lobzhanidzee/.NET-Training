@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Projects\\C#\\TestProject\\TestProject.csproj": {}
+    "E:\\Projects\\C#\\TestProject\\Debug101.csproj": {}
   },
   "projects": {
-    "E:\\Projects\\C#\\TestProject\\TestProject.csproj": {
+    "E:\\Projects\\C#\\TestProject\\Debug101.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Projects\\C#\\TestProject\\TestProject.csproj",
-        "projectName": "TestProject",
-        "projectPath": "E:\\Projects\\C#\\TestProject\\TestProject.csproj",
+        "projectUniqueName": "E:\\Projects\\C#\\TestProject\\Debug101.csproj",
+        "projectName": "Debug101",
+        "projectPath": "E:\\Projects\\C#\\TestProject\\Debug101.csproj",
         "packagesPath": "C:\\Users\\datol\\.nuget\\packages\\",
         "outputPath": "E:\\Projects\\C#\\TestProject\\obj\\",
         "projectStyle": "PackageReference",

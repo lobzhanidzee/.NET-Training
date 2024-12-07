@@ -1,154 +1,179 @@
-﻿using System;
+﻿/* 
+This code uses a names array and corresponding methods to display
+greeting messages
+*/
 
-Random random = new Random();
-Console.CursorVisible = false;
-int height = Console.WindowHeight - 1;
-int width = Console.WindowWidth - 5;
-bool shouldExit = false;
+// string[] names = new string[] { "Sophia", "Andrew", "AllGreetings" };
 
-// Console position of the player
-int playerX = 0;
-int playerY = 0;
+// string messageText = "";
 
-// Console position of the food
-int foodX = 0;
-int foodY = 0;
+// foreach (string name in names)
+// {
+//     if (name == "Sophia")
+//         messageText = SophiaMessage();
+//     else if (name == "Andrew")
+//         messageText = AndrewMessage();
+//     else if (name == "AllGreetings")
+//         messageText = SophiaMessage() + "\n\r" + AndrewMessage();
 
-// Available player and food strings
-string[] states = { "('-')", "(^-^)", "(X_X)" };
-string[] foods = { "@@@@@", "$$$$$", "#####" };
+//     Console.WriteLine(messageText + "\n\r");
+// }
 
-// Current player string displayed in the Console
-string player = states[0];
+// bool pauseCode = true;
+// while (pauseCode == true) ;
 
-// Index of the current food
-int food = 0;
+// static string SophiaMessage()
+// {
+//     return "Hello, my name is Sophia.";
+// }
 
-InitializeGame();
-while (!shouldExit)
+// static string AndrewMessage()
+// {
+//     return "Hi, my name is Andrew. Good to meet you.";
+// }
+
+// SECOND TASK
+// int productCount = 2000;
+// string[,] products = new string[productCount, 2];
+
+// LoadProducts(products, productCount);
+
+// for (int i = 0; i < productCount; i++)
+// {
+//     string result;
+//     result = Process1(products, i);
+
+//     if (result != "obsolete")
+//     {
+//         result = Process2(products, i);
+//     }
+// }
+
+// bool pauseCode = true;
+// while (pauseCode == true) ;
+
+// static void LoadProducts(string[,] products, int productCount)
+// {
+//     Random rand = new Random();
+
+//     for (int i = 0; i < productCount; i++)
+//     {
+//         int num1 = rand.Next(1, 10000) + 10000;
+//         int num2 = rand.Next(1, 101);
+
+//         string prodID = num1.ToString();
+
+//         if (num2 < 91)
+//         {
+//             products[i, 1] = "existing";
+//         }
+//         else if (num2 == 91)
+//         {
+//             products[i, 1] = "new";
+//             prodID = prodID + "-n";
+//         }
+//         else
+//         {
+//             products[i, 1] = "obsolete";
+//             prodID = prodID + "-0";
+//         }
+
+//         products[i, 0] = prodID;
+//     }
+// }
+
+// static string Process1(string[,] products, int item)
+// {
+//     Console.WriteLine($"Process1 message - working on {products[item, 1]} product");
+
+//     return products[item, 1];
+// }
+
+// static string Process2(string[,] products, int item)
+// {
+//     Console.WriteLine($"Process2 message - working on product ID #: {products[item, 0]}");
+//     if (products[item, 1] == "new")
+//         Process3(products, item);
+
+//     return "continue";
+// }
+
+// static void Process3(string[,] products, int item)
+// {
+//     Console.WriteLine($"Process3 message - processing product information for 'new' product");
+// }
+
+// THIRD TASK
+// string? readResult;
+// int startIndex = 0;
+// bool goodEntry = false;
+
+// int[] numbers = { 1, 2, 3, 4, 5 };
+
+// // Display the array to the console.
+// Console.Clear();
+// Console.Write("\n\rThe 'numbers' array contains: { ");
+// foreach (int number in numbers)
+// {
+//     Console.Write($"{number} ");
+// }
+
+// // To calculate a sum of array elements, 
+// //  prompt the user for the starting element number.
+// Console.WriteLine($"}}\n\r\n\rTo sum values 'n' through 5, enter a value for 'n':");
+// while (goodEntry == false)
+// {
+//     readResult = Console.ReadLine();
+//     goodEntry = int.TryParse(readResult, out startIndex);
+
+//     if (startIndex > 5)
+//     {
+//         goodEntry = false;
+//         Console.WriteLine("\n\rEnter an integer value between 1 and 5");
+//     }
+// }
+
+// // Display the sum and then pause.
+// Console.WriteLine($"\n\rThe sum of numbers {startIndex} through {numbers.Length} is: {SumValues(numbers, startIndex - 1)}");
+
+// Console.WriteLine("press Enter to exit");
+// readResult = Console.ReadLine();
+
+// // This method returns the sum of elements n through 5
+// static int SumValues(int[] numbers, int n)
+// {
+//     int sum = 0;
+//     for (int i = n; i < numbers.Length; i++)
+//     {
+//         sum += numbers[i];
+//     }
+//     return sum;
+// }
+// FOURHT TASK
+// bool exit = false;
+// var rand = new Random();
+// int num1 = 5;
+// int num2 = 5;
+
+// do
+// {
+//     num1 = rand.Next(1, 11);
+//     num2 = num1 + rand.Next(1, 51);
+
+// } while (exit == false);
+
+/*  
+This code instantiates a value and then calls the ChangeValue method
+to update the value. The code then prints the updated value to the console.
+*/
+int x = 5;
+
+x = ChangeValue(x);
+
+Console.WriteLine(x);
+
+int ChangeValue(int value)
 {
-    Move(GoodFood() ? 3 : 1);
-}
-
-// Returns true if the Terminal was resized 
-bool TerminalResized()
-{
-    return height != Console.WindowHeight - 1 || width != Console.WindowWidth - 5;
-}
-
-// Displays random food at a random location
-void ShowFood()
-{
-    // Update food to a random index
-    food = random.Next(0, foods.Length);
-
-    // Update food position to a random location
-    foodX = random.Next(0, width - player.Length);
-    foodY = random.Next(0, height - 1);
-
-    // Display the food at the location
-    Console.SetCursorPosition(foodX, foodY);
-    Console.Write(foods[food]);
-}
-
-bool ConsumedFood()
-{
-    if (foodX == playerX && foodY == playerY) return true;
-    else return false;
-}
-
-bool BadFood()
-{
-    if (player == states[2]) return true;
-    else return false;
-}
-
-bool GoodFood()
-{
-    if (player == states[1]) return true;
-    else return false;
-}
-
-
-// Changes the player to match the food consumed
-void ChangePlayer()
-{
-    player = states[food];
-    Console.SetCursorPosition(playerX, playerY);
-    Console.Write(player);
-}
-
-// Temporarily stops the player from moving
-void FreezePlayer()
-{
-    System.Threading.Thread.Sleep(1000);
-    player = states[0];
-}
-
-// Reads directional input from the Console and moves the player
-void Move(int speed = 1)
-{
-    int lastX = playerX;
-    int lastY = playerY;
-
-    switch (Console.ReadKey(true).Key)
-    {
-        case ConsoleKey.UpArrow:
-            playerY--;
-            break;
-        case ConsoleKey.DownArrow:
-            playerY++;
-            break;
-        case ConsoleKey.LeftArrow:
-            playerX -= speed;
-            break;
-        case ConsoleKey.RightArrow:
-            playerX += speed;
-            break;
-        case ConsoleKey.Spacebar:
-            FreezePlayer();
-            break;
-        default:
-            shouldExit = true;
-            break;
-    }
-
-    // Clear the characters at the previous position
-    Console.SetCursorPosition(lastX, lastY);
-    for (int i = 0; i < player.Length; i++)
-    {
-        Console.Write(" ");
-    }
-
-    if (TerminalResized())
-    {
-        Console.Clear();
-        Console.WriteLine("Console was resized. Program exiting.");
-        shouldExit = true;
-    }
-
-    if (ConsumedFood())
-    {
-        ChangePlayer();
-        if (BadFood()) FreezePlayer();
-        ShowFood();
-    }
-
-
-    // Keep player position within the bounds of the Terminal window
-    playerX = (playerX < 0) ? 0 : (playerX >= width ? width : playerX);
-    playerY = (playerY < 0) ? 0 : (playerY >= height ? height : playerY);
-
-    // Draw the player at the new location
-    Console.SetCursorPosition(playerX, playerY);
-    Console.Write(player);
-}
-
-// Clears the console, displays the food and player
-void InitializeGame()
-{
-    Console.Clear();
-    ShowFood();
-    Console.SetCursorPosition(0, 0);
-    Console.Write(player);
+    value = 10;
+    return value;
 }
