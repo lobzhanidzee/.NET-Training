@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Projects\\C#\\TestProject\\Debug101.csproj",
-      "projectName": "Debug101",
-      "projectPath": "E:\\Projects\\C#\\TestProject\\Debug101.csproj",
+      "projectUniqueName": "E:\\Projects\\C#\\TestProject\\Exceptions101.csproj",
+      "projectName": "Exceptions101",
+      "projectPath": "E:\\Projects\\C#\\TestProject\\Exceptions101.csproj",
       "packagesPath": "C:\\Users\\datol\\.nuget\\packages\\",
       "outputPath": "E:\\Projects\\C#\\TestProject\\obj\\",
       "projectStyle": "PackageReference",

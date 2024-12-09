@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v9.0": {
-      "Debug101/1.0.0": {
+      "Exceptions101/1.0.0": {
         "runtime": {
-          "Debug101.dll": {}
+          "Exceptions101.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "Debug101/1.0.0": {
+    "Exceptions101/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

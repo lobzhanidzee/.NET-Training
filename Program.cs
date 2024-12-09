@@ -1,179 +1,181 @@
-﻿/* 
-This code uses a names array and corresponding methods to display
-greeting messages
-*/
+﻿// double float1 = 3000.0;
+// double float2 = 0.0;
+// int number1 = 3000;
+// int number2 = 0;
 
-// string[] names = new string[] { "Sophia", "Andrew", "AllGreetings" };
-
-// string messageText = "";
-
-// foreach (string name in names)
+// try
 // {
-//     if (name == "Sophia")
-//         messageText = SophiaMessage();
-//     else if (name == "Andrew")
-//         messageText = AndrewMessage();
-//     else if (name == "AllGreetings")
-//         messageText = SophiaMessage() + "\n\r" + AndrewMessage();
-
-//     Console.WriteLine(messageText + "\n\r");
+//     Console.WriteLine(float1 / float2);
+//     Console.WriteLine(number1 / number2);
+// }
+// catch
+// {
+//     Console.WriteLine("An exception has been caught");
 // }
 
-// bool pauseCode = true;
-// while (pauseCode == true) ;
+// Console.WriteLine("Exit program");
 
-// static string SophiaMessage()
+// try
 // {
-//     return "Hello, my name is Sophia.";
+//     Process1();
+// }
+// catch
+// {
+//     Console.WriteLine("An exception has occurred");
 // }
 
-// static string AndrewMessage()
+// Console.WriteLine("Exit program");
+
+// static void Process1()
 // {
-//     return "Hi, my name is Andrew. Good to meet you.";
+//     WriteMessage();
 // }
 
-// SECOND TASK
-// int productCount = 2000;
-// string[,] products = new string[productCount, 2];
-
-// LoadProducts(products, productCount);
-
-// for (int i = 0; i < productCount; i++)
+// static void WriteMessage()
 // {
-//     string result;
-//     result = Process1(products, i);
+//     double float1 = 3000.0;
+//     double float2 = 0.0;
+//     int number1 = 3000;
+//     int number2 = 0;
 
-//     if (result != "obsolete")
+//     Console.WriteLine(float1 / float2);
+//     Console.WriteLine(number1 / number2);
+// }
+
+// try
+// {
+//     Process1();
+// }
+// catch
+// {
+//     Console.WriteLine("An exception has occurred");
+// }
+
+// Console.WriteLine("Exit program");
+
+// static void Process1()
+// {
+//     try
 //     {
-//         result = Process2(products, i);
+//         WriteMessage();
+
+//     }
+//     catch (DivideByZeroException ex)
+//     {
+//         Console.WriteLine($"Exception caught in Process1: {ex.Message}");
 //     }
 // }
 
-// bool pauseCode = true;
-// while (pauseCode == true) ;
-
-// static void LoadProducts(string[,] products, int productCount)
+// static void WriteMessage()
 // {
-//     Random rand = new Random();
+//     double float1 = 3000.0;
+//     double float2 = 0.0;
+//     int number1 = 3000;
+//     int number2 = 0;
+//     byte smallNumber;
 
-//     for (int i = 0; i < productCount; i++)
+//     try
 //     {
-//         int num1 = rand.Next(1, 10000) + 10000;
-//         int num2 = rand.Next(1, 101);
-
-//         string prodID = num1.ToString();
-
-//         if (num2 < 91)
+//         Console.WriteLine(float1 / float2);
+//         Console.WriteLine(number1 / number2);
+//     }
+//     catch (DivideByZeroException ex)
+//     {
+//         Console.WriteLine($"Exception caught in WriteMessage: {ex.Message}");
+//     }
+//     checked
+//     {
+//         try
 //         {
-//             products[i, 1] = "existing";
+//             smallNumber = (byte)number1;
 //         }
-//         else if (num2 == 91)
+//         catch (OverflowException ex)
 //         {
-//             products[i, 1] = "new";
-//             prodID = prodID + "-n";
+//             Console.WriteLine($"Exception caught in WriteMessage: {ex.Message}");
 //         }
-//         else
-//         {
-//             products[i, 1] = "obsolete";
-//             prodID = prodID + "-0";
-//         }
-
-//         products[i, 0] = prodID;
 //     }
 // }
 
-// static string Process1(string[,] products, int item)
+// inputValues is used to store numeric values entered by a user
+// string[] inputValues = new string[] { "three", "9999999999", "0", "2" };
+
+// foreach (string inputValue in inputValues)
 // {
-//     Console.WriteLine($"Process1 message - working on {products[item, 1]} product");
-
-//     return products[item, 1];
-// }
-
-// static string Process2(string[,] products, int item)
-// {
-//     Console.WriteLine($"Process2 message - working on product ID #: {products[item, 0]}");
-//     if (products[item, 1] == "new")
-//         Process3(products, item);
-
-//     return "continue";
-// }
-
-// static void Process3(string[,] products, int item)
-// {
-//     Console.WriteLine($"Process3 message - processing product information for 'new' product");
-// }
-
-// THIRD TASK
-// string? readResult;
-// int startIndex = 0;
-// bool goodEntry = false;
-
-// int[] numbers = { 1, 2, 3, 4, 5 };
-
-// // Display the array to the console.
-// Console.Clear();
-// Console.Write("\n\rThe 'numbers' array contains: { ");
-// foreach (int number in numbers)
-// {
-//     Console.Write($"{number} ");
-// }
-
-// // To calculate a sum of array elements, 
-// //  prompt the user for the starting element number.
-// Console.WriteLine($"}}\n\r\n\rTo sum values 'n' through 5, enter a value for 'n':");
-// while (goodEntry == false)
-// {
-//     readResult = Console.ReadLine();
-//     goodEntry = int.TryParse(readResult, out startIndex);
-
-//     if (startIndex > 5)
+//     int numValue = 0;
+//     try
 //     {
-//         goodEntry = false;
-//         Console.WriteLine("\n\rEnter an integer value between 1 and 5");
+//         numValue = int.Parse(inputValue);
 //     }
-// }
-
-// // Display the sum and then pause.
-// Console.WriteLine($"\n\rThe sum of numbers {startIndex} through {numbers.Length} is: {SumValues(numbers, startIndex - 1)}");
-
-// Console.WriteLine("press Enter to exit");
-// readResult = Console.ReadLine();
-
-// // This method returns the sum of elements n through 5
-// static int SumValues(int[] numbers, int n)
-// {
-//     int sum = 0;
-//     for (int i = n; i < numbers.Length; i++)
+//     catch (FormatException)
 //     {
-//         sum += numbers[i];
+//         Console.WriteLine("Invalid readResult. Please enter a valid number.");
 //     }
-//     return sum;
+//     catch (OverflowException)
+//     {
+//         Console.WriteLine("The number you entered is too large or too small.");
+//     }
+//     catch (Exception ex)
+//     {
+//         Console.WriteLine(ex.Message);
+//     }
 // }
-// FOURHT TASK
-// bool exit = false;
-// var rand = new Random();
-// int num1 = 5;
-// int num2 = 5;
 
-// do
-// {
-//     num1 = rand.Next(1, 11);
-//     num2 = num1 + rand.Next(1, 51);
-
-// } while (exit == false);
-
-/*  
-This code instantiates a value and then calls the ChangeValue method
-to update the value. The code then prints the updated value to the console.
-*/
-int x = 5;
-
-x = ChangeValue(x);
-
-Console.WriteLine(x);
-
-int ChangeValue(int value)
+try
 {
-    value = 10;
-    return value;
+    checked
+    {
+        try
+        {
+            int num1 = int.MaxValue;
+            int num2 = int.MaxValue;
+            int result = num1 + num2;
+            Console.WriteLine("Result: " + result);
+        }
+        catch (OverflowException ex)
+        {
+            Console.WriteLine("Error: The number is too large to be represented as an integer. " + ex.Message);
+        }
+    }
+    try
+    {
+        string str = null;
+
+        int length = str.Length;
+        Console.WriteLine("String Length: " + length);
+
+    }
+    catch (NullReferenceException ex)
+    {
+        Console.WriteLine("Error: The reference is null. " + ex.Message);
+    }
+    try
+    {
+        int[] numbers = new int[5];
+        numbers[5] = 10;
+        Console.WriteLine("Number at index 5: " + numbers[5]);
+
+    }
+    catch (IndexOutOfRangeException ex)
+    {
+        Console.WriteLine("Error: Index out of range. " + ex.Message);
+    }
+    try
+    {
+        int num3 = 10;
+        int num4 = 0;
+        int result2 = num3 / num4;
+        Console.WriteLine("Result: " + result2);
+
+    }
+    catch (DivideByZeroException ex)
+    {
+        Console.WriteLine("Error: Cannot divide by zero. " + ex.Message);
+    }
 }
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message);
+}
+
+
+Console.WriteLine("Exiting program.");
