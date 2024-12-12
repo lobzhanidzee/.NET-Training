@@ -1,0 +1,15 @@
+E:\Projects\C#\TestProject\bin\Debug\net8.0\Starter.exe
+E:\Projects\C#\TestProject\bin\Debug\net8.0\Starter.deps.json
+E:\Projects\C#\TestProject\bin\Debug\net8.0\Starter.runtimeconfig.json
+E:\Projects\C#\TestProject\bin\Debug\net8.0\Starter.dll
+E:\Projects\C#\TestProject\bin\Debug\net8.0\Starter.pdb
+E:\Projects\C#\TestProject\obj\Debug\net8.0\Starter.GeneratedMSBuildEditorConfig.editorconfig
+E:\Projects\C#\TestProject\obj\Debug\net8.0\Starter.AssemblyInfoInputs.cache
+E:\Projects\C#\TestProject\obj\Debug\net8.0\Starter.AssemblyInfo.cs
+E:\Projects\C#\TestProject\obj\Debug\net8.0\Starter.csproj.CoreCompileInputs.cache
+E:\Projects\C#\TestProject\obj\Debug\net8.0\Starter.sourcelink.json
+E:\Projects\C#\TestProject\obj\Debug\net8.0\Starter.dll
+E:\Projects\C#\TestProject\obj\Debug\net8.0\refint\Starter.dll
+E:\Projects\C#\TestProject\obj\Debug\net8.0\Starter.pdb
+E:\Projects\C#\TestProject\obj\Debug\net8.0\Starter.genruntimeconfig.cache
+E:\Projects\C#\TestProject\obj\Debug\net8.0\ref\Starter.dll
