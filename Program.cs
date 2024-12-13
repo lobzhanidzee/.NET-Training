@@ -42,11 +42,12 @@ LogTillStatus(cashTill);
 Console.WriteLine(TillAmountSummary(cashTill));
 
 // display the expected registerDailyStartingCash total
-Console.WriteLine($"Expected till value: {registerCheckTillTotal}\n\r");
+Console.WriteLine($"Expected till value: {registerCheckTillTotal}");
+Console.WriteLine();
 
 var valueGenerator = new Random((int)DateTime.Now.Ticks);
 
-int transactions = 10;
+int transactions = 100;
 
 if (useTestData)
 {
@@ -56,7 +57,7 @@ if (useTestData)
 while (transactions > 0)
 {
     transactions -= 1;
-    int itemCost = valueGenerator.Next(2, 20);
+    int itemCost = valueGenerator.Next(2, 50);
 
     if (useTestData)
     {
@@ -81,16 +82,16 @@ while (transactions > 0)
         // MakeChange manages the transaction and updates the till 
         MakeChange(itemCost, cashTill, paymentTwenties, paymentTens, paymentFives, paymentOnes);
 
-        Console.WriteLine($"Transaction successfully completed.");
+        // Backup Calculation - each transaction adds current "itemCost" to the till
         registerCheckTillTotal += itemCost;
     }
-    catch (InvalidOperationException ex)
+    catch (InvalidOperationException e)
     {
-        Console.WriteLine($"Could not complete transaction: {ex.Message}");
-    };
+        Console.WriteLine($"Could not complete transaction: {e.Message}");
+    }
 
     Console.WriteLine(TillAmountSummary(cashTill));
-    Console.WriteLine($"Expected till value: {registerCheckTillTotal}\n\r");
+    Console.WriteLine($"Expected till value: {registerCheckTillTotal}");
     Console.WriteLine();
 }
 
@@ -113,10 +114,10 @@ static void LoadTillEachMorning(int[,] registerDailyStartingCash, int[] cashTill
 
 static void MakeChange(int cost, int[] cashTill, int twenties, int tens = 0, int fives = 0, int ones = 0)
 {
-    cashTill[3] += twenties;
-    cashTill[2] += tens;
-    cashTill[1] += fives;
-    cashTill[0] += ones;
+    int availableTwenties = cashTill[3] + twenties;
+    int availableTens = cashTill[2] + tens;
+    int availableFives = cashTill[1] + fives;
+    int availableOnes = cashTill[0] + ones;
 
     int amountPaid = twenties * 20 + tens * 10 + fives * 5 + ones;
     int changeNeeded = amountPaid - cost;
@@ -124,39 +125,44 @@ static void MakeChange(int cost, int[] cashTill, int twenties, int tens = 0, int
     if (changeNeeded < 0)
         throw new InvalidOperationException("InvalidOperationException: Not enough money provided to complete the transaction.");
 
+    Console.WriteLine("Cashier prepares the following change:");
 
-    Console.WriteLine("Cashier Returns:");
-
-    while ((changeNeeded > 19) && (cashTill[3] > 0))
+    while ((changeNeeded > 19) && (availableTwenties > 0))
     {
-        cashTill[3]--;
+        availableTwenties--;
         changeNeeded -= 20;
         Console.WriteLine("\t A twenty");
     }
 
-    while ((changeNeeded > 9) && (cashTill[2] > 0))
+    while ((changeNeeded > 9) && (availableTens > 0))
     {
-        cashTill[2]--;
+        availableTens--;
         changeNeeded -= 10;
         Console.WriteLine("\t A ten");
     }
 
-    while ((changeNeeded > 4) && (cashTill[1] > 0))
+    while ((changeNeeded > 4) && (availableFives > 0))
     {
-        cashTill[1]--;
+        availableFives--;
         changeNeeded -= 5;
         Console.WriteLine("\t A five");
     }
 
-    while ((changeNeeded > 0) && (cashTill[0] > 0))
+    while ((changeNeeded > 0) && (availableOnes > 0))
     {
-        cashTill[0]--;
-        changeNeeded--;
+        availableOnes--;
+        changeNeeded -= 1;
         Console.WriteLine("\t A one");
     }
 
     if (changeNeeded > 0)
-        throw new InvalidOperationException("InvalidOperationException: The till is unable to make the correct change.");
+        throw new InvalidOperationException("InvalidOperationException: The till is unable to make change for the cash provided.");
+
+    cashTill[0] = availableOnes;
+    cashTill[1] = availableFives;
+    cashTill[2] = availableTens;
+    cashTill[3] = availableTwenties;
+
 }
 
 static void LogTillStatus(int[] cashTill)
@@ -172,5 +178,4 @@ static void LogTillStatus(int[] cashTill)
 static string TillAmountSummary(int[] cashTill)
 {
     return $"The till has {cashTill[3] * 20 + cashTill[2] * 10 + cashTill[1] * 5 + cashTill[0]} dollars";
-
 }

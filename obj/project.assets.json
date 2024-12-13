@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Projects\\C#\\TestProject\\Starter.csproj",
-      "projectName": "Starter",
-      "projectPath": "E:\\Projects\\C#\\TestProject\\Starter.csproj",
+      "projectUniqueName": "E:\\Projects\\C#\\TestProject\\TestProject.csproj",
+      "projectName": "TestProject",
+      "projectPath": "E:\\Projects\\C#\\TestProject\\TestProject.csproj",
       "packagesPath": "C:\\Users\\datol\\.nuget\\packages\\",
       "outputPath": "E:\\Projects\\C#\\TestProject\\obj\\",
       "projectStyle": "PackageReference",
