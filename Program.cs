@@ -1,23 +1,81 @@
-﻿using Humanizer;
-using System.Diagnostics;
+﻿using System.IO;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using System.Text.Json;
 
-Console.WriteLine("Quantities:");
-HumanizeQuantities();
+// var salesFiles = FindFiles("stores");
 
-Console.WriteLine("\nDate/Time Manippulation:");
-HumanizeDates();
+// foreach (var file in salesFiles)
+// {
+//     Console.WriteLine(file);
+// }
 
-static void HumanizeQuantities()
+
+
+// Console.WriteLine(Directory.GetCurrentDirectory());
+
+
+// string filepath = Path.Combine(Directory.GetCurrentDirectory(), "stores");
+
+// bool doesDirectoryExist = Directory.Exists(filepath);
+// Console.WriteLine(doesDirectoryExist);
+// Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "stores", "201", "newDir"));
+
+// File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "greeting.txt"), "Hello World!");
+
+
+// string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+// Console.WriteLine(docPath);
+
+// string fileName = $"stores{Path.DirectorySeparatorChar}201{Path.DirectorySeparatorChar}sales{Path.DirectorySeparatorChar}sales.json";
+
+// FileInfo info = new FileInfo(fileName);
+
+// Console.WriteLine($"Full Name: {info.FullName}{Environment.NewLine}Directory: {info.Directory}{Environment.NewLine}Extension: {info.Extension}{Environment.NewLine}Create Date: {info.CreationTime}");
+
+var currentDirectory = Directory.GetCurrentDirectory();
+var storesDir = Path.Combine(currentDirectory, "stores");
+
+var salesTotalDir = Path.Combine(currentDirectory, "salesTotalDir");
+Directory.CreateDirectory(salesTotalDir);
+
+var salesFiles = FindFiles(storesDir);
+
+var salesTotal = CalculateSalesTotal(salesFiles);
+
+File.AppendAllText(Path.Combine(salesTotalDir, "totals.txt"), $"{salesTotal}{Environment.NewLine}");
+
+IEnumerable<string> FindFiles(string folderName)
 {
-    Console.WriteLine("case".ToQuantity(0));
-    Console.WriteLine("case".ToQuantity(1));
-    Console.WriteLine("case".ToQuantity(5));
+    List<string> salesFiles = new List<string>();
+
+    var foundFiles = Directory.EnumerateFiles(folderName, "*", SearchOption.AllDirectories);
+
+    foreach (var file in foundFiles)
+    {
+        var extension = Path.GetExtension(file);
+        if (extension == ".json")
+        {
+            salesFiles.Add(file);
+        }
+    }
+    return salesFiles;
 }
 
-static void HumanizeDates()
+double CalculateSalesTotal(IEnumerable<string> salesFiles)
 {
-    Console.WriteLine(DateTime.UtcNow.AddHours(-24).Humanize());
-    Console.WriteLine(DateTime.UtcNow.AddDays(-2).Humanize());
-    Console.WriteLine(TimeSpan.FromDays(1).Humanize());
-    Console.WriteLine(TimeSpan.FromDays(16).Humanize());
+    double salesTotal = 0;
+
+    foreach (var file in salesFiles)
+    {
+        string salesJson = File.ReadAllText(file);
+
+        SalesData? data = JsonConvert.DeserializeObject<SalesData?>(salesJson);
+
+        salesTotal += data?.Total ?? 0;
+    }
+
+    return salesTotal;
 }
+
+record SalesData(double Total);
