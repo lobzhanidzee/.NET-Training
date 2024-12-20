@@ -1,0 +1,10 @@
+[
+  {
+    "OptionName": "Pragma warning disable",
+    "RegExpPattern": "#\\s*pragma\\s+warnin\\s+disable"
+  },
+  {
+    "OptionName": "System.Reflection",
+    "RegExpPattern": "\\s*System.Reflection\\s*"
+  }
+]
