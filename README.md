@@ -1,6 +1,6 @@
-# Static Methods - Compiler Errors
+# Bools and Logic Operators
 
-Beginner level task to practice fixing the most common compiler errors.
+Beginner level task for practicing Boolean values and logic operators.
 
 Estimated time to complete the task - 1h.
 
@@ -9,115 +9,146 @@ The task requires .NET 8 SDK installed.
 
 ## Task Description
 
-The task has five sub-tasks. Each sub-task is a small coding exercise.
+The task has three sections with small sub-tasks in the code files. Each sub-task is a small coding exercise.
 
 
-## CS0103
+### Bools
 
-1. [Build the solution](https://docs.microsoft.com/en-us/visualstudio/ide/building-and-cleaning-projects-and-solutions-in-visual-studio).
-    * Click on the menu item - _Build\Build Solution_.
-    * Or use the default keyboard shortcut - _Ctrl+Shift+B_ (different versions of Visual Studio may have different keyboard shortcuts. See [Keyboard shortcuts in Visual Studio](https://docs.microsoft.com/en-us/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio) article).
+Read the [bool](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool) article.
 
-![Build Solution](images/build-solution.png)
+Open the [Booleans.cs](Bools/Booleans.cs) file, and implement all methods by returning a Boolean value.
 
-2. Open the [Error List](https://docs.microsoft.com/en-us/visualstudio/ide/find-and-fix-code-errors#review-the-error-list) view.
-    * Click on the menu item - _View\Error List_.
-    * Or use the default shortcut - _Ctrl+\\, E_.
+| Method Name | Literals |
+|-------------|----------|
+| ReturnTrue  | true     |
+| ReturnFalse | false    |
 
-![View Error List](images/view-error-list.png)
+There are only two possible literals for the _bool_ data type - _true_ and _false_.
 
-3. Find an error with CS0103 code and review the error in detail by clicking on the link in the "Code" column.
 
-![Open CS0103](images/open-cs0103.png)
+### Logical Operators
 
-You will get to the issue documentation page.
+Read the [Boolean logical operators](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators) article.
 
-4. Double-click on the CS0103 issue in the _Error List_ window. 
+Open the [LogicalOperators.cs](Bools/LogicalOperators.cs) file, and implement all methods by applying a logical operation to method parameters.
 
-![Navigate to CS0103](images/navigate-to-cs0103.png)
+| Method Name | Logical Operation    | Operator |
+|-------------|----------------------|----------|
+| LogicalAnd1 | Logical AND          | &&       |
+| LogicalAnd2 | Logical AND          | &&       |
+| LogicalAnd3 | Logical AND          | &&       |
+| LogicalOr1  | Logical OR           | \|\|     |
+| LogicalOr2  | Logical OR           | \|\|     |
+| LogicalOr3  | Logical OR           | \|\|     |
+| LogicalXor1 | Logical exclusive OR | ^        |
+| LogicalXor2 | Logical exclusive OR | ^        |
+| LogicalXor3 | Logical exclusive OR | ^        |
+| Negate      | Logical negation     | !        |
 
-You will get to the [CS0103/MyClass.cs](CompilerErrors/CS0103/MyClass.cs) file.
-
-![CS0103](images/cs0103.png)
-
-5. Read the documentation page and learn [how to fix the error](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs0103): "Check the spelling of the name and check your [**using** directives](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive) and assembly references to make sure that the name that you are trying to use is available."
-
-6. Replace the name of the method called in the return statement with correct spelling - _ReturnInt_.
+Start with the [LogicalAnd1](Bools/LogicalOperators.cs#L5) method.
 
 ```cs
-public static int MyMethod()
+public static bool LogicalAnd1(bool b1, bool b2)
 {
-    return ReturnInt(intParameter: 534_947_886);
+    // TODO #2-1. Return the result of logical AND for b1 and b2 parameters.
+    throw new NotImplementedException();
 }
 ```
 
-7. Rebuild the solution.
-
-![Rebuild Solution](images/rebuild-solution.png)
-
-8. Open the _Error List_ window again and make sure there are no CS0103 issues.
-
-
-## CS0117
-
-![CS0117](images/cs0117.png)
-
-1. Open the _Error List_ window, find the CS0117 issue.
-2. Open and read the issue documentation page.
-3. Navigate to the code by clicking on the issue line in _Error List_ window.
-4. Replace the name of the method called in the return statement with correct spelling - _ReturnLong_.
+Remove the _throw_ statement.
 
 ```cs
-public static long MyMethod()
+public static bool LogicalAnd1(bool b1, bool b2)
 {
-    return AnotherClass.ReturnLong(longParameter: 49_023_471L);
+    // TODO #2-1. Return the result of logical AND for b1 and b2 parameters.
 }
 ```
 
-5. Rebuild the solution.
-6. Open the _Error List_ window again and make sure there are no CS0117 issues anymore.
-
-
-## CS1501
-
-![CS1501](images/cs1501.png)
-
-Fix the issue by removing the method argument from the method call.
+Return the result of logical AND operation for the _b1_ and _b2_ parameters by applying [operator &&](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators#conditional-logical-and-operator-).
 
 ```cs
-public static int MyMethod()
+public static bool LogicalAnd1(bool b1, bool b2)
 {
-    return ReturnInt();
+    // TODO #2-1. Return the result of logical AND for b1 and b2 parameters.
+    return b1 && b2;
 }
 ```
 
-
-## CS1739
-
-![CS1739](images/cs1739.png)
-
-Fix the issue by replacing the named parameter with correct argument name.
+Remove the _TODO_ comment.
 
 ```cs
-public static int MyMethod()
+public static bool LogicalAnd1(bool b1, bool b2)
 {
-    return ReturnInt(intParameter: 9_389_572);
+    return b1 && b2;
 }
 ```
 
+Create the [truth table](https://en.wikipedia.org/wiki/Truth_table) for _logical AND (conjunction)_ for the _b1_ and _b2_ parameters.
 
-## CS7036
+| b1    | b2    | b1 && b2 |
+|-------|-------|----------|
+| false | false | false    |
+| true  | false | false    |
+| false | true  | false    |
+| true  | true  | true     |
 
-![CS7036](images/cs7036.png)
+Implement the other methods and create the truth tables for them (no need to add these tables to your solution).
 
-Fix the issue by adding the parameter to the _ReturnInt_ method call.
+
+### Logical Puzzles
+
+In this section you have to use the logical operators to solve the logical puzzles in the [LogicalPuzzles.cs](Bools/LogicalPuzzles.cs) file. You can combine the logical operators together to get the expected result of a logical function. Start with creating a _truth table_ for a logical function you work with, then analyze it and reconstruct a logical function to satisfy the truth table criteria.
+
+Here's the example of solving [Puzzle1](Bools/LogicalPuzzles.cs#L5) puzzle.
+
+Take a look at the list of test cases for the [Puzzle1_ReturnBool](Bools.Tests/LogicalOperatorsTests.cs#L10) unit test and create an expected truth table for the operation you have to implement in the _Puzzle1_ method.
+
+| b1    | b2    | Expected Result |
+|-------|-------|-----------------|
+| false | false | true            |
+| true  | false | false           |
+| false | true  | true            |
+| true  | true  | true            |
+
+Compare this truth table with the [truth table for logical OR operation](https://en.wikipedia.org/wiki/Truth_table#Logical_disjunction_(OR)) - you will find that they are very similar.
+
+| b1    | b2    | Logical OR      |
+|-------|-------|-----------------|
+| false | false | false           |
+| true  | false | true            |
+| false | true  | true            |
+| true  | true  | true            |
+
+Apply _operator ||_ to _b1_ and _b2_ parameters.
 
 ```cs
-public static int MyMethod()
+public static bool Puzzle1(bool b1, bool b2)
 {
-    return ReturnInt(5_689_375);
+    return b1 || b2;
 }
 ```
+
+Now, the _Puzzle1_ truth table is similar to the expected truth table except for the case when _b2_ parameter is false.
+
+| b1    | b2    | Actual Result | Expected Result |
+|-------|-------|---------------|-----------------|
+| false | false | **false**     | **true**        |
+| true  | false | **true**      | **false**       |
+| false | true  | true          | true            |
+| true  | true  | true          | true            |
+
+That means a logical negation should be applied to the _b1_ parameter.
+
+```cs
+public static bool Puzzle1(bool b1, bool b2)
+{
+    return !b1 || b2;
+}
+```
+
+Now the method produces correct expected results for all tests cases for the _Puzzle1_ReturnBool_ unit test.
+
+Implement the other logical puzzles in the same way. Some puzzles assume using parentheses to change the order of [operand evaluation](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/#operand-evaluation).
 
 
 ## Fix Compiler Issues
@@ -130,38 +161,18 @@ If a compiler error or warning message is not clear, [review errors details](htt
 ## Task Checklist
 
 1. Rebuild the solution.
-2. Fix all compiler warnings and errors. Make sure there are no warnings and errors in _Error List_.
-
-![Output and Error List](images/rebuild-solution-output-error-list.png)
-
-3. Run all unit tests, make sure all unit tests completed successfully.
-
-![Test Explorer](images/test-explorer.png)
-
-4. Review all changes, make sure that only the code files (.cs) in CompilerErrors project are changed.
-
-![Good Git Changes](images/git-changes-good.png)
-
-Do not make any changes to project files (.csproj) or in code files in CompilerErrors.Tests project.
-
-![Bad Git Changes](images/git-changes-bad.png)
-
-5. Stage your changes.
-
-![Stage Changes](images/git-changes-stage.png)
-
-All your changes are staged now.
-
-![Staged Changes](images/git-changes-staged-changes.png)
-
-6. Create a commit and push your changes to remote repository.
-
-![Commit and Push](images/git-changes-commit-push.png)
+1. Fix all compiler warnings and errors.
+1. Run all unit tests, make sure all unit tests completed successfully.
+1. Review all changes, make sure the only code files (.cs) in Bools project have changes. No changes in project files (.csproj) or in Bools.Tests project.
+1. Stage your changes, and create a commit.
+1. Push your changes to remote repository.
 
 
 ## See also
 
-* Visual Studio
-  * [Getting Started with Visual Studio 2019](https://www.youtube.com/watch?v=1CgsMtUmVgs)
-  * [Default keyboard shortcuts in Visual Studio](https://docs.microsoft.com/en-us/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio)
-
+* C# Language Reference
+  * [bool](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool)
+  * [Boolean logical operators](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators)
+* .NET API
+  * [Boolean Struct](https://docs.microsoft.com/en-us/dotnet/api/system.boolean)
+* [Truth table](https://en.wikipedia.org/wiki/Truth_table)
