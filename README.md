@@ -1,6 +1,6 @@
-# Static Methods
+# Static Methods - Compiler Errors
 
-Beginner level task for practicing static methods.
+Beginner level task to practice fixing the most common compiler errors.
 
 Estimated time to complete the task - 1h.
 
@@ -9,145 +9,115 @@ The task requires .NET 8 SDK installed.
 
 ## Task Description
 
-The task has two sections with twenty-two sub-tasks. Each sub-task is a small coding exercise.
+The task has five sub-tasks. Each sub-task is a small coding exercise.
 
 
-## Static Methods
+## CS0103
 
-Read the [Method signatures](https://docs.microsoft.com/en-us/dotnet/csharp/methods#method-signatures) and the [Return values](https://docs.microsoft.com/en-us/dotnet/csharp/methods#return-values) sections from the [Method](https://docs.microsoft.com/en-us/dotnet/csharp/methods) article.
+1. [Build the solution](https://docs.microsoft.com/en-us/visualstudio/ide/building-and-cleaning-projects-and-solutions-in-visual-studio).
+    * Click on the menu item - _Build\Build Solution_.
+    * Or use the default keyboard shortcut - _Ctrl+Shift+B_ (different versions of Visual Studio may have different keyboard shortcuts. See [Keyboard shortcuts in Visual Studio](https://docs.microsoft.com/en-us/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio) article).
 
-Open the [ReturningMethods.cs](StaticMethods/ReturningMethods.cs) file, and implement the methods from the table below.
+![Build Solution](images/build-solution.png)
 
-| Method Name        | Return Type | Return Value (Literal) |
-|--------------------|-------------|------------------------|
-| ReturnInt          | int         | -1234567               |
-| ReturnUnsignedInt  | uint        | 1234567u               |
-| ReturnLong         | long        | -987654321L            |
-| ReturnUnsignedLong | ulong       | 987654321uL            |
-| ReturnFloat        | float       | 1234.567f              |
-| ReturnDouble       | double      | -9876.54321            |
-| ReturnDecimal      | decimal     | -123456789.987654321m  |
-| ReturnString       | string      | "Hello, world!"        |
-| ReturnChar         | char        | 'A'                    |
-| ReturnByte         | byte        | 0xAB                   |
-| ReturnBool         | bool        | true                   |
+2. Open the [Error List](https://docs.microsoft.com/en-us/visualstudio/ide/find-and-fix-code-errors#review-the-error-list) view.
+    * Click on the menu item - _View\Error List_.
+    * Or use the default shortcut - _Ctrl+\\, E_.
 
-Let's start with implementing the `ReturnInt` method. Copy the following code template:
+![View Error List](images/view-error-list.png)
+
+3. Find an error with CS0103 code and review the error in detail by clicking on the link in the "Code" column.
+
+![Open CS0103](images/open-cs0103.png)
+
+You will get to the issue documentation page.
+
+4. Double-click on the CS0103 issue in the _Error List_ window. 
+
+![Navigate to CS0103](images/navigate-to-cs0103.png)
+
+You will get to the [CS0103/MyClass.cs](CompilerErrors/CS0103/MyClass.cs) file.
+
+![CS0103](images/cs0103.png)
+
+5. Read the documentation page and learn [how to fix the error](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs0103): "Check the spelling of the name and check your [**using** directives](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive) and assembly references to make sure that the name that you are trying to use is available."
+
+6. Replace the name of the method called in the return statement with correct spelling - _ReturnInt_.
 
 ```cs
-public static RETURN_TYPE METHOD_NAME()
+public static int MyMethod()
 {
-    return RETURN_VALUE;
+    return ReturnInt(intParameter: 534_947_886);
 }
 ```
 
-Go to the line with the [TODO #1-1](StaticMethods/ReturningMethods.cs#L5) comment. Paste the template right after the comment.
+7. Rebuild the solution.
+
+![Rebuild Solution](images/rebuild-solution.png)
+
+8. Open the _Error List_ window again and make sure there are no CS0103 issues.
+
+
+## CS0117
+
+![CS0117](images/cs0117.png)
+
+1. Open the _Error List_ window, find the CS0117 issue.
+2. Open and read the issue documentation page.
+3. Navigate to the code by clicking on the issue line in _Error List_ window.
+4. Replace the name of the method called in the return statement with correct spelling - _ReturnLong_.
 
 ```cs
-// TODO #1-1: Add the static method here with the name "ReturnInt" that should return -1234567 literal (int return type).
-public static RETURN_TYPE METHOD_NAME()
+public static long MyMethod()
 {
-    return RETURN_VALUE;
+    return AnotherClass.ReturnLong(longParameter: 49_023_471L);
 }
 ```
 
-Replace METHOD_NAME with `ReturnInt`.
+5. Rebuild the solution.
+6. Open the _Error List_ window again and make sure there are no CS0117 issues anymore.
+
+
+## CS1501
+
+![CS1501](images/cs1501.png)
+
+Fix the issue by removing the method argument from the method call.
 
 ```cs
-// TODO #1-1: Add the static method here with name "ReturnInt" that should return -1234567 literal (int return type).
-public static RETURN_TYPE ReturnInt()
+public static int MyMethod()
 {
-    return RETURN_VALUE;
+    return ReturnInt();
 }
 ```
 
-In .NET, it is common practice to give [method names](https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/names-of-type-members#names-of-methods) that are verbs or verb phrases and use the [PascalCasing convention](https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/capitalization-conventions#capitalization-rules-for-identifiers) for method names.
 
-Replace RETURN_TYPE with `int` and RETURN_VALUE with the `-1234567` literal.
+## CS1739
+
+![CS1739](images/cs1739.png)
+
+Fix the issue by replacing the named parameter with correct argument name.
 
 ```cs
-// TODO #1-1: Add the static method here with name "ReturnInt" that should return -1234567 literal (int return type).
-public static int ReturnInt()
+public static int MyMethod()
 {
-    return -1234567;
+    return ReturnInt(intParameter: 9_389_572);
 }
 ```
 
-Remove the TODO comment. Having a TODO comment in your code make Sonar generate the [S1135 issue](https://rules.sonarsource.com/csharp/RSPEC-1135).
+
+## CS7036
+
+![CS7036](images/cs7036.png)
+
+Fix the issue by adding the parameter to the _ReturnInt_ method call.
 
 ```cs
-public static int ReturnInt()
+public static int MyMethod()
 {
-    return -1234567;
+    return ReturnInt(5_689_375);
 }
 ```
-
-Implement the other methods in the same way.
-
-Read the [Method invocation](https://docs.microsoft.com/en-us/dotnet/csharp/methods#method-invocation) section, and learn how static methods are invoked. Open [ReturningMethodsTests.cs](StaticMethods.Tests/ReturningMethodsTests.cs), navigate to the [ReturnInt_ReturnsInteger](StaticMethods.Tests/ReturningMethodsTests.cs#L10) unit test, and find out how the `ReturnInt` method is invoked in the unit test.
-
-
-## Method Parameters
-
-Read the [Passing parameters by value](https://docs.microsoft.com/en-us/dotnet/csharp/methods#passing-parameters-by-value) section from the [Method](https://docs.microsoft.com/en-us/dotnet/csharp/methods) article.
-
-Open the [PassthroughMethods.cs](StaticMethods/PassthroughMethods.cs) file, and implement the methods from the table below.
-
-| Method Name        | Return Type | Parameter Name   | Parameter Type  |
-|--------------------|-------------|------------------|-----------------|
-| ReturnInt          | int         | intParameter     | int             |
-| ReturnUnsignedInt  | uint        | uintParameter    | uint            |
-| ReturnLong         | long        | longParameter    | long            |
-| ReturnUnsignedLong | ulong       | ulongParameter   | ulong           |
-| ReturnFloat        | float       | floatParameter   | float           |
-| ReturnDouble       | double      | doubleParameter  | double          |
-| ReturnDecimal      | decimal     | decimalParameter | decimal         |
-| ReturnString       | string      | stringParameter  | string          |
-| ReturnChar         | char        | charParameter    | char            |
-| ReturnByte         | byte        | byteParameter    | byte            |
-| ReturnBool         | bool        | boolParameter    | bool            |
-
-Start with implementing the `ReturnInt` method. Go to the line with the [TODO #2-1](StaticMethods/PassthroughMethods.cs#L5) comment, and add the method definition like you did in the previous section.
-
-```cs
-// TODO #2-1: Add the static method here with name "ReturnInt" that gets "intParameter" parameter ("int" type) and returns it.
-public static int ReturnInt()
-{
-}
-```
-
-Then, add *method parameter* with the specified parameter type.
-
-```cs
-// TODO #2-1: Add the static method here with name "ReturnInt" that gets "intParameter" parameter ("int" type) and returns it.
-public static int ReturnInt(int intParameter)
-{
-}
-```
-
-Return the method argument from the method body. Remove the TODO comment.
-
-```cs
-// TODO #2-1: Add the static method here with name "ReturnInt" that gets "intParameter" parameter ("int" type) and returns it.
-public static int ReturnInt(int intParameter)
-{
-    return intParameter;
-}
-```
-
-Implement the other methods in the same way.
-
-Open [PassthroughMethodsTests.cs](StaticMethods.Tests/PassthroughMethodsTests.cs), navigate to the [ReturnInt_ReturnsInt](StaticMethods.Tests/PassthroughMethodsTests.cs#L12) unit test.
-
-```cs
-[TestCase(int.MaxValue, ExpectedResult = int.MaxValue)]
-public int ReturnInt_ReturnsInt(int argument)
-{
-    return PassthroughMethods.ReturnInt(intParameter: argument);
-}
-```
-
-*argument* is passed to the `ReturnInt` method as a [named argument](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments#named-arguments).
 
 
 ## Fix Compiler Issues
@@ -160,14 +130,38 @@ If a compiler error or warning message is not clear, [review errors details](htt
 ## Task Checklist
 
 1. Rebuild the solution.
-1. Fix all compiler warnings and errors.
-1. Run all unit tests, make sure all unit tests completed successfully.
-1. Review all changes, make sure the only code files (.cs) in StaticMethod project have changes. No changes in project files (.csproj) or in StaticMethod.Tests project.
-1. Stage your changes, and create a commit.
-1. Push your changes to remote repository.
+2. Fix all compiler warnings and errors. Make sure there are no warnings and errors in _Error List_.
+
+![Output and Error List](images/rebuild-solution-output-error-list.png)
+
+3. Run all unit tests, make sure all unit tests completed successfully.
+
+![Test Explorer](images/test-explorer.png)
+
+4. Review all changes, make sure that only the code files (.cs) in CompilerErrors project are changed.
+
+![Good Git Changes](images/git-changes-good.png)
+
+Do not make any changes to project files (.csproj) or in code files in CompilerErrors.Tests project.
+
+![Bad Git Changes](images/git-changes-bad.png)
+
+5. Stage your changes.
+
+![Stage Changes](images/git-changes-stage.png)
+
+All your changes are staged now.
+
+![Staged Changes](images/git-changes-staged-changes.png)
+
+6. Create a commit and push your changes to remote repository.
+
+![Commit and Push](images/git-changes-commit-push.png)
 
 
 ## See also
 
-* [Methods](https://docs.microsoft.com/en-us/dotnet/csharp/methods)
-* [Named and Optional Arguments](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments)
+* Visual Studio
+  * [Getting Started with Visual Studio 2019](https://www.youtube.com/watch?v=1CgsMtUmVgs)
+  * [Default keyboard shortcuts in Visual Studio](https://docs.microsoft.com/en-us/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio)
+
