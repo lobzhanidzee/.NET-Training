@@ -13,7 +13,7 @@
     <AdditionalFiles Include="..\stylecop.json" Link="Properties\stylecop.json" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IfElseStatements\IfElseStatements.csproj" />
+    <ProjectReference Include="..\DartsGame\DartsGame.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
