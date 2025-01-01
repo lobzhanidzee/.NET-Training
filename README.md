@@ -1,4 +1,4 @@
-# Darts Game
+# Leap Year
 
 Beginner level task to practice the `if` statement.
 
@@ -7,13 +7,8 @@ Estimated time to complete the task - 0.5h.
 The task requires .NET 8 SDK installed.
 
 
-## Task description
+## Task Description
 
-Implement a [GetScore](DartsGame/Darts.cs#L13) method that calculates the earned points in a single toss of a Darts game. In the game, the target rewards with 4 different amounts of points, depending on where the dart lands:
-- if the dart lands outside the target, player earns no points (0 points);
-- if the dart lands in the outer circle of the target, player earns 1 point;
-- if the dart lands in the middle circle of the target, player earns 5 points;
-- if the dart lands in the inner circle of the target, player earns 10 points.  
-The outer circle has a radius of 10 units (This is equivalent to the total radius for the entire target), the middle circle a radius of 5 units, and the inner circle a radius of 1. Of course, they are all centered to the same point (That is, the circles are concentric) defined by the coordinates (0, 0).
+Implement the [IsLeapYear](LeapYear/Year.cs#L10) method that returns `true` if an `year` argument is a [leap year](https://en.wikipedia.org/wiki/Leap_year); returns `false` otherwise.
 
-Use the [if statements](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements#the-if-statement) to implement the algorithm.
+Use the [if statements](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements#the-if-statement) and the [remainder operator](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/arithmetic-operators#remainder-operator-) in your algorithm. Do not use the `DateTime` structure, its properties, or its methods.
