@@ -1,22 +1,47 @@
-﻿namespace ForStatements;
+namespace ForStatements;
 
 public static class QuadraticSequences
 {
     public static uint CountQuadraticSequenceTerms(long a, long b, long c, long maxTerm)
     {
-        // TODO Task 6. Implement the method that returns the number of the quadratic sequence terms that are less than or equals to the maxTerm.
-        throw new NotImplementedException();
+        long term = 0;
+        int i = 1;
+
+        for (; term <= maxTerm; term = (a * i * i) + (b * i) + c)
+        {
+            i++;
+        }
+
+        return (uint)(i - 1);
     }
 
     public static ulong GetQuadraticSequenceTermsProduct1(uint count)
     {
-        // TODO Task 7. Implement the method that returns the product of the first count quadratic sequence terms.
-        throw new NotImplementedException();
+        long term = 1;
+
+        const int a = 7;
+        const int b = 4;
+        const int c = 2;
+
+        for (int i = 1; i <= count; i++)
+        {
+            term *= (a * i * i) + (b * i) + c;
+        }
+
+        return (ulong)term;
     }
 
     public static ulong GetQuadraticSequenceProduct2(long a, long b, long c, long startN, long count)
     {
-        // TODO Task 8. Implement the method that returns the product of count quadratic sequence terms starting with the startN term.
-        throw new NotImplementedException();
+        long term = 1;
+
+        long max = startN + count;
+
+        for (; startN < max; startN++)
+        {
+            term *= (a * startN * startN) + (b * startN) + c;
+        }
+
+        return (ulong)term;
     }
 }

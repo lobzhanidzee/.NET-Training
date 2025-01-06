@@ -1,16 +1,42 @@
-﻿namespace ForStatements;
+namespace ForStatements;
 
 public static class PrimeNumbers
 {
     public static bool IsPrimeNumber(uint n)
     {
-        // TODO Task 15. Implement the method that returns true if n is a prime number; otherwise returns false.
-        throw new NotImplementedException();
+        if (n < 2)
+        {
+            return false;
+        }
+
+        for (int i = 2; i <= Math.Sqrt(n); i++)
+        {
+            if (n % i == 0)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public static ulong SumDigitsOfPrimeNumbers(int start, int end)
     {
-        // TODO Task 16. Implement the method that returns the sum of digits of all prime numbers in the [start, end] interval.
-        throw new NotImplementedException();
+        ulong sum = 0;
+
+        for (int i = start; i <= end; i++)
+        {
+            if (IsPrimeNumber((uint)i))
+            {
+                int number = i;
+                while (number > 0)
+                {
+                    sum += (ulong)(number % 10);
+                    number /= 10;
+                }
+            }
+        }
+
+        return sum;
     }
 }
