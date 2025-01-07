@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -7,7 +7,6 @@
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
     <CodeAnalysisTreatWarningsAsErrors>false</CodeAnalysisTreatWarningsAsErrors>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
-    <NoWarn>S1264</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\stylecop.json" Link="Properties\stylecop.json" />
