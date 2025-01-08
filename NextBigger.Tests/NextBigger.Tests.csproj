@@ -13,7 +13,7 @@
     <AdditionalFiles Include="..\stylecop.json" Link="Properties\stylecop.json" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Population\Population.csproj" />
+    <ProjectReference Include="..\NextBigger\NextBigger.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
