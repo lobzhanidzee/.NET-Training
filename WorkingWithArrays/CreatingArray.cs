@@ -55,7 +55,6 @@ public static class CreatingArray
     public static string[] CreateArrayOfFiveEmptyStrings()
     {
         return new string[] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
-
     }
 
     public static char[] CreateArrayOfFifteenCharactersWithDefaultValues()
@@ -130,7 +129,6 @@ public static class CreatingArray
 
     public static char[] CreateCharArrayWithThreeElements()
     {
-
         return new[] { 'a', 'b', 'c' };
     }
 
