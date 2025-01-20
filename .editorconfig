@@ -247,8 +247,8 @@ dotnet_diagnostic.SA1002.severity = warning   # SemicolonsMustBeSpacedCorrectly
 dotnet_diagnostic.SA1003.severity = warning   # SymbolsMustBeSpacedCorrectly
 dotnet_diagnostic.SA1008.severity = warning   # OpeningParenthesisMustBeSpacedCorrectly
 dotnet_diagnostic.SA1009.severity = warning   # ClosingParenthesisMustBeSpacedCorrectly
-dotnet_diagnostic.SA1010.severity = warning   # OpeningSquareBracketsMustBeSpacedCorrectly
-dotnet_diagnostic.SA1011.severity = warning   # ClosingSquareBracketsMustBeSpacedCorrectly
+dotnet_diagnostic.SA1010.severity = none# OpeningSquareBracketsMustBeSpacedCorrectly
+dotnet_diagnostic.SA1011.severity = none# ClosingSquareBracketsMustBeSpacedCorrectly
 dotnet_diagnostic.SA1012.severity = warning   # OpeningBracesMustBeSpacedCorrectly
 dotnet_diagnostic.SA1013.severity = warning   # ClosingBracesMustBeSpacedCorrectly
 dotnet_diagnostic.SA1014.severity = warning   # OpeningGenericBracketsMustBeSpacedCorrectly
@@ -287,3 +287,6 @@ dotnet_diagnostic.SA1615.severity = none      # ElementReturnValueMustBeDocument
 dotnet_diagnostic.SA1618.severity = none      # GenericTypeParametersMustBeDocumented
 dotnet_diagnostic.SA1625.severity = none      # ElementDocumentationMustNotBeCopiedAndPasted
 dotnet_diagnostic.SA1633.severity = none      # FileMustHaveHeader
+
+# Default severity for all analyzer diagnostics
+dotnet_analyzer_diagnostic.severity = none

@@ -1,36 +1,73 @@
-# Getting an Array Element Index
+# Looking for an Array Element
 
-Beginner level task for practicing loops and arrays.
+Intermediate level task for practicing loops, branches and arrays.
 
-In the task you have to implement six "GetIndexOf" methods that should return the zero-based index (position) of the first occurrence of the specified character ("value" parameter) in the string that is passed as a "str" parameter.
+The task is to implement six methods using "for", "while" and "do" statements.
 
-Estimated time to complete the task - 1h.
+Estimated time to complete the task - 2h.
 
 The task requires .NET 8 SDK installed.
 
 ## Task Description
 
-The implementation details are described in TODO comments in code files. There are six "GetLastIndexOf" methods that you can use as examples. The methods are implemented using recursion. Debug and analyze the methods to understand their algorithms BEFORE starting to implement required methods.
+You are allowed to use loop statements (for, while and do), [Array.Length](https://docs.microsoft.com/en-us/dotnet/api/system.array.length) and [Array.IList.Item[Int32]](https://docs.microsoft.com/en-us/dotnet/api/system.array.system-collections-ilist-item) properties only. You are not allowed to use other static or instance methods of the [Array class](https://docs.microsoft.com/en-us/dotnet/api/system.array?view=netcore-3.1) or any extension method from [System.Linq namespace](https://docs.microsoft.com/en-us/dotnet/api/system.linq). You can create your private [static methods](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/static-classes-and-static-class-members) or [local functions](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/local-functions).
 
-Use the _for_, _while_ and _do..while_ statements to repeatedly execute a block of C# statements. Don't use static or instance methods of the [Array class](https://docs.microsoft.com/en-us/dotnet/api/system.array) (IndexOf, LastIndexOf, Find, ForEach, etc.) or [LINQ functionality](https://docs.microsoft.com/en-us/dotnet/api/system.linq).
+1. Implement "GetIntegersCount(int[], int[])" method in the [IntegersCounter.cs](LookingForArrayElements/IntegersCounter.cs) file. The method should count all elements of "arrayToSearch" array that appears in "elementsToSearchFor" array.
 
-1. Analyze the implementation of the [GetLastIndexOf(uint[], uint)](GettingArrayElementIndex/ForMethods.cs#L17) method in the _ForMethods.cs_ file. Implement the [GetIndexOf(uint[], uint)](GettingArrayElementIndex/ForMethods.cs#L5) static method. See TODO #1.
-1. Analyze the implementation of the [GetLastIndexOf(uint[], uint, int, int)](GettingArrayElementIndex/ForMethods.cs#L35) method in the _ForMethods.cs_ file. Implement the [GetIndexOf(uint[], uint, int, int)](GettingArrayElementIndex/ForMethods.cs#L11) static method. See TODO #2.
-1. Analyze the implementation of the [GetLastIndexOf(ushort[], ushort)](GettingArrayElementIndex/WhileMethods.cs#L17) method in the _WhileMethods.cs_ file. Implement the [GetIndexOf(ushort[], ushort)](GettingArrayElementIndex/WhileMethods.cs#L5) static method. See TODO #3.
-1. Analyze the implementation of the [GetLastIndexOf(ushort[], ushort, int, int)](GettingArrayElementIndex/WhileMethods.cs#L38) method in the _WhileMethods.cs_ file. Implement the [GetIndexOf(ushort[], ushort, int, int)](GettingArrayElementIndex/WhileMethods.cs#L11) static method. See TODO #4.
-1. Analyze the implementation of the [GetLastIndexOf(ulong[], ulong)](GettingArrayElementIndex/DoWhileMethods.cs#L17) method in the _DoWhileMethods.cs_ file. Implement the [GetIndexOf(ulong[], ulong)](GettingArrayElementIndex/DoWhileMethods.cs#L5) static method. See TODO #5.
-1. Analyze the implementation of the [GetLastIndexof(ulong[], ulong, int, int)](GettingArrayElementIndex/DoWhileMethods.cs#L42) method in the _DoWhileMethods.cs_ file. Implement the [GetIndexOf(ulong[], ulong, int, int)](GettingArrayElementIndex/DoWhileMethods.cs#L11) static method. See TODO #6.
+Here's an example for ["GetIntegersCount_ParametersAreValid_ReturnsResult"](LookingForArrayElements.Tests/IntegersCounterTests.cs#L55) unit test.
+
+arrayToSearch is an array with { 1, 2, 3, 4, 5, 6, 7, 8, 9 } elements, and elementsToSearchFor is an array with { 2, 5, 8 } elements.
+
+| Position in arrayToSearch  | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+|----------------------------|---|---|---|---|---|---|---|---|---|
+| arrayToSearch values       | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+| elementsToSearchFor values |   | 2 |   |   | 5 |   |   | 8 |   |
+| Sum = 3                    | 0 | 1 | 0 | 0 | 1 | 0 | 0 | 1 | 0 |
+
+
+2. Implement "GetIntegersCount(int[], int[], int, int)" method in the [IntegersCounter.cs](LookingForArrayElements/IntegersCounter.cs) file. The method should work like the previous one, but it has additional options (startIndex and count) that can be used for getting a subset of arrayToSearch.
+
+Here's an example for ["GetIntegersCount_ParametersAreValid_ReturnsResult"](LookingForArrayElements.Tests/IntegersCounterTests.cs#L136) unit test.
+
+arrayToSearch is an array with { 1, 2, 3, 4, 5, 6, 7, 8, 9 } elements, and elementsToSearchFor is an array with { 2, 5, 8 } elements. startIndex is 2, and count is 5.
+
+| Position in arrayToSearch  | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+|----------------------------|---|---|---|---|---|---|---|---|---|
+| arrayToSearch values       | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+| elementsToSearchFor values |   | 2 |   |   | 5 |   |   | 8 |   |
+| startIndex & count         |   |   | 1 | 2 | 3 | 4 | 5 |   |   |
+| Sum = 1                    | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 |
+
+
+3. Implement "GetFloatsCount(float[], float[], float[])" method in the [FloatCounter.cs](LookingForArrayElements/FloatCounter.cs) file. The method should count all elements of "arrayToSearch" array that appears in ranges defined by values in "rangeStart" and "rangeEnd" arrays.
+
+Here's an example for ["GetFloatsCount_ParametersAreValid_ReturnsResult"](LookingForArrayElements.Tests/FloatCounterTests.cs#L92) unit test.
+
+arrayToSearch is an array with { 0.1f, 0.2f, 0.3f, 0.4f, 0.5f, 0.6f, 0.7f, 0.8f, 0.9f } elements, rangeStart array has { 0.1f, 0.8f } elements, rangeEnd array has { 0.2f, 0.9f } elements. That means the first range is 0.1f-0.2f, and the second tange is 0.8f-0.9f.
+
+| Position in arrayToSearch  |   0  |   1  |    2 |   3  |   4  |   5  |   6  |   7  |   8  |
+|----------------------------|------|------|------|------|------|------|------|------|------|
+| arrayToSearch values       | 0.1f | 0.2f | 0.3f | 0.4f | 0.5f | 0.6f | 0.7f | 0.8f | 0.9f |
+| 0.1f-0.2f range            | 0.1f | 0.2f |      |      |      |      |      |      |      |
+| 0.8f-0.9f range            |      |      |      |      |      |      |      | 0.8f | 0.9f |
+| Sum = 4                    |   1  |   1  |   0  |   0  |   0  |   0  |   0  |   1  |   1  |
+
+
+4. Implement "GetFloatsCount(float[], float[], float[], int, int)" method in the [FloatCounter.cs](LookingForArrayElements/FloatCounter.cs) file. See the method documentation and TODO.
+5. Implement "GetDecimalsCount(decimal[], decimal[][])" method in the [DecimalCounter.cs](LookingForArrayElements/DecimalCounter.cs) file. See the method documentation and TODO.
+6. Implement "GetDecimalsCount(decimal[], decimal[][], int, int)" method in the [DecimalCounter.cs](LookingForArrayElements/DecimalCounter.cs) file. See the method documentation and TODO.
 
 
 ## See also
 
+* Tour of C#
+  * [Arrays](https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/arrays)
+* C# Programming Guide
+  * [Arrays](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/arrays/)
 * C# Reference
   * [for statement](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/for)
   * [while statement](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/while)
   * [do..while statement](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/do)
-  * [Increment operator ++](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/arithmetic-operators#increment-operator-)
-  * [Decrement operator --](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/arithmetic-operators#decrement-operator---)
-  * [Creating and Throwing Exceptions](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/exceptions/creating-and-throwing-exceptions)
 * .NET API
-  * [Array.Length](https://docs.microsoft.com/en-us/dotnet/api/system.array.length)
-  * [Array.IList.Item](https://docs.microsoft.com/en-us/dotnet/api/system.array.system-collections-ilist-item)
+  * [Array.Length Property](https://docs.microsoft.com/en-us/dotnet/api/system.array.length)
+  * [Array.IList.Item[Int32] Property](https://docs.microsoft.com/en-us/dotnet/api/system.array.system-collections-ilist-item)
