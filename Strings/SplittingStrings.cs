@@ -6,9 +6,8 @@ public static class SplittingStrings
     /// </summary>
     public static string[] SplitCommaSeparatedString(string str)
     {
-        // TODO #7-1. Analyze unit tests for the method, and add the method implementation.
-        // Use String.Split method: https://docs.microsoft.com/en-us/dotnet/api/system.string.split
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(str);
+        return str.Split(',');
     }
 
     /// <summary>

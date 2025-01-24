@@ -7,9 +7,8 @@ public static class UsingRanges
     /// </summary>
     public static string GetStringWithAllChars(string str)
     {
-        // TODO #3-1. Analyze unit tests for the method, and add the method implementation.
-        // Use range to get a substring: https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/ranges-indexes
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(str);
+        return str.Substring(0);
     }
 
     /// <summary>
@@ -17,9 +16,8 @@ public static class UsingRanges
     /// </summary>
     public static string GetStringWithoutFirstChar(string str)
     {
-        // TODO #3-2. Analyze unit tests for the method, and add the method implementation.
-        // Use range to get a substring: https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/ranges-indexes
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(str);
+        return str.Substring(1);
     }
 
     /// <summary>
@@ -27,9 +25,8 @@ public static class UsingRanges
     /// </summary>
     public static string GetStringWithoutTwoFirstChars(string str)
     {
-        // TODO #3-3. Analyze unit tests for the method, and add the method implementation.
-        // Use range to get a substring: https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/ranges-indexes
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(str);
+        return str.Substring(2);
     }
 
     /// <summary>
@@ -37,9 +34,8 @@ public static class UsingRanges
     /// </summary>
     public static string GetStringWithoutThreeFirstChars(string str)
     {
-        // TODO #3-4. Analyze unit tests for the method, and add the method implementation.
-        // Use range to get a substring: https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/ranges-indexes
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(str);
+        return str.Substring(3);
     }
 
     /// <summary>
@@ -47,9 +43,8 @@ public static class UsingRanges
     /// </summary>
     public static string GetStringWithoutLastChar(string str)
     {
-        // TODO #3-5. Analyze unit tests for the method, and add the method implementation.
-        // Use range to get a substring: https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/ranges-indexes
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(str);
+        return str.Substring(0, str.Length - 1);
     }
 
     /// <summary>
@@ -57,9 +52,8 @@ public static class UsingRanges
     /// </summary>
     public static string GetStringWithoutTwoLastChars(string str)
     {
-        // TODO #3-6. Analyze unit tests for the method, and add the method implementation.
-        // Use range to get a substring: https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/ranges-indexes
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(str);
+        return str.Substring(0, str.Length - 2);
     }
 
     /// <summary>
@@ -67,9 +61,8 @@ public static class UsingRanges
     /// </summary>
     public static string GetStringWithoutThreeLastChars(string str)
     {
-        // TODO #3-7. Analyze unit tests for the method, and add the method implementation.
-        // Use range to get a substring: https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/ranges-indexes
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(str);
+        return str.Substring(0, str.Length - 3);
     }
 
     /// <summary>
@@ -77,9 +70,9 @@ public static class UsingRanges
     /// </summary>
     public static string GetStringWithoutFirstAndLastChars(string str)
     {
-        // TODO #3-8. Analyze unit tests for the method, and add the method implementation.
-        // Use range to get a substring: https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/ranges-indexes
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(str);
+        return str[1..^1];
+
     }
 
     /// <summary>
@@ -87,9 +80,8 @@ public static class UsingRanges
     /// </summary>
     public static string GetStringWithoutTwoFirstAndTwoLastChars(string str)
     {
-        // TODO #3-9. Analyze unit tests for the method, and add the method implementation.
-        // Use range to get a substring: https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/ranges-indexes
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(str);
+        return str[2..^2];
     }
 
     /// <summary>
@@ -97,9 +89,9 @@ public static class UsingRanges
     /// </summary>
     public static string GetStringWithoutThreeFirstAndThreeLastChars(string str)
     {
-        // TODO #3-10. Analyze unit tests for the method, and add the method implementation.
-        // Use range to get a substring: https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/ranges-indexes
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(str);
+        return str[3..^3];
+
     }
 
     /// <summary>
@@ -107,8 +99,12 @@ public static class UsingRanges
     /// </summary>
     public static void GetProductionCodeDetails(string productionCode, out string regionCode, out string locationCode, out string dateCode, out string factoryCode)
     {
-        // TODO #3-11. Analyze unit tests for the method, and add the method implementation.
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(productionCode);
+
+        regionCode = productionCode.Substring(0, 1);
+        locationCode = productionCode.Substring(3, 2);
+        dateCode = productionCode.Substring(7, 3);
+        factoryCode = productionCode.Substring(productionCode.Length - 4);
     }
 
     /// <summary>
@@ -116,7 +112,29 @@ public static class UsingRanges
     /// </summary>
     public static void GetSerialNumberDetails(string serialNumber, out string countryCode, out string manufacturerCode, out string factoryCode, out string stationCode)
     {
-        // TODO #3-12. Analyze unit tests for the method, and add the method implementation.
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(serialNumber);
+
+        if (serialNumber.Length == 13)
+        {
+            countryCode = serialNumber.Substring(4, 1);
+            manufacturerCode = serialNumber.Substring(5, 2);
+            factoryCode = serialNumber.Substring(serialNumber.Length - 5, 4);
+            stationCode = serialNumber.Substring(serialNumber.Length - 1);
+        }
+        else if (serialNumber.Length == 12)
+        {
+            countryCode = serialNumber.Substring(3, 1);
+            manufacturerCode = serialNumber.Substring(4, 2);
+            factoryCode = serialNumber.Substring(serialNumber.Length - 5, 4);
+            stationCode = serialNumber.Substring(serialNumber.Length - 1);
+        }
+        else
+        {
+            countryCode = serialNumber.Substring(2, 1);
+            manufacturerCode = serialNumber.Substring(3, 2);
+            factoryCode = serialNumber.Substring(serialNumber.Length - 5, 4);
+            stationCode = serialNumber.Substring(serialNumber.Length - 1);
+        }
+
     }
 }
