@@ -72,7 +72,6 @@ public static class UsingRanges
     {
         ArgumentNullException.ThrowIfNull(str);
         return str[1..^1];
-
     }
 
     /// <summary>
@@ -91,7 +90,6 @@ public static class UsingRanges
     {
         ArgumentNullException.ThrowIfNull(str);
         return str[3..^3];
-
     }
 
     /// <summary>
@@ -135,6 +133,5 @@ public static class UsingRanges
             factoryCode = serialNumber.Substring(serialNumber.Length - 5, 4);
             stationCode = serialNumber.Substring(serialNumber.Length - 1);
         }
-
     }
 }
