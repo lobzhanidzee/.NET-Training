@@ -31,8 +31,8 @@ public static class Interpolation
     /// </summary>
     public static string GetTotalPrice(double price, int items, double discount)
     {
-        double totalPrice = discount < 1 ? (price - (price * discount)) * items : price * items;
-        return $"The price of all items is {totalPrice}.";
+        double totalPrice = discount < 1 ? price * discount * items : price * items;
+        return $"The price of all items is {totalPrice:F2}.";
     }
 
     /// <summary>

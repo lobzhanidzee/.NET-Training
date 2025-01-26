@@ -41,7 +41,6 @@ public static class StringLiterals
     /// </summary>
     public static string ReturnFilePathStringLiteral2()
     {
-        // TODO #1-5. Implement the method - return "c:\users\myuser\documents\my-video-file.avi" string literal.
         return "c:\\users\\myuser\\documents\\my-video-file.avi";
     }
 
