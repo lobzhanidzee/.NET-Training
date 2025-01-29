@@ -16,5 +16,4 @@ public static class SimpleStaticClass3
     private static bool GetBoolean() => true;
 
     private static object? GetObject() => null;
-
 }

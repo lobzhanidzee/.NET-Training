@@ -1,10 +1,10 @@
 namespace UmlDesignBasics;
 public static class SimpleStaticClass2
 {
-    public static char CharField;
-    public static bool BooleanField;
-    public static string StringField;
-    public static object ObjectField;
+    public static readonly char CharField;
+    public static readonly bool BooleanField;
+    public static readonly string StringField;
+    public static readonly object ObjectField;
     private static int intField;
     private static long longField;
     private static float floatField;
