@@ -1,6 +1,6 @@
 namespace UmlDesignBasics;
 
-public class SimpleClass5()
+public class SimpleClass5
 {
     private readonly int intField = -216;
     private readonly long longField = -621;
