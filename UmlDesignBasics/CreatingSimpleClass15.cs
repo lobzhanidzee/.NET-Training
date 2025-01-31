@@ -4,31 +4,26 @@ public static class CreatingSimpleClass15
 {
     public static object CreateSimpleClass15WithDefaultValues()
     {
-        // TODO: Implement this method.
-        throw new NotImplementedException();
+        return SimpleClass15.Create();
     }
 
     public static object CreateSimpleClass15(double doubleValue)
     {
-        // TODO: Implement this method.
-        throw new NotImplementedException();
+        return SimpleClass15.Create(doubleValue: doubleValue);
     }
 
     public static object CreateSimpleClass15(int intValue)
     {
-        // TODO: Implement this method.
-        throw new NotImplementedException();
+        return SimpleClass15.Create(intValue);
     }
 
     public static object CreateSimpleClass15(long longValue, char charValue)
     {
-        // TODO: Implement this method.
-        throw new NotImplementedException();
+        return SimpleClass15.Create(longValue: longValue, charValue: charValue);
     }
 
     public static object CreateSimpleClass15(float floatValue, bool boolValue, object objectValue)
     {
-        // TODO: Implement this method.
-        throw new NotImplementedException();
+        return SimpleClass15.Create(floatValue: floatValue, boolValue: boolValue, objectValue: objectValue);
     }
 }
