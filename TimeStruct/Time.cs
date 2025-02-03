@@ -3,29 +3,36 @@ namespace TimeStruct;
 public struct Time
 {
     public Time(int minutes)
-        : this()
+        : this(0, minutes)
     {
-        this.Minutes = minutes;
     }
 
     public Time(int hours, int minutes)
     {
-        this.Hours = hours;
-        this.Minutes = minutes;
+        int totalMinutes = (hours * 60) + minutes;
+        totalMinutes %= 1440;
+
+        if (totalMinutes < 0)
+        {
+            totalMinutes += 1440;
+        }
+
+        this.Hours = totalMinutes / 60;
+        this.Minutes = totalMinutes % 60;
     }
 
-    public readonly int Hours { get; init; }
+    public int Hours { get; }
 
-    public readonly int Minutes { get; init; }
+    public int Minutes { get; }
 
-    public override string ToString()
+    public new string ToString()
     {
-        return $"Hours = {this.Hours}, Minutes = {this.Minutes}";
+        return $"{this.Hours:D2}:{this.Minutes:D2}";
     }
 
     public void Deconstruct(out int hours, out int minutes)
     {
-        hours = this.Minutes;
-        minutes = this.Hours;
+        hours = this.Hours;
+        minutes = this.Minutes;
     }
 }
