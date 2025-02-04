@@ -1,0 +1,15 @@
+e:\Projects\C#\.NET-Training\bin\Debug\net9.0\.NET-Training.exe
+e:\Projects\C#\.NET-Training\bin\Debug\net9.0\.NET-Training.deps.json
+e:\Projects\C#\.NET-Training\bin\Debug\net9.0\.NET-Training.runtimeconfig.json
+e:\Projects\C#\.NET-Training\bin\Debug\net9.0\.NET-Training.dll
+e:\Projects\C#\.NET-Training\bin\Debug\net9.0\.NET-Training.pdb
+e:\Projects\C#\.NET-Training\obj\Debug\net9.0\.NET-Training.GeneratedMSBuildEditorConfig.editorconfig
+e:\Projects\C#\.NET-Training\obj\Debug\net9.0\.NET-Training.AssemblyInfoInputs.cache
+e:\Projects\C#\.NET-Training\obj\Debug\net9.0\.NET-Training.AssemblyInfo.cs
+e:\Projects\C#\.NET-Training\obj\Debug\net9.0\.NET-Training.csproj.CoreCompileInputs.cache
+e:\Projects\C#\.NET-Training\obj\Debug\net9.0\.NET-Training.sourcelink.json
+e:\Projects\C#\.NET-Training\obj\Debug\net9.0\.NET-Training.dll
+e:\Projects\C#\.NET-Training\obj\Debug\net9.0\refint\.NET-Training.dll
+e:\Projects\C#\.NET-Training\obj\Debug\net9.0\.NET-Training.pdb
+e:\Projects\C#\.NET-Training\obj\Debug\net9.0\.NET-Training.genruntimeconfig.cache
+e:\Projects\C#\.NET-Training\obj\Debug\net9.0\ref\.NET-Training.dll
