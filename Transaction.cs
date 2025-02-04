@@ -1,4 +1,4 @@
-namespace Classes;
+namespace _NET_Training;
 
 public class Transaction
 {
