@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace BookStoreItem;
 
 /// <summary>
@@ -17,11 +19,11 @@ public class BookStoreItem
     private readonly bool hasIsni;
 
     private decimal price;
-    private string? currency = "USD";
+    private string currency;
     private int amount;
 
     public BookStoreItem(string authorName, string title, string publisher, string isbn)
-        : this(authorName, isni: null, title, publisher, isbn)
+        : this(authorName, null, title, publisher, isbn)
     {
     }
 
@@ -34,9 +36,8 @@ public class BookStoreItem
     /// <param name="publisher">A book publisher.</param>
     /// <param name="isbn">A book ISBN.</param>
     public BookStoreItem(string authorName, string? isni, string title, string publisher, string isbn)
-        : this(authorName, title, publisher, isbn, DateTime.Now, bookBinding: string.Empty, price: 0, "USD", 0)
+        : this(authorName, isni, title, publisher, isbn: isbn, null, bookBinding: string.Empty, 0, "USD", 0)
     {
-        ArgumentNullException.ThrowIfNull(isni);
     }
 
     /// <summary>
@@ -52,17 +53,8 @@ public class BookStoreItem
     /// <param name="currency">A price currency.</param>
     /// <param name="amount">An amount of books in the store's stock.</param>
     public BookStoreItem(string authorName, string title, string publisher, string isbn, DateTime? published, string bookBinding, decimal price, string currency, int amount)
-        : this(authorName, isni: string.Empty, title, publisher, isbn, DateTime.Now, bookBinding, price, currency, amount)
+        : this(authorName, isni: null, title, publisher, isbn, published, bookBinding, price, currency, amount)
     {
-        this.authorName = authorName;
-        this.Title = title;
-        this.Publisher = publisher;
-        this.Isbn = isbn;
-        this.Published = published;
-        this.BookBinding = bookBinding;
-        this.price = price;
-        this.currency = currency;
-        this.amount = amount;
     }
 
     /// <summary>
@@ -78,22 +70,42 @@ public class BookStoreItem
     /// <param name="price">An amount of money that a book costs.</param>
     /// <param name="currency">A price currency.</param>
     /// <param name="amount">An amount of books in the store's stock.</param>
-    public BookStoreItem(string authorName, string isni, string title, string publisher, string isbn, DateTime? published, string bookBinding, decimal price, string currency, int amount)
+    public BookStoreItem(string authorName, string? isni, string title, string publisher, string isbn, DateTime? published, string bookBinding, decimal price, string currency, int amount)
     {
-        ArgumentNullException.ThrowIfNull(isni);
-        ArgumentNullException.ThrowIfNull(isbn);
-
         ArgumentException.ThrowIfNullOrWhiteSpace(authorName);
         ArgumentException.ThrowIfNullOrWhiteSpace(title);
         ArgumentException.ThrowIfNullOrWhiteSpace(publisher);
 
+        if (isni != null && !ValidateIsni(isni))
+        {
+            throw new ArgumentException(isni, nameof(isni));
+        }
+
+        if (!ValidateIsbnFormat(isbn) || !ValidateIsbnChecksum(isbn))
+        {
+            throw new ArgumentException(isbn, nameof(isbn));
+        }
+
+        ThrowExceptionIfCurrencyIsNotValid(currency, nameof(currency));
+
 
         this.authorName = authorName;
-        this.hasIsni = ValidateIsni(isni);
-        this.isni = this.hasIsni ? isni : throw new ArgumentException("Invalid ISNI format.");
         this.Title = title;
         this.Publisher = publisher;
-        this.Isbn = ValidateIsbnChecksum(isbn) ? isbn : throw new ArgumentException("error2");
+
+        if (isni != null)
+        {
+            this.isni = isni;
+            this.hasIsni = true;
+        }
+        else
+        {
+            this.isni = null;
+            this.hasIsni = false;
+        }
+
+        this.isni = isni;
+        this.Isbn = isbn;
         this.Published = published;
         this.BookBinding = bookBinding;
         this.price = price;
@@ -144,7 +156,10 @@ public class BookStoreItem
     /// <summary>
     /// Gets or sets an amount of money that a book costs.
     /// </summary>
-    public decimal Price { get => this.price; set { this.price = value; } }
+    public decimal Price
+    {
+        get => this.price; set { this.price = value; }
+    }
 
     /// <summary>
     /// Gets or sets a price currency.
@@ -152,19 +167,7 @@ public class BookStoreItem
     public string Currency
     {
         get => this.currency;
-        set
-        {
-            if (value?.Length == 3)
-            {
-                foreach (var c in value)
-                {
-                    if (c.GetType() != typeof(int))
-                    {
-                        this.currency = value;
-                    }
-                }
-            }
-        }
+        set => this.currency = value;
     }
 
     /// <summary>
@@ -194,10 +197,10 @@ public class BookStoreItem
     {
         if (string.IsNullOrEmpty(this.isni))
         {
-            throw new InvalidOperationException("ISNI is not set.");
+            throw new InvalidOperationException(nameof(this.isni));
         }
 
-        return new Uri($"https://isni.org/{this.isni}");
+        return new Uri($"https://isni.org/isni/{this.isni}");
     }
 
     /// <summary>
@@ -215,71 +218,59 @@ public class BookStoreItem
     /// <returns>A string that represents the current object.</returns>
     public override string ToString()
     {
-        string formattedPrice = $"{this.price:N2}";
-
-        if (string.IsNullOrEmpty(this.isni))
+        string priceStr;
+        if (this.Price < 1000)
         {
-            return string.Join(", ", this.Title, this.authorName, $"\"{this.price}\"", this.currency, this.amount);
+            priceStr = $"{this.Price:N2}".ToString().Replace(',', '.') + $" {this.Currency}";
         }
         else
         {
-            return string.Join(", ", this.Title, this.authorName, this.isni, $"\"{formattedPrice} {this.currency}\"", this.amount);
+            priceStr = $"\"{this.Price.ToString("###_###_###.##", CultureInfo.InvariantCulture).Replace(',', '.').Replace('_', ',')} {this.Currency}\"";
+        }
+
+        if (this.hasIsni)
+        {
+            return $"{this.Title}, {this.AuthorName}, {this.Isni}, {priceStr}, {this.Amount}".ToString();
+        }
+        else
+        {
+            return $"{this.Title}, {this.AuthorName}, ISNI IS NOT SET, {priceStr}, {this.Amount}".ToString();
         }
     }
 
     private static bool ValidateIsni(string isni)
     {
-        if (isni.Length != 16)
-        {
-            return false;
-        }
-
-        foreach (char x in isni)
-        {
-            if (!char.IsDigit(x) && x != 'X')
-            {
-                return false;
-            }
-        }
-
-        return true;
+        return isni.Length == 16 && (isni.All(char.IsDigit) || isni.All(x => x == 'X'));
     }
 
     private static bool ValidateIsbnFormat(string isbn)
     {
-        return isbn.Length == 10;
+        ArgumentNullException.ThrowIfNull(isbn);
+
+        return isbn.Length == 10 && (isbn.All(char.IsDigit) || isbn.All(x => x == 'X'));
     }
 
     private static bool ValidateIsbnChecksum(string isbn)
     {
-        if (ValidateIsbnFormat(isbn))
+        int checksum = 0, i, t = 0;
+
+        for (i = 0; i < isbn.Length; ++i)
         {
-            int checksum = 0, i, t = 0;
-
-            for (i = 0; i < isbn.Length; ++i)
-            {
-                int isbnEl = isbn[i] - '0';
-                t += isbnEl;
-                checksum += t;
-            }
-
-            return checksum % 11 == 0;
+            int isbnEl = isbn[i] - '0';
+            t += isbnEl;
+            checksum += t;
         }
 
-        return false;
+        return checksum % 11 == 0;
     }
 
-    private static void ThrowExceptionIfCurrencyIsNotValid(ref string currency, string parameterName)
+    private static void ThrowExceptionIfCurrencyIsNotValid(string currency, string parameterName)
     {
-        if (parameterName?.Length == 3)
+        ArgumentNullException.ThrowIfNull(currency);
+
+        if (currency.Length != 3 || !currency.All(char.IsLetter))
         {
-            foreach (var c in parameterName)
-            {
-                if (c.GetType() != typeof(int))
-                {
-                    currency = parameterName;
-                }
-            }
+            throw new ArgumentException(currency, parameterName);
         }
     }
 }
