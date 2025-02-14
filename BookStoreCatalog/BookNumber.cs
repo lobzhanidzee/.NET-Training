@@ -15,6 +15,16 @@ public class BookNumber
     /// <exception cref="ArgumentException">a code argument is invalid or a code has wrong checksum.</exception>
     public BookNumber(string isbnCode)
     {
+        if (!ValidateCode(isbnCode))
+        {
+            throw new ArgumentNullException(nameof(isbnCode));
+        }
+
+        if (!ValidateChecksum(isbnCode))
+        {
+            throw new ArgumentException("Ivalid code", nameof(isbnCode));
+        }
+
         this.code = isbnCode;
     }
 
@@ -36,14 +46,23 @@ public class BookNumber
     /// Returns the string that represents a current object.
     /// </summary>
     /// <returns>A string that represents the current object.</returns>
-    private static bool ValidateCode(string isbnCode)
+    private static bool ValidateCode(string? isbnCode)
     {
-        return false;
+        ArgumentNullException.ThrowIfNull(isbnCode);
+
+        return isbnCode.Length == 10 && isbnCode.All(char.IsDigit) && isbnCode.All(x => x == 'X');
     }
 
     private static bool ValidateChecksum(string isbnCode)
     {
-        return false;
+        int checksum = 0;
+        foreach (char x in isbnCode)
+        {
+            int num = x - '0';
+            checksum += num;
+        }
+
+        return checksum % 11 == 0;
     }
 
     public override string ToString()
