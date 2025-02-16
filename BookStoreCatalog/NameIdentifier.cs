@@ -11,24 +11,37 @@ public class NameIdentifier
     /// <param name="isniCode">A 16-digit ISNI code.</param>
     /// <exception cref="ArgumentNullException">a code argument is null.</exception>
     /// <exception cref="ArgumentException">a code argument is invalid.</exception>
-    // TODO Add constructor.
+    public NameIdentifier(string isniCode)
+    {
+        this.Code = isniCode;
+    }
 
     /// <summary>
     /// Gets a 16-digit ISNI code.
     /// </summary>
-    // TODO Add property.
+    public string Code { get; init; }
 
     /// <summary>
     /// Gets a <see cref="Uri"/> to the contributor's page at the isni.org website.
     /// </summary>
     /// <returns>A <see cref="Uri"/> to the contributor's page at the isni.org website.</returns>
-    // TODO Add method.
+    public static Uri GetUri()
+    {
+        return new Uri($"https://isni.org/");
+    }
 
     /// <summary>
     /// Returns the string that represents a current object.
     /// </summary>
     /// <returns>A string that represents the current object.</returns>
-    // TODO Add method.
+    public override string ToString()
+    {
+        return "base.ToString()";
+    }
 
-    // TODO Add method.
+    private static bool ValidateCode(string isniCode)
+    {
+        return false;
+    }
+
 }
