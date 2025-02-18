@@ -5,15 +5,18 @@ namespace BookStoreCatalog;
 /// </summary>
 public class BookStoreItem
 {
-    private BookPublication publication;
-    private BookPrice price;
+    private BookPublication? publication;
+    private BookPrice? price;
     private int amount;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="BookStoreItem"/> class with the specified <paramref name="authorName"/>, <paramref name="isniCode"/>, <paramref name="title"/>, <paramref name="publisher"/>, <paramref name="published"/>, <paramref name="bookBinding"/>, <paramref name="bookBinding"/>, <paramref name="isbn"/>, <paramref name="priceAmount"/>, <paramref name="priceCurrency"/> and <paramref name="amount"/>.
     /// </summary>
-    public BookStoreItem(string authorName, string isniCode, string publisher, DateTime published, BookBindingKind bookBinding, string isbnCode, decimal priceAmount, string priceCurrency, int amount)
+    public BookStoreItem(string authorName, string isniCode, string title, string publisher, DateTime published, BookBindingKind bookBinding, string isbn, decimal priceAmount, string priceCurrency, int amount)
     {
+        this.Publication = new BookPublication(authorName, isniCode, title, publisher, published, bookBinding, isbn);
+        this.Price = new BookPrice(priceAmount, priceCurrency);
+        this.Amount = amount;
     }
 
     /// <summary>
@@ -21,6 +24,9 @@ public class BookStoreItem
     /// </summary>
     public BookStoreItem(BookPublication publication, BookPrice price, int amount)
     {
+        this.Publication = publication;
+        this.Price = price;
+        this.Amount = amount;
     }
 
     /// <summary>

@@ -13,7 +13,16 @@ public class NameIdentifier
     /// <exception cref="ArgumentException">a code argument is invalid.</exception>
     public NameIdentifier(string isniCode)
     {
-        this.Code = isniCode;
+        ArgumentNullException.ThrowIfNull(isniCode);
+
+        if (ValidateCode(isniCode))
+        {
+            this.Code = isniCode;
+        }
+        else
+        {
+            throw new ArgumentException("Invalid isni code", nameof(isniCode));
+        }
     }
 
     /// <summary>
@@ -25,9 +34,9 @@ public class NameIdentifier
     /// Gets a <see cref="Uri"/> to the contributor's page at the isni.org website.
     /// </summary>
     /// <returns>A <see cref="Uri"/> to the contributor's page at the isni.org website.</returns>
-    public static Uri GetUri()
+    public Uri GetUri()
     {
-        return new Uri($"https://isni.org/");
+        return new Uri($"http://www.isni.org/isni/{this.Code}");
     }
 
     /// <summary>
@@ -36,12 +45,11 @@ public class NameIdentifier
     /// <returns>A string that represents the current object.</returns>
     public override string ToString()
     {
-        return "base.ToString()";
+        return this.Code;
     }
 
     private static bool ValidateCode(string isniCode)
     {
-        return false;
+        return isniCode.Length == 16 && (isniCode.All(char.IsDigit) || isniCode.All(x => x == 'X'));
     }
-
 }

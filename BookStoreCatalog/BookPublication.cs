@@ -17,7 +17,10 @@ public class BookPublication
     /// <param name="isbnCode">A 10-digit International Standard Book Number (ISBN) code assigned to a book publication.</param>
     /// <exception cref="ArgumentNullException"><paramref name="publisher"/> or <paramref name="bookNumber"/> or <paramref name="isbnCode"/> is null.</exception>
     /// <exception cref="ArgumentException"><paramref name="publisher"/> is empty or consists of white-space only characters.</exception>
-    // TODO Add constructor.
+    public BookPublication(string authorName, string title, string publisher, DateTime published, BookBindingKind bookBinding, string isbnCode)
+        : this(authorName, string.Empty, title, publisher, published, bookBinding, isbnCode)
+    {
+    }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="BookPublication"/> class with the specified publisher, publication date, kind of book binding and an International Standard Book Number.
@@ -31,7 +34,15 @@ public class BookPublication
     /// <param name="isbnCode">A 10-digit International Standard Book Number (ISBN) code assigned to a book publication.</param>
     /// <exception cref="ArgumentNullException"><paramref name="publisher"/> or <paramref name="bookNumber"/> or <paramref name="code"/> is null.</exception>
     /// <exception cref="ArgumentException"><paramref name="publisher"/> is empty or consists of white-space only characters.</exception>
-    // TODO Add constructor.
+    public BookPublication(string authorName, string isniCode, string title, string publisher, DateTime published, BookBindingKind bookBinding, string isbnCode)
+    {
+        this.Author = new BookAuthor(authorName, isniCode);
+        this.Title = title;
+        this.Publisher = publisher;
+        this.Published = published;
+        this.BookBinding = bookBinding;
+        this.Isbn = new BookNumber(isbnCode);
+    }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="BookPublication"/> class with the specified publisher, publication date, kind of book binding and an International Standard Book Number.
@@ -44,47 +55,61 @@ public class BookPublication
     /// <param name="isbn">An International Standard Book Number assigned to a book publication.</param>
     /// <exception cref="ArgumentNullException"><paramref name="publisher"/> or <paramref name="isbn"/> is null.</exception>
     /// <exception cref="ArgumentException"><paramref name="publisher"/> is empty or consists of white-space only characters.</exception>
-    // TODO Add constructor.
+    public BookPublication(BookAuthor author, string title, string publisher, DateTime published, BookBindingKind bookBinding, BookNumber isbn)
+    {
+        this.Author = author;
+        this.Title = title;
+        this.Publisher = publisher;
+        this.Published = published;
+        this.BookBinding = bookBinding;
+        this.Isbn = isbn;
+    }
 
     /// <summary>
     /// Gets a book author.
     /// </summary>
-    // TODO Add property.
+    public BookAuthor? Author { get; init; }
 
     /// <summary>
     /// Gets a book title.
     /// </summary>
-    // TODO Add property.
+    public string? Title { get; init; }
 
     /// <summary>
     /// Gets a book publisher.
     /// </summary>
-    // TODO Add property.
+    public string? Publisher { get; init; }
 
     /// <summary>
     /// Gets a book publishing date.
     /// </summary>
-    // TODO Add property.
+    public DateTime Published { get; init; }
 
     /// <summary>
     /// Gets a book binding kind.
     /// </summary>
-    // TODO Add property.
+    public BookBindingKind BookBinding { get; init; }
 
     /// <summary>
     /// Gets a book International Standard Book Number (ISBN).
     /// </summary>
-    // TODO Add property.
+    public BookNumber? Isbn { get; init; }
 
     /// <summary>
     /// Gets a publication date as a string.
     /// </summary>
     /// <returns>A publication date as a string.</returns>
-    // TODO Add method.
+    public string GetPublicationDateString()
+    {
+        return Published.ToString();
+    }
 
     /// <summary>
     /// Returns the string that represents a current object.
     /// </summary>
     /// <returns>A string that represents the current object.</returns>
-    // TODO Add method.
+    public override string ToString()
+    {
+        return "base.ToString()";
+    }
 }
