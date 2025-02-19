@@ -12,6 +12,7 @@ public class BookPrice
 
     public BookPrice(decimal amount, string currency)
     {
+        ArgumentNullException.ThrowIfNull(currency);
         ThrowExceptionIfAmountIsNotValid(amount, nameof(amount));
         this.amount = amount;
 
@@ -19,13 +20,28 @@ public class BookPrice
         this.currency = currency;
     }
 
-    public decimal Amount { get => this.amount; set { this.amount = value; } }
+    public decimal Amount
+    {
+        get => this.amount; set
+        {
+            ThrowExceptionIfAmountIsNotValid(value, nameof(value));
+            this.amount = value;
+        }
+    }
 
-    public string Currency { get => this.currency; set { this.currency = value; } }
+    public string Currency
+    {
+        get => this.currency; set
+        {
+            ArgumentNullException.ThrowIfNull(value);
+            ThrowExceptionIfCurrencyIsNotValid(value, nameof(value));
+            this.currency = value;
+        }
+    }
 
     public override string ToString()
     {
-        return $"{this.amount:2N} {this.currency}";
+        return $"{this.amount:N2} {this.currency}";
     }
 
     private static void ThrowExceptionIfAmountIsNotValid(decimal amount, string parameterName)
@@ -38,11 +54,9 @@ public class BookPrice
 
     private static void ThrowExceptionIfCurrencyIsNotValid(string currency, string parameterName)
     {
-        ArgumentNullException.ThrowIfNull(currency);
-
-        if (currency.Length != 3 && currency.All(char.IsLetter))
+        if (string.IsNullOrWhiteSpace(currency) || currency.Length != 3 || !currency.All(char.IsLetter))
         {
-            throw new ArgumentException("Currency must be 3 letters", parameterName);
+            throw new ArgumentException(currency, parameterName);
         }
     }
 }

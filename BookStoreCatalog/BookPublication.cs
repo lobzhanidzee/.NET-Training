@@ -36,6 +36,13 @@ public class BookPublication
     /// <exception cref="ArgumentException"><paramref name="publisher"/> is empty or consists of white-space only characters.</exception>
     public BookPublication(string authorName, string isniCode, string title, string publisher, DateTime published, BookBindingKind bookBinding, string isbnCode)
     {
+        ArgumentNullException.ThrowIfNull(publisher);
+        ArgumentNullException.ThrowIfNull(isbnCode);
+        ArgumentNullException.ThrowIfNull(isniCode);
+        ArgumentNullException.ThrowIfNull(title);
+
+        ArgumentException.ThrowIfNullOrWhiteSpace(publisher, nameof(publisher));
+
         this.Author = new BookAuthor(authorName, isniCode);
         this.Title = title;
         this.Publisher = publisher;
@@ -57,6 +64,13 @@ public class BookPublication
     /// <exception cref="ArgumentException"><paramref name="publisher"/> is empty or consists of white-space only characters.</exception>
     public BookPublication(BookAuthor author, string title, string publisher, DateTime published, BookBindingKind bookBinding, BookNumber isbn)
     {
+        ArgumentNullException.ThrowIfNull(author);
+        ArgumentNullException.ThrowIfNull(publisher);
+        ArgumentNullException.ThrowIfNull(title);
+        ArgumentNullException.ThrowIfNull(isbn);
+
+        ArgumentException.ThrowIfNullOrWhiteSpace(publisher, nameof(publisher));
+
         this.Author = author;
         this.Title = title;
         this.Publisher = publisher;
@@ -101,7 +115,7 @@ public class BookPublication
     /// <returns>A publication date as a string.</returns>
     public string GetPublicationDateString()
     {
-        return Published.ToString();
+        return this.Published.ToShortDateString();
     }
 
     /// <summary>
@@ -110,6 +124,6 @@ public class BookPublication
     /// <returns>A string that represents the current object.</returns>
     public override string ToString()
     {
-        return "base.ToString()";
+        return $"{this.Title} by {this.Author}";
     }
 }

@@ -24,7 +24,7 @@ public class BookAuthor
     /// <param name="isniCode">A 16-digit ISNI code that uniquely identifies a book author.</param>
     /// <exception cref="ArgumentNullException">name is null or isniCode is null.</exception>
     /// <exception cref="ArgumentException">name is empty or consists of white-space only characters.</exception>
-    public BookAuthor(string authorName, string isniCode)
+    public BookAuthor(string? authorName, string isniCode)
     {
         ArgumentNullException.ThrowIfNull(authorName);
         ArgumentException.ThrowIfNullOrWhiteSpace(authorName);

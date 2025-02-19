@@ -15,6 +15,11 @@ public class NameIdentifier
     {
         ArgumentNullException.ThrowIfNull(isniCode);
 
+        if (string.IsNullOrWhiteSpace(isniCode))
+        {
+            throw new ArgumentException("The value cannot be an empty string or composed entirely of whitespace.", nameof(isniCode));
+        }
+
         if (ValidateCode(isniCode))
         {
             this.Code = isniCode;
@@ -50,6 +55,9 @@ public class NameIdentifier
 
     private static bool ValidateCode(string isniCode)
     {
+        ArgumentNullException.ThrowIfNull(isniCode);
+        ArgumentException.ThrowIfNullOrWhiteSpace(isniCode, nameof(isniCode));
+
         return isniCode.Length == 16 && (isniCode.All(char.IsDigit) || isniCode.All(x => x == 'X'));
     }
 }
