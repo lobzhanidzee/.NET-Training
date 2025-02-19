@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace BookStoreCatalog;
 
 /// <summary>
@@ -18,8 +20,19 @@ public class BookPublication
     /// <exception cref="ArgumentNullException"><paramref name="publisher"/> or <paramref name="bookNumber"/> or <paramref name="isbnCode"/> is null.</exception>
     /// <exception cref="ArgumentException"><paramref name="publisher"/> is empty or consists of white-space only characters.</exception>
     public BookPublication(string authorName, string title, string publisher, DateTime published, BookBindingKind bookBinding, string isbnCode)
-        : this(authorName, string.Empty, title, publisher, published, bookBinding, isbnCode)
     {
+        ArgumentNullException.ThrowIfNull(publisher);
+        ArgumentNullException.ThrowIfNull(isbnCode);
+        ArgumentNullException.ThrowIfNull(title);
+
+        ArgumentException.ThrowIfNullOrWhiteSpace(publisher);
+
+        this.Author = new BookAuthor(authorName);
+        this.Title = title;
+        this.Publisher = publisher;
+        this.Published = published;
+        this.BookBinding = bookBinding;
+        this.Isbn = new BookNumber(isbnCode);
     }
 
     /// <summary>
@@ -41,9 +54,9 @@ public class BookPublication
         ArgumentNullException.ThrowIfNull(isniCode);
         ArgumentNullException.ThrowIfNull(title);
 
-        ArgumentException.ThrowIfNullOrWhiteSpace(publisher, nameof(publisher));
+        ArgumentException.ThrowIfNullOrWhiteSpace(publisher);
 
-        this.Author = new BookAuthor(authorName, isniCode);
+        this.Author = new BookAuthor(authorName, isniCode: isniCode);
         this.Title = title;
         this.Publisher = publisher;
         this.Published = published;
@@ -69,7 +82,7 @@ public class BookPublication
         ArgumentNullException.ThrowIfNull(title);
         ArgumentNullException.ThrowIfNull(isbn);
 
-        ArgumentException.ThrowIfNullOrWhiteSpace(publisher, nameof(publisher));
+        ArgumentException.ThrowIfNullOrWhiteSpace(publisher);
 
         this.Author = author;
         this.Title = title;
@@ -115,7 +128,7 @@ public class BookPublication
     /// <returns>A publication date as a string.</returns>
     public string GetPublicationDateString()
     {
-        return this.Published.ToShortDateString();
+        return this.Published.ToString("MMMM, yyyy", CultureInfo.InvariantCulture);
     }
 
     /// <summary>

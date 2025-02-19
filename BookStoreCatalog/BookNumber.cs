@@ -23,7 +23,7 @@ public class BookNumber
         }
         else
         {
-            throw new ArgumentException("Ivalid code", nameof(isbnCode));
+            throw new ArgumentException("Invalid code", nameof(isbnCode));
         }
     }
 
@@ -45,6 +45,11 @@ public class BookNumber
     /// Returns the string that represents a current object.
     /// </summary>
     /// <returns>A string that represents the current object.</returns>
+    public override string ToString()
+    {
+        return this.code;
+    }
+
     private static bool ValidateCode(string? isbnCode)
     {
         ArgumentNullException.ThrowIfNull(isbnCode);
@@ -64,10 +69,5 @@ public class BookNumber
         }
 
         return checksum % 11 == 0;
-    }
-
-    public override string ToString()
-    {
-        return this.code;
     }
 }

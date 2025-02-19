@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using NUnit.Framework;
 
 namespace BookStoreCatalog.Tests;
@@ -32,107 +32,107 @@ public class BookPublicationTests : TestBase
     ];
 
     private static readonly object[][] BookPublicationParameterIsNullData =
+[
     [
-        [
-            null!, "Complete Stories and Poems of Edgar Allan Poe", "Doubleday", new DateTime(1966, 11, 18),
-            BookBindingKind.Hardcover, "0385074077", "authorName"
-        ],
-        [
-            "Edgar Allan Poe", null!, "Doubleday", new DateTime(1966, 11, 18), BookBindingKind.Hardcover, "0385074077",
-            "title"
-        ],
-        [
-            "Edgar Allan Poe", "Complete Stories and Poems of Edgar Allan Poe", null!, new DateTime(1966, 11, 18),
-            BookBindingKind.Hardcover, "0385074077", "publisher"
-        ],
-        [
-            "Edgar Allan Poe", "Complete Stories and Poems of Edgar Allan Poe", "Doubleday", new DateTime(1966, 11, 18),
-            BookBindingKind.Hardcover, null!, "isbnCode"
-        ]
-    ];
+        null!, "Complete Stories and Poems of Edgar Allan Poe", "Doubleday", new DateTime(1966, 11, 18, 0, 0, 0, DateTimeKind.Utc),
+        BookBindingKind.Hardcover, "0385074077", "authorName"
+    ],
+    [
+        "Edgar Allan Poe", null!, "Doubleday", new DateTime(1966, 11, 18, 0, 0, 0, DateTimeKind.Utc), BookBindingKind.Hardcover, "0385074077",
+        "title"
+    ],
+    [
+        "Edgar Allan Poe", "Complete Stories and Poems of Edgar Allan Poe", null!, new DateTime(1966, 11, 18, 0, 0, 0, DateTimeKind.Utc),
+        BookBindingKind.Hardcover, "0385074077", "publisher"
+    ],
+    [
+        "Edgar Allan Poe", "Complete Stories and Poems of Edgar Allan Poe", "Doubleday", new DateTime(1966, 11, 18, 0, 0, 0, DateTimeKind.Utc),
+        BookBindingKind.Hardcover, null!, "isbnCode"
+    ]
+];
 
     private static readonly object[][] BookPublicationWithIsniCodeParameterIsNullData =
     [
         [
-            null!, "0000000121354025", "Complete Stories and Poems of Edgar Allan Poe", "Doubleday",
-            new DateTime(1966, 11, 18), BookBindingKind.Hardcover, "0385074077", "authorName"
-        ],
-        [
-            "Edgar Allan Poe", null!, "Complete Stories and Poems of Edgar Allan Poe", "Doubleday",
-            new DateTime(1966, 11, 18), BookBindingKind.Hardcover, "0385074077", "isniCode"
-        ],
-        [
-            "Edgar Allan Poe", "0000000121354025", null!, "Doubleday", new DateTime(1966, 11, 18),
-            BookBindingKind.Hardcover, "0385074077", "title"
-        ],
-        [
-            "Edgar Allan Poe", "0000000121354025", "Complete Stories and Poems of Edgar Allan Poe", null!,
-            new DateTime(1966, 11, 18), BookBindingKind.Hardcover, "0385074077", "publisher"
-        ],
-        [
-            "Edgar Allan Poe", "0000000121354025", "Complete Stories and Poems of Edgar Allan Poe", "Doubleday",
-            new DateTime(1966, 11, 18), BookBindingKind.Hardcover, null!, "isbnCode"
-        ]
+        null!, "0000000121354025", "Complete Stories and Poems of Edgar Allan Poe", "Doubleday",
+        new DateTime(1966, 11, 18, 0, 0, 0, DateTimeKind.Utc), BookBindingKind.Hardcover, "0385074077", "authorName"
+    ],
+    [
+        "Edgar Allan Poe", null!, "Complete Stories and Poems of Edgar Allan Poe", "Doubleday",
+        new DateTime(1966, 11, 18, 0, 0, 0, DateTimeKind.Utc), BookBindingKind.Hardcover, "0385074077", "isniCode"
+    ],
+    [
+        "Edgar Allan Poe", "0000000121354025", null!, "Doubleday", new DateTime(1966, 11, 18, 0, 0, 0, DateTimeKind.Utc),
+        BookBindingKind.Hardcover, "0385074077", "title"
+    ],
+    [
+        "Edgar Allan Poe", "0000000121354025", "Complete Stories and Poems of Edgar Allan Poe", null!,
+        new DateTime(1966, 11, 18, 0, 0, 0, DateTimeKind.Utc), BookBindingKind.Hardcover, "0385074077", "publisher"
+    ],
+    [
+        "Edgar Allan Poe", "0000000121354025", "Complete Stories and Poems of Edgar Allan Poe", "Doubleday",
+        new DateTime(1966, 11, 18, 0, 0, 0, DateTimeKind.Utc), BookBindingKind.Hardcover, null!, "isbnCode"
+    ]
     ];
 
     private static readonly object[][] BookPublicationWithBookAuthorParameterIsNullData =
     [
         [
-            null!, "Complete Stories and Poems of Edgar Allan Poe", "Doubleday", new DateTime(1966, 11, 18),
-            BookBindingKind.Hardcover, new BookNumber("0385074077"), "author"
-        ],
-        [
-            new BookAuthor("Edgar Allan Poe"), null!, "Doubleday", new DateTime(1966, 11, 18), BookBindingKind.Hardcover,
-            new BookNumber("0385074077"), "title"
-        ],
-        [
-            new BookAuthor("Edgar Allan Poe"), "Complete Stories and Poems of Edgar Allan Poe", null!,
-            new DateTime(1966, 11, 18), BookBindingKind.Unknown, new BookNumber("0385074077"), "publisher"
-        ],
-        [
-            new BookAuthor("Edgar Allan Poe"), "Complete Stories and Poems of Edgar Allan Poe", "Doubleday",
-            new DateTime(1966, 11, 18), BookBindingKind.Hardcover, null!, "isbn"
-        ]
+        null!, "Complete Stories and Poems of Edgar Allan Poe", "Doubleday", new DateTime(1966, 11, 18, 0, 0, 0, DateTimeKind.Utc),
+        BookBindingKind.Hardcover, new BookNumber("0385074077"), "author"
+    ],
+    [
+        new BookAuthor("Edgar Allan Poe"), null!, "Doubleday", new DateTime(1966, 11, 18, 0, 0, 0, DateTimeKind.Utc), BookBindingKind.Hardcover,
+        new BookNumber("0385074077"), "title"
+    ],
+    [
+        new BookAuthor("Edgar Allan Poe"), "Complete Stories and Poems of Edgar Allan Poe", null!,
+        new DateTime(1966, 11, 18, 0, 0, 0, DateTimeKind.Utc), BookBindingKind.Unknown, new BookNumber("0385074077"), "publisher"
+    ],
+    [
+        new BookAuthor("Edgar Allan Poe"), "Complete Stories and Poems of Edgar Allan Poe", "Doubleday",
+        new DateTime(1966, 11, 18, 0, 0, 0, DateTimeKind.Utc), BookBindingKind.Hardcover, null!, "isbn"
+    ]
     ];
 
     private static readonly object[][] BookPublicationData =
     [
         [
-            "Edgar Allan Poe", "Complete Stories and Poems of Edgar Allan Poe", "Doubleday", new DateTime(1966, 11, 18),
-            BookBindingKind.Hardcover, "0385074077"
-        ]
+        "Edgar Allan Poe", "Complete Stories and Poems of Edgar Allan Poe", "Doubleday", new DateTime(1966, 11, 18, 0, 0, 0, DateTimeKind.Utc),
+        BookBindingKind.Hardcover, "0385074077"
+    ]
     ];
 
     private static readonly object[][] BookPublicationWithIsniCodeData =
     [
         [
-            "Edgar Allan Poe", "0000000121354025", "Complete Stories and Poems of Edgar Allan Poe", "Doubleday",
-            new DateTime(1966, 11, 18), BookBindingKind.Hardcover, "0385074077"
-        ]
+        "Edgar Allan Poe", "0000000121354025", "Complete Stories and Poems of Edgar Allan Poe", "Doubleday",
+        new DateTime(1966, 11, 18, 0, 0, 0, DateTimeKind.Utc), BookBindingKind.Hardcover, "0385074077"
+    ]
     ];
 
     private static readonly object[][] BookPublicationWithBookAuthorData =
     [
         [
-            "Edgar Allan Poe", "0000000121354025", "Complete Stories and Poems of Edgar Allan Poe", "Doubleday",
-            new DateTime(1966, 11, 18), BookBindingKind.Hardcover, new BookNumber("0385074077")
-        ]
+        "Edgar Allan Poe", "0000000121354025", "Complete Stories and Poems of Edgar Allan Poe", "Doubleday",
+        new DateTime(1966, 11, 18, 0, 0, 0, DateTimeKind.Utc), BookBindingKind.Hardcover, new BookNumber("0385074077")
+    ]
     ];
 
     private static readonly object[][] GetPublicationDateStringData =
     [
         [
-            "Edgar Allan Poe", "Complete Stories and Poems of Edgar Allan Poe", "Doubleday", new DateTime(1966, 11, 18),
-            BookBindingKind.Hardcover, "0385074077", "November, 1966"
-        ]
+        "Edgar Allan Poe", "Complete Stories and Poems of Edgar Allan Poe", "Doubleday", new DateTime(1966, 11, 18, 0, 0, 0, DateTimeKind.Utc),
+        BookBindingKind.Hardcover, "0385074077", "November, 1966"
+    ]
     ];
 
     private static readonly object[][] ToStringData =
     [
         [
-            "Edgar Allan Poe", "Complete Stories and Poems of Edgar Allan Poe", "Doubleday", new DateTime(1966, 11, 18),
-            BookBindingKind.Hardcover, "0385074077", "Complete Stories and Poems of Edgar Allan Poe by Edgar Allan Poe"
-        ]
+        "Edgar Allan Poe", "Complete Stories and Poems of Edgar Allan Poe", "Doubleday", new DateTime(1966, 11, 18, 0, 0, 0, DateTimeKind.Utc),
+        BookBindingKind.Hardcover, "0385074077", "Complete Stories and Poems of Edgar Allan Poe by Edgar Allan Poe"
+    ]
     ];
 
     [SetUp]
@@ -144,52 +144,31 @@ public class BookPublicationTests : TestBase
     [TestCaseSource(nameof(BookPublicationParameterIsNullData))]
     public void BookPublication_ParameterIsNull_ThrowsArgumentNullException(string authorName, string title, string publisher, DateTime published, BookBindingKind bookBinding, string isbnCode, string parameterName)
     {
-        Assert.Throws<ArgumentNullException>(() =>
+        var ex = Assert.Throws<ArgumentNullException>(() =>
         {
-            try
-            {
-                _ = new BookPublication(authorName: authorName, title: title, publisher: publisher, published: published, bookBinding: bookBinding, isbnCode: isbnCode);
-            }
-            catch (ArgumentNullException e)
-            {
-                Assert.That(e.ParamName, Is.EqualTo(parameterName));
-                throw;
-            }
+            _ = new BookPublication(authorName: authorName, title: title, publisher: publisher, published: published, bookBinding: bookBinding, isbnCode: isbnCode);
         });
+        Assert.That(ex?.ParamName, Is.EqualTo(parameterName));
     }
 
     [TestCaseSource(nameof(BookPublicationWithIsniCodeParameterIsNullData))]
     public void BookPublication_WithIsniCode_ParameterIsNull_ThrowsArgumentNullException(string authorName, string isniCode, string title, string publisher, DateTime published, BookBindingKind bookBinding, string isbnCode, string parameterName)
     {
-        Assert.Throws<ArgumentNullException>(() =>
+        var ex = Assert.Throws<ArgumentNullException>(() =>
         {
-            try
-            {
-                _ = new BookPublication(authorName: authorName, isniCode: isniCode, title: title, publisher: publisher, published: published, bookBinding: bookBinding, isbnCode: isbnCode);
-            }
-            catch (ArgumentNullException e)
-            {
-                Assert.That(e.ParamName, Is.EqualTo(parameterName));
-                throw;
-            }
+            _ = new BookPublication(authorName: authorName, isniCode: isniCode, title: title, publisher: publisher, published: published, bookBinding: bookBinding, isbnCode: isbnCode);
         });
+        Assert.That(ex?.ParamName, Is.EqualTo(parameterName));
     }
 
     [TestCaseSource(nameof(BookPublicationWithBookAuthorParameterIsNullData))]
     public void BookPublication_WithBookAuthor_ParameterIsNull_ThrowsArgumentNullException(BookAuthor author, string title, string publisher, DateTime published, BookBindingKind bookBinding, BookNumber isbn, string parameterName)
     {
-        Assert.Throws<ArgumentNullException>(() =>
+        var ex = Assert.Throws<ArgumentNullException>(() =>
         {
-            try
-            {
-                _ = new BookPublication(author: author, title: title, publisher: publisher, published: published, bookBinding: bookBinding, isbn: isbn);
-            }
-            catch (ArgumentNullException e)
-            {
-                Assert.That(e.ParamName, Is.EqualTo(parameterName));
-                throw;
-            }
+            _ = new BookPublication(author: author, title: title, publisher: publisher, published: published, bookBinding: bookBinding, isbn: isbn);
         });
+        Assert.That(ex?.ParamName, Is.EqualTo(parameterName));
     }
 
     [TestCaseSource(nameof(BookPublicationData))]
@@ -199,13 +178,13 @@ public class BookPublicationTests : TestBase
         var publication = new BookPublication(authorName: authorName, title: title, publisher: publisher, published: published, bookBinding: bookBinding, isbnCode: isbnCode);
 
         // Assert
-        Assert.That(publication.Author.AuthorName, Is.EqualTo(authorName));
-        Assert.That(publication.Author.HasIsni, Is.False);
+        Assert.That(publication.Author?.AuthorName, Is.EqualTo(authorName));
+        Assert.That(publication.Author?.HasIsni, Is.False);
         Assert.That(publication.Title, Is.EqualTo(title));
         Assert.That(publication.Publisher, Is.EqualTo(publisher));
         Assert.That(publication.Published, Is.EqualTo(published));
         Assert.That(publication.BookBinding, Is.EqualTo(bookBinding));
-        Assert.That(publication.Isbn.Code, Is.EqualTo(isbnCode));
+        Assert.That(publication.Isbn?.Code, Is.EqualTo(isbnCode));
     }
 
     [TestCaseSource(nameof(BookPublicationWithIsniCodeData))]
@@ -215,14 +194,14 @@ public class BookPublicationTests : TestBase
         var publication = new BookPublication(authorName: authorName, isniCode: isniCode, title: title, publisher: publisher, published: published, bookBinding: bookBinding, isbnCode: isbnCode);
 
         // Assert
-        Assert.That(publication.Author.AuthorName, Is.EqualTo(authorName));
-        Assert.That(publication.Author.HasIsni, Is.True);
-        Assert.That(publication.Author.Isni.Code, Is.EqualTo(isniCode));
+        Assert.That(publication.Author?.AuthorName, Is.EqualTo(authorName));
+        Assert.That(publication.Author?.HasIsni, Is.True);
+        Assert.That(publication.Author?.Isni?.Code, Is.EqualTo(isniCode));
         Assert.That(publication.Title, Is.EqualTo(title));
         Assert.That(publication.Publisher, Is.EqualTo(publisher));
         Assert.That(publication.Published, Is.EqualTo(published));
         Assert.That(publication.BookBinding, Is.EqualTo(bookBinding));
-        Assert.That(publication.Isbn.Code, Is.EqualTo(isbnCode));
+        Assert.That(publication.Isbn?.Code, Is.EqualTo(isbnCode));
     }
 
     [TestCaseSource(nameof(BookPublicationWithBookAuthorData))]
@@ -232,14 +211,14 @@ public class BookPublicationTests : TestBase
         var publication = new BookPublication(new BookAuthor(authorName, isniCode), title: title, publisher: publisher, published: published, bookBinding: bookBinding, isbn: isbn);
 
         // Assert
-        Assert.That(publication.Author.AuthorName, Is.EqualTo(authorName));
-        Assert.That(publication.Author.HasIsni, Is.True);
-        Assert.That(publication.Author.Isni.Code, Is.EqualTo(isniCode));
+        Assert.That(publication.Author?.AuthorName, Is.EqualTo(authorName));
+        Assert.That(publication.Author?.HasIsni, Is.True);
+        Assert.That(publication.Author?.Isni?.Code, Is.EqualTo(isniCode));
         Assert.That(publication.Title, Is.EqualTo(title));
         Assert.That(publication.Publisher, Is.EqualTo(publisher));
         Assert.That(publication.Published, Is.EqualTo(published));
         Assert.That(publication.BookBinding, Is.EqualTo(bookBinding));
-        Assert.That(publication.Isbn.Code, Is.EqualTo(isbn.Code));
+        Assert.That(publication.Isbn?.Code, Is.EqualTo(isbn.Code));
     }
 
     [TestCaseSource(nameof(GetPublicationDateStringData))]
@@ -318,13 +297,13 @@ public class BookPublicationTests : TestBase
     [TestCase("Isbn", typeof(BookNumber))]
     public void HasPublicProperty(string propertyName, Type propertyType)
     {
-        this.AssertThatClassHasProperty(propertyName, propertyType, true, true, true, true);
+        _ = this.AssertThatClassHasProperty(propertyName, propertyType, true, true, true, true);
     }
 
     [TestCase("GetPublicationDateString", false, true, false, typeof(string))]
     [TestCase("ToString", false, true, true, typeof(string))]
     public void HasMethod(string methodName, bool isStatic, bool isPublic, bool isVirtual, Type returnType)
     {
-        this.AssertThatClassHasMethod(methodName, isStatic, isPublic, isVirtual, returnType);
+        _ = this.AssertThatClassHasMethod(methodName, isStatic, isPublic, isVirtual, returnType);
     }
 }

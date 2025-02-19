@@ -15,6 +15,7 @@ public class BookAuthor
         ArgumentNullException.ThrowIfNull(authorName);
 
         this.AuthorName = authorName;
+        this.HasIsni = false;
     }
 
     /// <summary>
@@ -27,6 +28,7 @@ public class BookAuthor
     public BookAuthor(string? authorName, string isniCode)
     {
         ArgumentNullException.ThrowIfNull(authorName);
+        ArgumentNullException.ThrowIfNull(isniCode);
         ArgumentException.ThrowIfNullOrWhiteSpace(authorName);
 
         this.Isni = new NameIdentifier(isniCode);

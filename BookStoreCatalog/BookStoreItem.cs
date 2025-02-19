@@ -1,5 +1,3 @@
-using System.Globalization;
-
 namespace BookStoreCatalog;
 
 /// <summary>
@@ -44,7 +42,7 @@ public class BookStoreItem
     /// </summary>
     public BookPublication Publication
     {
-        get => this.publication;
+        get => this.publication!;
         set
         {
             ArgumentNullException.ThrowIfNull(value);
@@ -57,7 +55,7 @@ public class BookStoreItem
     /// </summary>
     public BookPrice Price
     {
-        get => this.price;
+        get => this.price!;
         set
         {
             ArgumentNullException.ThrowIfNull(value);
@@ -84,15 +82,15 @@ public class BookStoreItem
     /// <returns>A string that represents the current object.</returns>
     public override string ToString()
     {
-        string priceStr;
+        ArgumentNullException.ThrowIfNull(this.price);
+        ArgumentNullException.ThrowIfNull(this.publication);
 
-        if (this.publication.Author.HasIsni)
+        string priceString = $"{this.price.Amount:N2} {this.price.Currency}";
+        if (priceString.Contains(',', StringComparison.Ordinal))
         {
-            return $"{this.publication.Title}, {this.publication.Author}, {this.publication.ToString}, , {this.price.Amount}".ToString();
+            priceString = $"\"{priceString}\"";
         }
-        else
-        {
-            return $"{this.publication.Title}, {this.publication.Author}, ISNI IS NOT SET, , {this.Amount}".ToString();
-        }
+
+        return $"{this.publication.Title} by {this.publication.Author}, {priceString}, {this.Amount}";
     }
 }
