@@ -164,7 +164,7 @@ dotnet_diagnostic.IDE0048.severity = warning  # Add parentheses for clarity
 dotnet_diagnostic.IDE0010.severity = error    # Add missing cases to switch statement
 dotnet_diagnostic.IDE0017.severity = warning  # Use object initializers
 dotnet_diagnostic.IDE0028.severity = warning  # Use collection initializers
-dotnet_diagnostic.IDE0032.severity = none  # Use auto-implemented property
+dotnet_diagnostic.IDE0032.severity = warning  # Use auto-implemented property
 dotnet_diagnostic.IDE0071.severity = error    # Simplify interpolation
 dotnet_diagnostic.IDE0075.severity = error    # Simplify conditional expression
 dotnet_diagnostic.IDE0082.severity = error    # Convert typeof to nameof
@@ -192,7 +192,7 @@ dotnet_diagnostic.IDE0051.severity = warning  # Remove unused private member
 dotnet_diagnostic.IDE0052.severity = warning  # Remove unread private member
 dotnet_diagnostic.IDE0058.severity = warning  # Remove unnecessary expression value
 dotnet_diagnostic.IDE0059.severity = warning  # Remove unnecessary value assignment
-dotnet_diagnostic.IDE0060.severity = none    # Remove unused parameter (Replacement for CA1801)
+dotnet_diagnostic.IDE0060.severity = error    # Remove unused parameter (Replacement for CA1801)
 dotnet_diagnostic.IDE0079.severity = warning  # Remove unnecessary suppression
 dotnet_diagnostic.IDE0080.severity = warning  # Remove unnecessary suppression operator
 dotnet_diagnostic.IDE0100.severity = error    # Remove unnecessary equality operator
@@ -207,16 +207,18 @@ dotnet_diagnostic.IDE0055.severity = warning  # Formatting rule
 [*.cs]
 # Design rules
 dotnet_diagnostic.CA1014.severity = none      # Mark assemblies with CLSCompliantAttribute
+dotnet_diagnostic.CA1024.severity = none      # Use properties where appropriate
 dotnet_diagnostic.CA1031.severity = error     # Do not catch general exception types
 dotnet_diagnostic.CA1032.severity = error     # Implement standard exception constructors
 dotnet_diagnostic.CA1046.severity = error     # Do not overload operator equals on reference types
+dotnet_diagnostic.CA1051.severity = none      # Do not declare visible instance fields
 # Globalization rules
 dotnet_diagnostic.CA1303.severity = none      # Do not pass literals as localized parameters
 # Maintainability rules
 dotnet_diagnostic.CA1507.severity = error     # Use nameof in place of string
 dotnet_diagnostic.CA1508.severity = error     # Avoid dead conditional code
 # Naming rules
-dotnet_diagnostic.CA1707.severity = error     # Identifiers should not contain underscores
+dotnet_diagnostic.CA1707.severity = none     # Identifiers should not contain underscores
 dotnet_diagnostic.CA1708.severity = error     # Identifiers should differ by more than case
 dotnet_diagnostic.CA1711.severity = error     # Identifiers should not have incorrect suffix
 dotnet_diagnostic.CA1712.severity = error     # Do not prefix enum values with type name
@@ -247,7 +249,7 @@ dotnet_diagnostic.SA1002.severity = warning   # SemicolonsMustBeSpacedCorrectly
 dotnet_diagnostic.SA1003.severity = warning   # SymbolsMustBeSpacedCorrectly
 dotnet_diagnostic.SA1008.severity = warning   # OpeningParenthesisMustBeSpacedCorrectly
 dotnet_diagnostic.SA1009.severity = warning   # ClosingParenthesisMustBeSpacedCorrectly
-dotnet_diagnostic.SA1010.severity = none      # OpeningSquareBracketsMustBeSpacedCorrectly
+dotnet_diagnostic.SA1010.severity = warning   # OpeningSquareBracketsMustBeSpacedCorrectly
 dotnet_diagnostic.SA1011.severity = warning   # ClosingSquareBracketsMustBeSpacedCorrectly
 dotnet_diagnostic.SA1012.severity = warning   # OpeningBracesMustBeSpacedCorrectly
 dotnet_diagnostic.SA1013.severity = warning   # ClosingBracesMustBeSpacedCorrectly
@@ -276,6 +278,7 @@ dotnet_diagnostic.SA1133.severity = none      # DoNotCombineAttributes
 dotnet_diagnostic.SA1200.severity = error     # UsingDirectivesMustBePlacedCorrectly
 # Maintainability rules
 dotnet_diagnostic.SA1400.severity = error     # AccessModifierMustBeDeclared
+dotnet_diagnostic.SA1401.severity = none      # FieldsMustBePrivate
 # Layout rules
 dotnet_diagnostic.SA1503.severity = error     # BracesMustNotBeOmitted
 # Documentation rules

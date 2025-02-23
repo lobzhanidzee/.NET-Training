@@ -6,10 +6,10 @@
       "useTabs": false,
       "tabSize": 4
     },
-    "orderingRules": {
+    "orderingRules": {                                                                                                                         
       "systemUsingDirectivesFirst": true,
       "usingDirectivesPlacement": "outsideNamespace",
       "blankLinesBetweenUsingGroups": "omit"
     }
   }
-}
+} 
