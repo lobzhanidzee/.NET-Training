@@ -32,12 +32,9 @@ public static class ArrayExtension
 
         int[] result = [];
 
-        foreach (var item in source!)
+        foreach (var item in source!.Where(item => IsMatch(item)))
         {
-            if (IsMatch(item))
-            {
-                result = result.Append(item).ToArray();
-            }
+            result = result.Append(item).ToArray();
         }
 
         bool IsMatch(int value)
@@ -72,12 +69,9 @@ public static class ArrayExtension
     public static int[] FilterByPalindromic(this int[]? source)
     {
         int[] palidromeNumbers = [];
-        foreach (int item in source!)
+        foreach (var item in source!.Where(item => IsMatch(item)))
         {
-            if (IsMatch(item))
-            {
-                palidromeNumbers = palidromeNumbers.Append(item).ToArray();
-            }
+            palidromeNumbers = palidromeNumbers.Append(item).ToArray();
         }
 
         bool IsMatch(int value)

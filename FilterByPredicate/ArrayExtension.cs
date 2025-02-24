@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace FilterByPredicate;
 
 /// <summary>
@@ -19,6 +16,20 @@ public static class ArrayExtension
     /// <exception cref="ArgumentNullException">Thrown when predicate is null.</exception>
     public static int[] Select(this int[]? source, IPredicate? predicate)
     {
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(source);
+        ArgumentNullException.ThrowIfNull(predicate);
+
+        if (source.Length == 0)
+        {
+            throw new ArgumentException("Array is empty", nameof(source));
+        }
+
+        int[] result = [];
+        foreach (var item in source!.Where(item => predicate.IsMatch(item)))
+        {
+            result = result.Append(item).ToArray();
+        }
+
+        return result;
     }
 }
