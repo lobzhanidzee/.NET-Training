@@ -7,6 +7,9 @@ public class Vehicle
 
     public Vehicle()
     {
-
     }
+
+    public int MaxSpeed { get; }
+
+    protected string Name { get; set; }
 }
