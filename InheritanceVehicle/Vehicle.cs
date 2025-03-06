@@ -9,7 +9,7 @@ public class Vehicle
     {
     }
 
-    public int MaxSpeed { get; }
+    public int MaxSpeed { get => this.maxSpeed; }
 
-    protected string Name { get; set; }
+    protected string Name { get => this.name; set { this.name = value; } }
 }
