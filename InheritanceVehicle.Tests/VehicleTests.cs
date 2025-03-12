@@ -74,7 +74,7 @@ public class VehicleTests
                 };
             });
 
-        Assert.That(paramsConstructor, Is.Null, "'Vehicle' parametrized constructor is not defined or it does NOT contain appropriate parameters.");
+        Assert.That(paramsConstructor, Is.Not.Null, "'Vehicle' parametrized constructor is not defined or it does NOT contain appropriate parameters.");
     }
 
     [Test]

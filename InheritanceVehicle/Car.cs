@@ -6,4 +6,11 @@ public class Car : Vehicle
         : base(name, maxSpeed)
     {
     }
+
+    public void SetCarName(string name)
+    {
+        this.Name = name;
+    }
+
+    public string GetCarName() => this.Name;
 }
