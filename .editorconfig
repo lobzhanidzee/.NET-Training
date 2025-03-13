@@ -193,7 +193,7 @@ dotnet_diagnostic.IDE0052.severity = warning  # Remove unread private member
 dotnet_diagnostic.IDE0058.severity = warning  # Remove unnecessary expression value
 dotnet_diagnostic.IDE0059.severity = warning  # Remove unnecessary value assignment
 dotnet_diagnostic.IDE0060.severity = error    # Remove unused parameter (Replacement for CA1801)
-dotnet_diagnostic.IDE0079.severity = none     # Remove unnecessary suppression
+dotnet_diagnostic.IDE0079.severity = warning  # Remove unnecessary suppression
 dotnet_diagnostic.IDE0080.severity = warning  # Remove unnecessary suppression operator
 dotnet_diagnostic.IDE0100.severity = error    # Remove unnecessary equality operator
 dotnet_diagnostic.IDE0110.severity = error    # Remove unnecessary discard
@@ -276,6 +276,7 @@ dotnet_diagnostic.SA1121.severity = error     # UseBuiltInTypeAlias
 dotnet_diagnostic.SA1133.severity = none      # DoNotCombineAttributes
 # Ordering rules
 dotnet_diagnostic.SA1200.severity = error     # UsingDirectivesMustBePlacedCorrectly
+dotnet_diagnostic.SA1204.severity = none
 # Maintainability rules
 dotnet_diagnostic.SA1400.severity = error     # AccessModifierMustBeDeclared
 dotnet_diagnostic.SA1401.severity = none      # FieldsMustBePrivate
