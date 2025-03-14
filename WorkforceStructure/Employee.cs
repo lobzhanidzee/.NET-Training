@@ -1,11 +1,18 @@
-﻿namespace WorkforceStructure;
+namespace WorkforceStructure;
 
 /// <summary>
 /// Represents an employee.
 /// </summary>
 // TODO: Define the Employee class
+public class Employee
+{
+    // TODO: Define the private fields to store the name, salary, and bonus
+    private string name;
+    private int salary;
 
-// TODO: Define the private fields to store the name, salary, and bonus
+    public int Salary { get => this.salary; set => this.salary = value; }
+}
+
 
 /// <summary>
 /// Initializes a new instance of the <see cref="Employee"/> class with the specified name and salary.
