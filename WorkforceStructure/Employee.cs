@@ -10,7 +10,24 @@ public class Employee
     private string name;
     private int salary;
 
+    public Employee(string name, int salary)
+    {
+        this.Name = name;
+        this.Salary = salary;
+    }
+
+    public string Name { get => this.name; set => this.name = value; }
+
     public int Salary { get => this.salary; set => this.salary = value; }
+
+    public void AssingBonus() { }
+
+    public void CalculateTotalPay() { }
+
+    public override string ToString()
+    {
+        return $"{this.Name}, Salary: {this.Salary}";
+    }
 }
 
 
