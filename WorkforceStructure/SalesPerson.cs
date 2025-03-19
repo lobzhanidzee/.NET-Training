@@ -31,6 +31,10 @@ public class SalesPerson : Employee
     /// <param name="bonus">The base bonus amount.</param>
     /// <exception cref="ArgumentOutOfRangeException">Thrown bonus less than 0.</exception>
     // TODO: Implement the AssignBonus method
+    public int AssignBonus()
+    {
+        return this.salesPercentage > 200 ? this.Salary * 3 : this.Salary * 2;
+    }
 
     /// <summary>
     /// Returns a string representation of the salesperson.
