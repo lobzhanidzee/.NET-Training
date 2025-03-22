@@ -1,14 +1,10 @@
-using System.Xml.Linq;
-
 namespace WorkforceStructure;
 
 /// <summary>
 /// Represents a manager, a specialized type of employee.
 /// </summary>
-// TODO: Define the Manager class
 public class Manager : Employee
 {
-    // TODO: Define the private field to store the client count
     private int clientCount;
 
     /// <summary>
@@ -20,10 +16,11 @@ public class Manager : Employee
     /// <exception cref="ArgumentNullException">Thrown when name is null.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Thrown salary less than 0.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Thrown clientCount less than 0.</exception>
-    // TODO: Implement the constructor logic
-    public Manager(string name, int salary, int clientCount)
+    public Manager(string name, decimal salary, int clientCount)
     : base(name, salary)
     {
+        ArgumentOutOfRangeException.ThrowIfLessThan(clientCount, 0);
+
         this.clientCount = clientCount;
     }
 
@@ -32,20 +29,21 @@ public class Manager : Employee
     /// </summary>
     /// <param name="bonus">The base bonus amount.</param>
     /// <exception cref="ArgumentOutOfRangeException">Thrown bonus less than 0.</exception>
-    // TODO: Implement the AssignBonus method
-    public int AssignBonus()
+    public override void AssignBonus(decimal bonus)
     {
+        ArgumentOutOfRangeException.ThrowIfNegative(bonus);
+
         if (this.clientCount > 150)
         {
-            return 1000;
+            base.AssignBonus(bonus + 1000);
         }
         else if (this.clientCount > 100)
         {
-            return 500;
+            base.AssignBonus(bonus + 500);
         }
         else
         {
-            return 0;
+            base.AssignBonus(bonus);
         }
     }
 

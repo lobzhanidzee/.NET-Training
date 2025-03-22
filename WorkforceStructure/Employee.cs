@@ -3,12 +3,11 @@ namespace WorkforceStructure;
 /// <summary>
 /// Represents an employee.
 /// </summary>
-// TODO: Define the Employee class
 public class Employee
 {
-    // TODO: Define the private fields to store the name, salary, and bonus
     private string name;
-    private int salary;
+    private decimal salary;
+    private decimal bonus;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Employee"/> class with the specified name and salary.
@@ -17,42 +16,59 @@ public class Employee
     /// <param name="salary">The salary of the employee.</param>
     /// <exception cref="ArgumentNullException">Thrown when name is null.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Thrown salary less than 0.</exception>
-    // TODO: Implement the constructor logic
-    public Employee(string name, int salary)
+    public Employee(string name, decimal salary)
     {
-        this.Name = name;
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            throw new ArgumentException("Name cannot be null, empty or whitespace.", nameof(name));
+        }
+
+        this.name = name;
         this.Salary = salary;
     }
 
     /// <summary>
     /// Gets the name of the employee.
     /// </summary>
-    // TODO: Implement the Name property
-    public string Name { get => this.name; set => this.name = value; }
+    public string Name { get => this.name; }
 
     /// <summary>
     /// Gets or sets the salary of the employee.
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException">Thrown value less than 0.</exception>
-    // TODO: Implement the Salary property
-    public int Salary { get => this.salary; set => this.salary = value; }
+    public decimal Salary
+    {
+        get => this.salary; set
+        {
+            if (value < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(value), "Salary cannot be less than zero.");
+            }
 
+            this.salary = value;
+        }
+    }
 
     /// <summary>
     /// Assigns a bonus to the employee.
     /// </summary>
     /// <param name="bonus">The bonus amount.</param>
     /// <exception cref="ArgumentOutOfRangeException">Thrown bonus less than 0.</exception>
-    // TODO: Implement the AssignBonus method
-    public void AssingBonus() { }
+    public virtual void AssignBonus(decimal bonus)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegative(bonus);
 
+        this.bonus = bonus;
+    }
 
     /// <summary>
     /// Calculates the total amount to be paid to the employee, including bonuses.
     /// </summary>
     /// <returns>The total amount to be paid to the employee.</returns>
-    // TODO: Implement the CalculateTotalPay method
-    public void CalculateTotalPay() { }
+    public decimal CalculateTotalPay()
+    {
+        return this.Salary + this.bonus;
+    }
 
     /// <summary>
     /// Returns a string representation of the employee.
@@ -61,6 +77,6 @@ public class Employee
     // TODO: Implement the ToString method
     public override string ToString()
     {
-        return $"{this.Name}, Salary: {this.Salary}";
+        return $"{this.name}, Salary: ¤{this.Salary:C2}, Bonus: ¤{this.bonus:C2}";
     }
 }
