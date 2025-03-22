@@ -5,7 +5,7 @@ namespace WorkforceStructure;
 /// </summary>
 public class Manager : Employee
 {
-    private int clientCount;
+    private readonly int clientCount;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Manager"/> class with the specified name, salary, and client count.
@@ -51,10 +51,8 @@ public class Manager : Employee
     /// Returns a string representation of the manager.
     /// </summary>
     /// <returns>A string that represents the manager.</returns>
-    // TODO: Implement the ToString method
     public override string ToString()
     {
-        return base.ToString();
+        return $"{base.ToString()}, Clients: {this.clientCount}";
     }
-
 }

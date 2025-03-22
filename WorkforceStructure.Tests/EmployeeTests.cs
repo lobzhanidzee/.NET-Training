@@ -151,7 +151,7 @@ public class EmployeeTests
     public void AssignBonus_InvalidBonus_ThrowsArgumentOutOfRangeException(decimal bonus)
     {
         var employee = new Employee("John Doe", 50000m);
-        Assert.Throws<ArgumentOutOfRangeException>(() => employee.AssignBonus(bonus));
+        _ = Assert.Throws<ArgumentOutOfRangeException>(() => employee.AssignBonus(bonus));
     }
 
     [TestCase(60000)]
@@ -166,7 +166,7 @@ public class EmployeeTests
     public void Salary_InvalidValue_ThrowsArgumentOutOfRangeException(decimal salary)
     {
         var employee = new Employee("John Doe", 50000m);
-        Assert.Throws<ArgumentOutOfRangeException>(() => employee.Salary = salary);
+        _ = Assert.Throws<ArgumentOutOfRangeException>(() => employee.Salary = salary);
     }
 
     [TestCaseSource(nameof(ToStringMethodData))]

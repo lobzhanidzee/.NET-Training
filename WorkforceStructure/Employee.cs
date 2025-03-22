@@ -5,7 +5,7 @@ namespace WorkforceStructure;
 /// </summary>
 public class Employee
 {
-    private string name;
+    private readonly string name;
     private decimal salary;
     private decimal bonus;
 
@@ -74,9 +74,8 @@ public class Employee
     /// Returns a string representation of the employee.
     /// </summary>
     /// <returns>A string that represents the employee.</returns>
-    // TODO: Implement the ToString method
     public override string ToString()
     {
-        return $"{this.name}, Salary: ¤{this.Salary:C2}, Bonus: ¤{this.bonus:C2}";
+        return $"{this.name}, Salary: {this.Salary:C2}, Bonus: {this.bonus:C2}";
     }
 }
