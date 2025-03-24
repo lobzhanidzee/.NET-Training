@@ -1,55 +1,104 @@
-# Employee Management System
+# Vehicle Calculate Toll System 
 
-An intermediate level task for practicing inheritance.
+Intermediate level task for practicing pattern matching, object-oriented programming, abstract classes, [Template Method pattern](https://refactoring.guru/design-patterns/template-method).
 
-Estimated time to complete the task: 2 hour.
+Estimated time to complete the task - 1h.
 
 The task requires .NET 8 SDK installed.
 
-## Task Description
+## Task Details
 
-Implement a simple company and employee management system in C#. The system should manage employees, distribute bonuses, calculate total payroll, and identify the highest-paid employee. There will be different types of employees, including managers and salespersons, each with specific behaviors for bonus calculation.
+- Implement a vehicle type hierarchy for pricing and toll calculation to manage vehicle traffic in a major metropolitan area during peak hours.
+   ![](/Vehicle_hierarchy.png)
+- Pricing depends on     
+   - the vehicle type;
+   - the number of passengers for the passenger vehicles or weight category for trucks; 
+   - the time and the week day of the traffic.
 
-1. `Employee`: A general employee with a name, salary, and bonus.
-2. `Manager`: A specialized employee who manages clients and receives additional bonuses based on the number of clients.
-3. `SalesPerson`: A specialized employee who achieves sales and receives bonuses based on sales percentages.
-4. `Company`: Manages a collection of employees, distributes bonuses, calculates total payroll, and identifies the highest-paid employee.
+   <details>
+   <summary>
 
-Each class has specific attributes and behavior described below:
+   The basic toll calculations.
 
-| **Class**        | **Member**               | **Type**     | **Description**                                                                                                                                                                                                                               |
-|------------------|--------------------------|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Employee**     | `name`                   | Field        | Stores the name of the employee.                                                                                                                                                                                                              |
-|                  | `salary`                 | Field        | Stores the salary of the employee.                                                                                                                                                                                                            |
-|                  | `bonus`                  | Field        | Stores the bonus of the employee.                                                                                                                                                                                                             |
-|                  | `Employee`               | Constructor  | Initializes the employee with a name and salary.                                                                                                                                                                                              |
-|                  | `Name`                   | Property     | Read-only property to get the name of the employee.                                                                                                                                                                                           |
-|                  | `Salary`                 | Property     | Read-write property to get and set the salary of the employee.                                                                                                                                                                                |
-|                  | `AssignBonus`            | Method       | Assigns a bonus to the employee.                                                                                                                                                                                                              |
-|                  | `CalculateTotalPay`      | Method       | Calculates the total amount to be paid to the employee, including bonuses.                                                                                                                                                                    |
-|                  | `ToString`               | Method       | Returns a string representation of the employee.                                                                                                                                                                                              |
-| **Manager**      | `clientCount`            | Field        | Stores the number of clients managed by the manager.                                                                                                                                                                                          |
-|                  | `Manager`                | Constructor  | Initializes the manager with a name, salary, and client count.                                                                                                                                                                                |
-|                  | `AssignBonus`            | Method       | Assigns a bonus to the manager based on the number of clients managed: if the manager served over 100 clients, his bonus is increased by 500, and if more than 150 clients – by 1000.                                                                                                                                                                       |
-|                  | `ToString`               | Method       | Returns a string representation of the manager.                                                                                                                                                                                               |
-| **SalesPerson**  | `salesPercentage`        | Field        | Stores the sales percentage achieved by the salesperson.                                                                                                                                                                                      |
-|                  | `SalesPerson`            | Constructor  | Initializes the salesperson with a name, salary, and sales percentage.                                                                                                                                                                        |
-|                  | `AssignBonus`            | Method       | Assigns a bonus to the salesperson based on the sales percentage achieved: if the sales person completed the plan more than 100%, so his bonus is doubled (is multiplied by 2), and if more than 200% - bonus is tripled (is multiplied by 3) |
-|                  | `ToString`               | Method       | Returns a string representation of the salesperson.                                                                                                                                                                                           |
-| **Company**      | `employees`              | Field        | Stores the list of employees in the company.                                                                                                                                                                                                  |
-|                  | `Company`                | Constructor  | Initializes the company with a list of employees.                                                                                                                                                                                             |
-|                  | `DistributeBonuses`      | Method       | Distributes the specified bonus amount to all employees.                                                                                                                                                                                      |
-|                  | `CalculateTotalPayroll`  | Method       | Calculates the total amount to be paid to all employees, including bonuses.                                                                                                                                                                   |
-|                  | `GetHighestPaidEmployeeName` | Method    | Gets the name of the employee with the highest salary.                                                                                                                                                                                        |
+   </summary>
+   
+   The base toll calculations relies only on the vehicle type.    
 
-**Note**
-_The solution will not compile until all required types with required members are declared.  For a smoother development experience, we recommend initially declaring all necessary types and creating "stub methods" as follows:_
+   _For example:_
 
-```csharp
-public returnType MethodName(parameters list)
-{
-    throw new NotImplementedException();
-}
-```
+   | Vehicle | Basic toll |
+   | ------ | ------ |
+   | Car | $2.00 |
+   | Taxi | $3.50 |
+   | Bus | $5.00 |
+   | DeliveryTruck | $10.00 | 
 
-_This approach allows you to build and run your project incrementally while implementing each method._
+   </details>
+
+   <details>
+   <summary>
+
+   Adding occupancy pricing.
+
+   </summary>
+
+   The toll adjust for the vehicles to travel depeneds on the passenger count. The movement of vehicles with maximum capacity is encouraged.       
+      - taxis without passengers pay some amount extra;   
+      - for taxis, the discount depends on the number of passengers;    
+      - for buses, the amount of the discount depends on the percentage of filling.      
+
+   **Taxi**
+
+   | Passengers count | Extra/discount |
+   | ------ | ------ |
+   | 0 | extra $0.50 |
+   | 2 | $0.50 discount |
+   | 3 and more | $1.00 discount |
+
+   **Bus**
+
+   | Passenger filling in % | Extra or discount |
+   | ------ | ------ |
+   |  less than 50% | extra $2.00 |
+   | more than 90% | $1.00 discount |
+   
+   The toll adjust for the delivery trucks depends on its weight category: for trucks over a certain weight, an additional fee is charged, otherwise a discount is provided.
+   
+   **Truck**
+
+   | Weight class | Extra or discount |
+   | ------ | ------ |
+   | over 5000 lbs | extra $5.00 |
+   | under 3000 lbs | $2.00 discount |
+
+   </details>
+
+   <details>
+   <summary>
+
+   Adding peak pricing.
+
+   </summary>
+   
+   Finally, peak hours are added to the pricing. For example, in the morning and evening hours, the tolls are increased. The rule by which the cost is recalculated in this case may depend on the direction of movement (from the city / to the city).
+
+   |   Day	   |     Time   	| Direction |	Premium |
+   |-----------|--------------|-----------|----------|
+   | Weekday	| morning rush	| inbound	| x 2.00   |
+   | Weekday	| morning rush	| outbound	| x 1.00   |
+   | Weekday	| daytime	   | inbound	| x 1.50   |
+   | Weekday	| daytime	   | outbound	| x 1.50   |
+   | Weekday	| evening rush	| inbound	| x 1.00   |
+   | Weekday	| evening rush	| outbound	| x 2.00   |
+   | Weekday	| overnight	   | inbound	| x 0.75   |
+   | Weekday	| overnight	   | outbound	| x 0.75   |
+   | Weekend	| morning rush	| inbound	| x 1.00   |
+   | Weekend	| morning rush	| outbound	| x 1.00   |
+   | Weekend	| daytime	   | inbound	| x 1.00   |
+   | Weekend	| daytime	   | outbound	| x 1.00   |
+   | Weekend	| evening rush	| inbound	| x 1.00   |
+   | Weekend	| evening rush	| outbound	| x 1.00   |
+   | Weekend	| overnight	   | inbound	| x 1.00   |
+   | Weekend	| overnight	   | outbound	| x 1.00   |
+
+   </details>

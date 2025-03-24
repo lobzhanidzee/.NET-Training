@@ -164,7 +164,7 @@ dotnet_diagnostic.IDE0048.severity = warning  # Add parentheses for clarity
 dotnet_diagnostic.IDE0010.severity = error    # Add missing cases to switch statement
 dotnet_diagnostic.IDE0017.severity = warning  # Use object initializers
 dotnet_diagnostic.IDE0028.severity = warning  # Use collection initializers
-dotnet_diagnostic.IDE0032.severity = none  # Use auto-implemented property
+dotnet_diagnostic.IDE0032.severity = warning  # Use auto-implemented property
 dotnet_diagnostic.IDE0071.severity = error    # Simplify interpolation
 dotnet_diagnostic.IDE0075.severity = error    # Simplify conditional expression
 dotnet_diagnostic.IDE0082.severity = error    # Convert typeof to nameof
@@ -276,7 +276,6 @@ dotnet_diagnostic.SA1121.severity = error     # UseBuiltInTypeAlias
 dotnet_diagnostic.SA1133.severity = none      # DoNotCombineAttributes
 # Ordering rules
 dotnet_diagnostic.SA1200.severity = error     # UsingDirectivesMustBePlacedCorrectly
-dotnet_diagnostic.SA1204.severity = none
 # Maintainability rules
 dotnet_diagnostic.SA1400.severity = error     # AccessModifierMustBeDeclared
 dotnet_diagnostic.SA1401.severity = none      # FieldsMustBePrivate
