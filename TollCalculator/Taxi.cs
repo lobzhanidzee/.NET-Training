@@ -1,4 +1,4 @@
-﻿namespace TollCalculator;
+namespace TollCalculator;
 
 /// <summary>
 /// Represents a taxi class.
@@ -12,7 +12,10 @@ public class Taxi : Vehicle
     /// <param name="passengers">A passengers of this <see cref="Taxi"/> class.</param>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="baseToll"/>less than zero.</exception>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="passengers"/>less than zero.</exception>
-    public Taxi(decimal baseToll, int passengers) => throw new NotImplementedException();
+    public Taxi(decimal baseToll, int passengers)
+    {
+        this.Passengers = passengers;
+    }
 
     /// <summary>
     /// Gets or sets a passengers.
