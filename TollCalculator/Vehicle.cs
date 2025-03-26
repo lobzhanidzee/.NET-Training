@@ -1,4 +1,4 @@
-﻿namespace TollCalculator;
+namespace TollCalculator;
 
 /// <summary>
 /// Represents a vehicle base class in pricing and toll calculation system.
@@ -17,7 +17,7 @@ public abstract class Vehicle
     /// </summary>
     /// <param name="baseToll">A base toll for the <see cref="Vehicle"/> class.</param>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="baseToll"/> is less than zero.</exception>
-    protected Vehicle(decimal baseToll) => throw new NotImplementedException();
+    protected Vehicle(decimal baseToll) => this.BaseToll = baseToll;
 
     /// <summary>
     /// Gets or sets a base toll for the vehicle.
@@ -25,8 +25,8 @@ public abstract class Vehicle
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
     public decimal BaseToll
     {
-        get => throw new NotImplementedException();
-        set => throw new NotImplementedException();
+        get;
+        set;
     }
 
     /// <summary>
