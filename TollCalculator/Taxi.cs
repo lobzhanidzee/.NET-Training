@@ -13,7 +13,11 @@ public class Taxi : Vehicle
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="baseToll"/>less than zero.</exception>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="passengers"/>less than zero.</exception>
     public Taxi(decimal baseToll, int passengers)
+        : base(baseToll)
     {
+        ArgumentOutOfRangeException.ThrowIfNegative(baseToll);
+        ArgumentOutOfRangeException.ThrowIfNegative(passengers);
+
         this.Passengers = passengers;
     }
 
@@ -21,11 +25,7 @@ public class Taxi : Vehicle
     /// Gets or sets a passengers.
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/>less than zero.</exception>
-    public int Passengers
-    {
-        get => throw new NotImplementedException();
-        set => throw new NotImplementedException();
-    }
+    public int Passengers { get; set; }
 
     /// <summary>
     /// Calculates the base toll that relies only on the car type.

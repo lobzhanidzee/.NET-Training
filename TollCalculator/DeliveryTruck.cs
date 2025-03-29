@@ -1,4 +1,4 @@
-﻿namespace TollCalculator;
+namespace TollCalculator;
 
 /// <summary>
 /// Represents a delivery truck class.
@@ -13,13 +13,20 @@ public class DeliveryTruck : Vehicle
     /// <param name="grossWeightClass">A grossWeightClass of this <see cref="DeliveryTruck"/> class.</param>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="baseToll"/>less than zero.</exception>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="grossWeightClass"/>less than zero.</exception>
-    public DeliveryTruck(decimal baseToll, int grossWeightClass) => throw new NotImplementedException();
+    public DeliveryTruck(decimal baseToll, int grossWeightClass)
+        : base(baseToll)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegative(baseToll);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(grossWeightClass, 0);
+
+        this.GrossWeightClass = grossWeightClass;
+    }
 
     /// <summary>
     /// Gets a gross weight class.
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/>less than zero.</exception>
-    public int GrossWeightClass => throw new NotImplementedException();
+    public int GrossWeightClass { get; }
 
     /// <summary>
     /// Calculates the base toll that relies only on the delivery truck type.

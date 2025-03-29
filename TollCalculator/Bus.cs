@@ -1,4 +1,4 @@
-﻿namespace TollCalculator;
+namespace TollCalculator;
 
 /// <summary>
 /// Represents a bus class.
@@ -14,27 +14,28 @@ public class Bus : Vehicle
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="basicToll"/>less than zero.</exception>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="capacity"/>less than or equals zero.</exception>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="passengers"/>less than zero.</exception>
-    public Bus(decimal basicToll, int capacity, int passengers) => throw new NotImplementedException();
+    public Bus(decimal basicToll, int capacity, int passengers)
+        : base(basicToll)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegative(basicToll);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(capacity, 0);
+        ArgumentOutOfRangeException.ThrowIfNegative(passengers);
+
+        this.Capacity = capacity;
+        this.Passengers = passengers;
+    }
 
     /// <summary>
     /// Gets or sets the capacity of this <see cref="Bus"/> class.
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/>less than zero.</exception>
-    public int Capacity
-    {
-        get => throw new NotImplementedException();
-        set => throw new NotImplementedException();
-    }
+    public int Capacity { get; set; }
 
     /// <summary>
     /// Gets or sets the passengers of this <see cref="Bus"/> class.
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/>less than zero.</exception>
-    public int Passengers
-    {
-        get => throw new NotImplementedException();
-        set => throw new NotImplementedException();
-    }
+    public int Passengers { get; set; }
 
     /// <summary>
     /// Calculates the base toll that relies only on the bus type.
@@ -45,5 +46,15 @@ public class Bus : Vehicle
     /// more than 90%               $1.00 discount.
     /// </summary>
     /// <returns>The base toll of bus.</returns>
-    protected override decimal Calculate() => throw new NotImplementedException();
+    protected override decimal Calculate()
+    {
+        if (this.Passengers % this.Capacity < 5)
+        {
+            return 2;
+        }
+        else
+        {
+            return -1;
+        }
+    }
 }
