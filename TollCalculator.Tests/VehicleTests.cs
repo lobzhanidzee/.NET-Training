@@ -1,4 +1,4 @@
-﻿using Moq;
+using Moq;
 using Moq.Protected;
 using NUnit.Framework;
 
@@ -11,7 +11,7 @@ public class VehicleTests
     {
         var mock = new Mock<Vehicle>();
 
-        mock.Protected().Setup<decimal>("Calculate");
+        _ = mock.Protected().Setup<decimal>("Calculate");
 
         Vehicle vehicle = mock.Object;
 
@@ -25,7 +25,7 @@ public class VehicleTests
     {
         var mock = new Mock<Vehicle>();
 
-        mock.Protected().Setup<decimal>("Calculate").Returns(baseToll);
+        _ = mock.Protected().Setup<decimal>("Calculate").Returns(baseToll);
 
         Vehicle vehicle = mock.Object;
 

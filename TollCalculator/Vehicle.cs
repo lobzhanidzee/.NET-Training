@@ -5,6 +5,8 @@ namespace TollCalculator;
 /// </summary>
 public abstract class Vehicle
 {
+    private decimal baseToll;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="Vehicle"/> class.
     /// </summary>
@@ -20,14 +22,21 @@ public abstract class Vehicle
     protected Vehicle(decimal baseToll)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(baseToll);
-        this.BaseToll = baseToll;
+        this.baseToll = baseToll;
     }
 
     /// <summary>
     /// Gets or sets a base toll for the vehicle.
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
-    public decimal BaseToll { get; set; }
+    public decimal BaseToll
+    {
+        get => this.baseToll; set
+        {
+            ArgumentOutOfRangeException.ThrowIfNegative(value);
+            this.baseToll = value;
+        }
+    }
 
     /// <summary>
     /// Calculates the final toll for the vehicle that adjusts for time peaks and traffic direction.
@@ -36,7 +45,10 @@ public abstract class Vehicle
     /// <param name="direction">A traffic direction.</param>
     /// <returns>The final toll for the vehicle that adjusts for time peaks and traffic direction.</returns>
     public decimal CalculateToll(DateTime timeOfToll, TrafficDirection direction)
-        => this.BaseToll + (this.BaseToll * PeakTimePremium(timeOfToll, direction));
+    {
+        decimal baseTollWithAdjustments = this.Calculate();
+        return baseTollWithAdjustments * PeakTimePremium(timeOfToll, direction);
+    }
 
     /// <summary>
     /// Calculates the base toll that relies only on the vehicle type.
@@ -115,7 +127,7 @@ public abstract class Vehicle
     /// </summary>
     /// <param name="timeOfToll">The time when the toll was collected.</param>
     /// <returns>true if <paramref name="timeOfToll"/> is weekday; false otherwise.</returns>
-    private static bool IsWeekDay(DateTime timeOfToll) => timeOfToll.DayOfWeek == DayOfWeek.Sunday || timeOfToll.DayOfWeek == DayOfWeek.Saturday;
+    private static bool IsWeekDay(DateTime timeOfToll) => timeOfToll.DayOfWeek != DayOfWeek.Saturday && timeOfToll.DayOfWeek != DayOfWeek.Sunday;
 
     /// <summary>
     /// Categorizes the time into the time bands.
@@ -124,15 +136,15 @@ public abstract class Vehicle
     /// <returns><see cref="TimeBand"/> instance.</returns>
     private static TimeBand GetTimeBand(DateTime timeOfToll)
     {
-        if (timeOfToll.Hour > 6 && timeOfToll.Hour < 10)
+        if (timeOfToll.Hour > 6 && timeOfToll.Hour <= 10)
         {
             return TimeBand.MorningRush;
         }
-        else if (timeOfToll.Hour > 10 && timeOfToll.Hour < 16)
+        else if (timeOfToll.Hour > 10 && timeOfToll.Hour <= 16)
         {
             return TimeBand.Daytime;
         }
-        else if (timeOfToll.Hour > 16 && timeOfToll.Hour < 19)
+        else if (timeOfToll.Hour > 16 && timeOfToll.Hour <= 19)
         {
             return TimeBand.EveningRush;
         }

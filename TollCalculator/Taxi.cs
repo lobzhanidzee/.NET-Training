@@ -5,6 +5,8 @@ namespace TollCalculator;
 /// </summary>
 public class Taxi : Vehicle
 {
+    private int passengers;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="Taxi"/> class with the specified <paramref name="baseToll"/> and <paramref name="passengers"/>.
     /// </summary>
@@ -18,14 +20,21 @@ public class Taxi : Vehicle
         ArgumentOutOfRangeException.ThrowIfNegative(baseToll);
         ArgumentOutOfRangeException.ThrowIfNegative(passengers);
 
-        this.Passengers = passengers;
+        this.passengers = passengers;
     }
 
     /// <summary>
     /// Gets or sets a passengers.
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/>less than zero.</exception>
-    public int Passengers { get; set; }
+    public int Passengers
+    {
+        get => this.passengers; set
+        {
+            ArgumentOutOfRangeException.ThrowIfNegative(value);
+            this.passengers = value;
+        }
+    }
 
     /// <summary>
     /// Calculates the base toll that relies only on the car type.
@@ -37,5 +46,23 @@ public class Taxi : Vehicle
     /// 3 and more              $1.00 discount.
     /// </summary>
     /// <returns>The base toll of car.</returns>
-    protected override decimal Calculate() => throw new NotImplementedException();
+    protected override decimal Calculate()
+    {
+        if (this.passengers >= 3)
+        {
+            return this.BaseToll - 1m;
+        }
+        else if (this.passengers == 2)
+        {
+            return this.BaseToll - 0.5m;
+        }
+        else if (this.passengers == 0)
+        {
+            return this.BaseToll + 0.5m;
+        }
+        else
+        {
+            return this.BaseToll;
+        }
+    }
 }

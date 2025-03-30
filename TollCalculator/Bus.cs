@@ -5,6 +5,9 @@ namespace TollCalculator;
 /// </summary>
 public class Bus : Vehicle
 {
+    private int capacity;
+    private int passengers;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="Bus"/> class with the specified the base toll, capacity and passengers.
     /// </summary>
@@ -21,21 +24,35 @@ public class Bus : Vehicle
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(capacity, 0);
         ArgumentOutOfRangeException.ThrowIfNegative(passengers);
 
-        this.Capacity = capacity;
-        this.Passengers = passengers;
+        this.capacity = capacity;
+        this.passengers = passengers;
     }
 
     /// <summary>
     /// Gets or sets the capacity of this <see cref="Bus"/> class.
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/>less than zero.</exception>
-    public int Capacity { get; set; }
+    public int Capacity
+    {
+        get => this.capacity; set
+        {
+            ArgumentOutOfRangeException.ThrowIfNegative(value);
+            this.capacity = value;
+        }
+    }
 
     /// <summary>
     /// Gets or sets the passengers of this <see cref="Bus"/> class.
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/>less than zero.</exception>
-    public int Passengers { get; set; }
+    public int Passengers
+    {
+        get => this.passengers; set
+        {
+            ArgumentOutOfRangeException.ThrowIfNegative(value);
+            this.passengers = value;
+        }
+    }
 
     /// <summary>
     /// Calculates the base toll that relies only on the bus type.
@@ -48,13 +65,18 @@ public class Bus : Vehicle
     /// <returns>The base toll of bus.</returns>
     protected override decimal Calculate()
     {
-        if (this.Passengers % this.Capacity < 5)
+        decimal passengerFilling = (decimal)this.passengers / this.capacity;
+        if (passengerFilling < 0.5m)
         {
-            return 2;
+            return this.BaseToll + 2m;
+        }
+        else if (passengerFilling > 0.9m)
+        {
+            return this.BaseToll - 1m;
         }
         else
         {
-            return -1;
+            return this.BaseToll;
         }
     }
 }

@@ -5,6 +5,8 @@ namespace TollCalculator;
 /// </summary>
 public class DeliveryTruck : Vehicle
 {
+    private readonly int grossWeightClass;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="DeliveryTruck"/> class with
     /// the specified <paramref name="baseToll"/> and <paramref name="grossWeightClass"/>.
@@ -19,14 +21,14 @@ public class DeliveryTruck : Vehicle
         ArgumentOutOfRangeException.ThrowIfNegative(baseToll);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(grossWeightClass, 0);
 
-        this.GrossWeightClass = grossWeightClass;
+        this.grossWeightClass = grossWeightClass;
     }
 
     /// <summary>
     /// Gets a gross weight class.
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/>less than zero.</exception>
-    public int GrossWeightClass { get; }
+    public int GrossWeightClass { get => this.grossWeightClass; }
 
     /// <summary>
     /// Calculates the base toll that relies only on the delivery truck type.
@@ -37,5 +39,19 @@ public class DeliveryTruck : Vehicle
     /// under 3000 lbs      $2.00 discount.
     /// </summary>
     /// <returns>The base toll of delivery truck.</returns>
-    protected override decimal Calculate() => throw new NotImplementedException();
+    protected override decimal Calculate()
+    {
+        if (this.grossWeightClass > 5000)
+        {
+            return this.BaseToll + 5m;
+        }
+        else if (this.grossWeightClass < 3000)
+        {
+            return this.BaseToll - 2;
+        }
+        else
+        {
+            return this.BaseToll;
+        }
+    }
 }
