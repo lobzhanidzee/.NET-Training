@@ -68,7 +68,7 @@ dotnet_naming_style.pascal_case_style.capitalization              = pascal_case
 # Use PascalCase for constant fields
 dotnet_naming_rule.constant_fields_should_be_pascal_case.severity = suggestion
 dotnet_naming_rule.constant_fields_should_be_pascal_case.symbols  = constant_fields
-dotnet_naming_rule.constant_fields_should_be_pascal_case.style    = pascal_case_style
+dotnet_naming_rule.constant_fields_should_be_pascal_case.style = pascal_case_style
 dotnet_naming_symbols.constant_fields.applicable_kinds            = field
 dotnet_naming_symbols.constant_fields.applicable_accessibilities  = *
 dotnet_naming_symbols.constant_fields.required_modifiers          = const
@@ -164,7 +164,7 @@ dotnet_diagnostic.IDE0048.severity = warning  # Add parentheses for clarity
 dotnet_diagnostic.IDE0010.severity = error    # Add missing cases to switch statement
 dotnet_diagnostic.IDE0017.severity = warning  # Use object initializers
 dotnet_diagnostic.IDE0028.severity = warning  # Use collection initializers
-dotnet_diagnostic.IDE0032.severity = none  # Use auto-implemented property
+dotnet_diagnostic.IDE0032.severity = warning  # Use auto-implemented property
 dotnet_diagnostic.IDE0071.severity = error    # Simplify interpolation
 dotnet_diagnostic.IDE0075.severity = error    # Simplify conditional expression
 dotnet_diagnostic.IDE0082.severity = error    # Convert typeof to nameof
@@ -199,6 +199,7 @@ dotnet_diagnostic.IDE0100.severity = error    # Remove unnecessary equality oper
 dotnet_diagnostic.IDE0110.severity = error    # Remove unnecessary discard
 # Formatting rules
 dotnet_diagnostic.IDE0055.severity = warning  # Formatting rule
+dotnet_diagnostic.IDE0290.severity = none
 
 ###############################
 # Code Quality Rules          #
@@ -223,6 +224,7 @@ dotnet_diagnostic.CA1708.severity = error     # Identifiers should differ by mor
 dotnet_diagnostic.CA1711.severity = error     # Identifiers should not have incorrect suffix
 dotnet_diagnostic.CA1712.severity = error     # Do not prefix enum values with type name
 dotnet_diagnostic.CA1715.severity = error     # Identifiers should have correct prefix
+dotnet_diagnostic.CA1720.severity = none      # Identifier contains type name
 dotnet_diagnostic.CA1716.severity = error     # Identifiers should not match keywords
 dotnet_diagnostic.CA1721.severity = error     # Property names should not match get methods
 dotnet_diagnostic.CA1724.severity = error     # Type names should not match namespaces
