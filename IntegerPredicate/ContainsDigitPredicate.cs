@@ -1,4 +1,4 @@
-﻿using GenericMethods.Interfaces;
+using GenericMethods.Interfaces;
 
 namespace IntegerPredicate;
 
@@ -10,11 +10,7 @@ public class ContainsDigitPredicate : IPredicate<int>
     /// <summary>
     /// Gets or sets digit in the integer number.
     /// </summary>
-    public int Digit
-    {
-        get => throw new NotImplementedException();
-        set => throw new NotImplementedException();
-    }
+    public int Digit { get; set; }
 
     /// <summary>
     /// Determines if a number contains a given digit.
@@ -23,6 +19,31 @@ public class ContainsDigitPredicate : IPredicate<int>
     /// <returns>true if integer value contains given digit; otherwise, false.</returns>
     public bool IsMatch(int obj)
     {
-        throw new NotImplementedException();
+        if (obj < 0)
+        {
+            while (obj < 0)
+            {
+                if (Math.Abs(obj % 10) == this.Digit)
+                {
+                    return true;
+                }
+
+                obj /= 10;
+            }
+        }
+        else if (obj > 0)
+        {
+            while (obj > 0)
+            {
+                if (obj % 10 == this.Digit)
+                {
+                    return true;
+                }
+
+                obj /= 10;
+            }
+        }
+
+        return false;
     }
 }

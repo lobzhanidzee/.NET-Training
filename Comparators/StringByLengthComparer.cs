@@ -1,4 +1,4 @@
-﻿namespace Comparators;
+namespace Comparators;
 
 /// <summary>
 /// Comparator class for string type.
@@ -14,5 +14,21 @@ public class StringByLengthComparer : IComparer<string>
     /// Zero if length of the string x equals length of the string y.
     /// Greater than zero if length of the string x is greater than length of the string y.
     /// </returns>
-    public int Compare(string? x, string? y) => throw new NotImplementedException();
+    public int Compare(string? x, string? y)
+    {
+        if (x == null && y == null)
+        {
+            return 0;
+        }
+        else if (x == null)
+        {
+            return -1;
+        }
+        else if (y == null)
+        {
+            return 1;
+        }
+
+        return x.Length - y.Length;
+    }
 }

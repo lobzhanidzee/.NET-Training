@@ -1,4 +1,4 @@
-﻿namespace Comparators;
+namespace Comparators;
 
 /// <summary>
 /// Comparator class for integer type.
@@ -14,5 +14,17 @@ public class IntegerByAbsComparer : IComparer<int>
     /// Zero if absolute value x equals absolute value y.
     /// Greater than zero if absolute value x is greater than absolute value y.
     /// </returns>
-    public int Compare(int x, int y) => throw new NotImplementedException();
+    public int Compare(int x, int y)
+    {
+        if (x == int.MinValue)
+        {
+            x = int.MaxValue;
+        }
+        else if (y == int.MinValue)
+        {
+            y = int.MaxValue;
+        }
+
+        return Math.Abs(x).CompareTo(Math.Abs(y));
+    }
 }

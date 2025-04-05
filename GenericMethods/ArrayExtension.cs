@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using GenericMethods.Interfaces;
 
@@ -25,20 +23,20 @@ namespace GenericMethods
 
             if (source.Length == 0)
             {
-                throw new ArgumentException("emply array");
+                throw new ArgumentException("empty array");
             }
 
-            List<TSource> arr = new List<TSource>();
+            List<TSource> result = new List<TSource>(source.Length);
 
             for (var i = 0; i < source.Length; i++)
             {
                 if (predicate.IsMatch(source[i]))
                 {
-                    arr.Add(source[i]);
+                    result.Add(source[i]);
                 }
             }
 
-            return arr.ToArray();
+            return result.ToArray();
         }
 
         /// <summary>
@@ -58,10 +56,11 @@ namespace GenericMethods
 
             if (source.Length == 0)
             {
-                throw new ArgumentException("emply array");
+                throw new ArgumentException("empty array");
             }
 
-            List<TResult> result = new List<TResult>();
+            List<TResult> result = new List<TResult>(source.Length);
+
             for (int i = 0; i < source.Length; i++)
             {
                 result.Add(transformer.Transform(source[i]));
@@ -83,7 +82,31 @@ namespace GenericMethods
         /// in array do not implement the <see cref="IComparable{T}"/>  interface.</exception>
         public static TSource[] SortBy<TSource>(this TSource[] source, IComparer<TSource> comparer)
         {
-            throw new NotImplementedException();
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(comparer);
+
+            if (source.Length == 0)
+            {
+                throw new ArgumentException("empty array");
+            }
+
+            TSource[] result = new TSource[source.Length];
+            Array.Copy(source, result, source.Length);
+
+            try
+            {
+                Array.Sort(result, comparer);
+            }
+            catch (ArgumentException ex)
+            {
+                throw new ArgumentException("An error occurred while sorting the array.", ex);
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw new InvalidOperationException("An error occurred while sorting the array.", ex);
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -96,7 +119,24 @@ namespace GenericMethods
         /// <exception cref="ArgumentException">Thrown when array length equal to zero.</exception>
         public static TResult[] TypeOf<TResult>(this object[] source)
         {
-            throw new NotImplementedException();
+            ArgumentNullException.ThrowIfNull(source);
+
+            if (source.Length == 0)
+            {
+                throw new ArgumentException("empty array");
+            }
+
+            List<TResult> result = new List<TResult>(source.Length);
+
+            foreach (var item in source)
+            {
+                if (item is TResult positiveType)
+                {
+                    result.Add(positiveType);
+                }
+            }
+
+            return result.ToArray();
         }
 
         /// <summary>
@@ -109,7 +149,13 @@ namespace GenericMethods
         /// <exception cref="ArgumentException">Thrown when array length equal to zero.</exception>
         public static TSource[] Reverse<TSource>(this TSource[] source)
         {
-            throw new NotImplementedException();
+            ArgumentNullException.ThrowIfNull(source);
+
+            TSource[] result = new TSource[source.Length];
+
+            Array.Copy(source, result, result.Length);
+            Array.Reverse(result);
+            return result;
         }
 
         /// <summary>
@@ -120,7 +166,7 @@ namespace GenericMethods
         /// <param name="right">Second object.</param>
         internal static void Swap<T>(ref T left, ref T right)
         {
-            T temp = left;
+            T temp = right;
             right = left;
             left = temp;
         }
