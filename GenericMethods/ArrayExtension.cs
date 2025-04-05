@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using GenericMethods.Interfaces;
@@ -20,7 +20,25 @@ namespace GenericMethods
         /// <exception cref="ArgumentException">Thrown when array is empty.</exception>
         public static TSource[] Filter<TSource>(this TSource[] source, IPredicate<TSource> predicate)
         {
-            throw new NotImplementedException();
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(predicate);
+
+            if (source.Length == 0)
+            {
+                throw new ArgumentException("emply array");
+            }
+
+            List<TSource> arr = new List<TSource>();
+
+            for (var i = 0; i < source.Length; i++)
+            {
+                if (predicate.IsMatch(source[i]))
+                {
+                    arr.Add(source[i]);
+                }
+            }
+
+            return arr.ToArray();
         }
 
         /// <summary>
@@ -35,7 +53,21 @@ namespace GenericMethods
         /// <exception cref="ArgumentException">Thrown when array is empty.</exception>
         public static TResult[] Transform<TSource, TResult>(this TSource[] source, ITransformer<TSource, TResult> transformer)
         {
-            throw new NotImplementedException();
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(transformer);
+
+            if (source.Length == 0)
+            {
+                throw new ArgumentException("emply array");
+            }
+
+            List<TResult> result = new List<TResult>();
+            for (int i = 0; i < source.Length; i++)
+            {
+                result.Add(transformer.Transform(source[i]));
+            }
+
+            return result.ToArray();
         }
 
         /// <summary>
@@ -86,6 +118,11 @@ namespace GenericMethods
         /// <typeparam name="T">The type of parameters.</typeparam>
         /// <param name="left">First object.</param>
         /// <param name="right">Second object.</param>
-        internal static void Swap<T>(ref T left, ref T right) => throw new NotImplementedException();
+        internal static void Swap<T>(ref T left, ref T right)
+        {
+            T temp = left;
+            right = left;
+            left = temp;
+        }
     }
 }

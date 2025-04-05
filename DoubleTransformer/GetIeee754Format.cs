@@ -7,13 +7,6 @@ namespace DoubleTransformer;
 /// </summary>
 public class GetIeee754Format : ITransformer<double, string>
 {
-    private struct DoubleUnion
-    {
-        public double DoubleValue;
-
-        public ulong ULongValue;
-    }
-
     /// <summary>
     /// Transform double value to IEEE754 format <see cref="https://www.wikiwand.com/en/IEEE_754"/> in the string form.
     /// </summary>
@@ -21,8 +14,7 @@ public class GetIeee754Format : ITransformer<double, string>
     /// <returns>The IEEE754 format in the string form.</returns>
     public string Transform(double obj)
     {
-        DoubleUnion union = new DoubleUnion { DoubleValue = obj };
-        ulong bits = union.ULongValue;
-        return Convert.ToString((long)bits, 2).PadLeft(64, '0');
+        long bits = BitConverter.DoubleToInt64Bits(obj);
+        return Convert.ToString(bits, 2).PadLeft(64, '0');
     }
 }
