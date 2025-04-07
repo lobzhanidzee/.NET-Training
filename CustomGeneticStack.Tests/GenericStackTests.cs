@@ -142,7 +142,7 @@ public class GenericStackTests<T>
     [Test]
     public void Iterator_PushIntoStack_Throw_InvalidOperationException()
     {
-        Assert.Throws<InvalidOperationException>(
+        _ = Assert.Throws<InvalidOperationException>(
             () =>
             {
                 foreach (var item in this.stack)
@@ -165,6 +165,6 @@ public class GenericStackTests<T>
     public void Pop_StackIsEmpty_ThrowInvalidOperationException()
     {
         this.stack = new GenericStack<T>(0);
-        Assert.Throws<InvalidOperationException>(() => this.stack.Pop(), "Invalid operation pop, stack is empty.");
+        _ = Assert.Throws<InvalidOperationException>(() => this.stack.Pop(), "Invalid operation pop, stack is empty.");
     }
 }
