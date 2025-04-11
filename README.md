@@ -1,39 +1,61 @@
-# Generic Stack
+# Fibonacci Iterator
 
-Intermediate level task for practice generic classes and interfaces. 
+Intermediate level task to practice explicit interface implementation and to implement the `IEnumerable<T>` and `IEnumerator<T>` interfaces for creating an iterator.
 
-Estimated time to complete the task - 1.5h.  
+Estimated time to complete the task - 1h.
 
-The task requires .NET 8 SDK installed.   
+The task requires .NET 8 SDK installed.
+
 
 ## Task Description
 
-In this task you have to implement a class that represents a growable array based generic stack. The class should fulfill these requirements:
-- Fields
-    - The class should have a private `items` field to store a stack elements. The field type should be `T[]`.
-    - The class should have a private `count` field to store a count of the items in the stack. The field type should be `int`.
-    - The class should have a private  `version` field to store a version of the stack object. The field type should be `int`. It used by enumerator.
-- Properties
-    - The class should have a public `Count` property to access the `count` field. The property sould have the public get accessor only.
-- Constructors
-    - The class should have a public parameterless constructor that initializes a class object with default values. The default value for `count` field is `0`, the default value for `items` is an empty array with length `0`, the default value for `version` is `0`.
-    - The class should have a public constructor with `capacity` that initializes an initial capacity of the `items` array. The initial capacity
-should be a non-negative number. The value for `version` is `0`.
-    - The class should have a public constructor with `IEnumerable<T>?` parameter and fill a stack with the content of a particular collection.
-- Instance Methods
-    - The class should have a public `Push` method that inserts an object at the top of the stack. The `count` and `version` values increase by one.
-    - The class should have a public `Pop` method that removes and returns the object at the top of the stack. The `count` value decreases by one and `version` value increaces by one.
-    - The class should have a public `Peek` method that returns the object at the top of the stack without removing it. The `count` and `version` values are not changed.
-    - The class should have a public `ToArray` method that copies the elements of stack to a new array.
-    - The class should have a public `Contains` method that determines whether an element is in the stack. To compare items use the default equality comparer (`EqualityComparer<T>.Default`).
-- The class should implement `IEnumerable<T>` interface. 
+In this task you have to [create an iterator](https://docs.microsoft.com/en-us/dotnet/csharp/iterators) to iterate over numbers in the [Fibonacci sequence](https://www.google.com/search?q=fibonacci+sequence).
 
-The detailed explanations of the task are provided in the XML-comments for the methods and in test cases of unit tests.
+The iterator should be implemented using the [IEnumerable&lt;T&gt;](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1) and  [IEnumerator&lt;T&gt;](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerator-1) [interfaces](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface), so the [foreach statement](https://docs.microsoft.com/en-us/dotnet/csharp/iterators#deeper-dive-into-foreach) can be used to iterate across all elements of the sequence.
 
+```cs
+var fibonacciEnumerable = new FibonacciEnumerable();
 
-## Additional Materials
+foreach (int number in fibonacciEnumerable)
+{
+}
+```
 
-* [Growable array based stack](https://www.geeksforgeeks.org/growable-array-based-stack/) 
-* [NotImplementedException ](https://docs.microsoft.com/en-us/dotnet/api/system.notimplementedexception?view=net-5.0#:~:text=The%20NotImplementedException%20exception%20indicates%20that,member%20invocation%20from%20your%20code.)
-* [IEnumerator interface](https://docs.microsoft.com/en-us/dotnet/api/system.collections.ienumerator?view=net-5.0) 
-* [IEnumerable<T>.GetEnumerator method ](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1.getenumerator?view=net-5.0)
+The `FibonacciEnumerable` class has a constructor with two [optional arguments](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments#optional-arguments) - `count` and `skipCount`. Each argument has a default value.
+
+```cs
+public FibonacciEnumerable(int count = int.MaxValue, int skipCount = 0) { ... }
+```
+
+The `count` parameter contains the number of elements that the iterator produces.
+
+```cs
+var fibonacciEnumerable = new FibonacciEnumerable(5); // produces { 0, 1, 1, 2, 3 } numbers
+```
+
+The `skipCount` parameter contains the number of elements to skip before an iterator will return the first sequence element.
+
+```cs
+var fibonacciEnumerable = new FibonacciEnumerable(10, 5); // produces { 5, 8, 13, 21, 34 } numbers, the first five elements are skipped
+```
+
+The iterator consists of two classes - `FibonacciEnumerable` and `FibonacciEnumerator`.
+
+* Implement the `IEnumerable<T>` interface in the [FibonacciEnumerable](FibonacciIterator/FibonacciEnumerable.cs#L6) class to define an enumerable object.
+* Implement the `IEnumerator<T>` interface in the [FibonacciEnumerator](FibonacciIterator/FibonacciEnumerator.cs#L6) class to define an enumerator. Some of the interface members should be [implemented explicitly](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/interfaces/explicit-interface-implementation).
+
+If you are coding in the Visual Studio, you may use the [Implement Interface](https://docs.microsoft.com/en-us/visualstudio/ide/reference/implement-interface) refactoring to enhance your experience with declaring an interface methods in a class.
+
+The `FibonacciEnumerator` class should have only `int` private fields.
+
+**Note**   
+_The solution will not compile until all required types with required members are declared.  For a smoother development experience, we recommend initially declaring all necessary types and creating "stub methods" as follows:_ 
+
+```csharp 
+public returnType MethodName(parameters list) 
+{ 
+    throw new NotImplementedException(); 
+} 
+``` 
+
+_This approach allows you to build and run your project incrementally while implementing each method._ 
