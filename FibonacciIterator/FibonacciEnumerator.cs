@@ -11,20 +11,20 @@ public sealed class FibonacciEnumerator : IEnumerator
 
     private int position = -1;
 
-    public object Current => throw new NotImplementedException();
-    //{
-    //    get
-    //    {
-    //        try
-    //        {
-    //            return _numbers;
-    //        }
-    //        catch (IndexOutOfRangeException)
-    //        {
-    //            throw new InvalidOperationException();
-    //        }
-    //    }
-    //}
+    public object Current
+    {
+        get
+        {
+            try
+            {
+                return _numbers;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new InvalidOperationException();
+            }
+        }
+    }
 
     object IEnumerator.Current => this.Current;
 
@@ -38,11 +38,12 @@ public sealed class FibonacciEnumerator : IEnumerator
 
     public bool MoveNext()
     {
-        throw new NotImplementedException();
+        this.position++;
+        return this.position < this._numbers.Count();
     }
 
     public void Reset()
     {
-        throw new NotImplementedException();
+        this.position = 0;
     }
 }
