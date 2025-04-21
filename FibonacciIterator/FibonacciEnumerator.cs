@@ -5,45 +5,40 @@ namespace FibonacciIterator;
 /// <summary>
 /// Represents an enumerator object to iterate over the Fibonacci sequence numbers.
 /// </summary>
-public sealed class FibonacciEnumerator : IEnumerator
+public sealed class FibonacciEnumerator : IEnumerator<int>
 {
-    public FibonacciEnumerable _numbers;
+    private readonly int[] numbers;
 
     private int position = -1;
 
-    public object Current
+    public FibonacciEnumerator(int[] numbers)
+    {
+        this.numbers = numbers;
+    }
+
+    public int Current
     {
         get
         {
-            try
-            {
-                return _numbers;
-            }
-            catch (IndexOutOfRangeException)
+            if (this.position < 0 || this.position >= this.numbers.Length)
             {
                 throw new InvalidOperationException();
             }
+
+            return this.numbers[this.position];
         }
     }
 
     object IEnumerator.Current => this.Current;
 
-    // TODO Implement an enumerator to iterate over the Fibonacci sequence numbers.
-
     public void Dispose()
     {
-        // The method is empty, because there are no additional resources to dispose.
-        // See "Notes to Implementers" - https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerator-1?view=net-6.0#notes-to-implementers
     }
 
-    public bool MoveNext()
-    {
-        this.position++;
-        return this.position < this._numbers.Count();
-    }
+    public bool MoveNext() => ++this.position < this.numbers.Length;
 
     public void Reset()
     {
-        this.position = 0;
+        this.position = -1;
     }
 }
