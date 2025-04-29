@@ -7,25 +7,31 @@ namespace FibonacciIterator;
 /// </summary>
 public sealed class FibonacciEnumerator : IEnumerator<int>
 {
-    private readonly int[] numbers;
+    private readonly int count;
+    private readonly int skipCount;
+    private int current;
+    private int previous;
+    private int position;
 
-    private int position = -1;
-
-    public FibonacciEnumerator(int[] numbers)
+    public FibonacciEnumerator(int count, int skipCount)
     {
-        this.numbers = numbers;
+        this.count = count;
+        this.skipCount = skipCount;
+        this.current = 0;
+        this.previous = 1;
+        this.position = 0;
     }
 
     public int Current
     {
         get
         {
-            if (this.position < 0 || this.position >= this.numbers.Length)
+            if (this.position == -1 || this.position == 0 || this.position > this.count)
             {
                 throw new InvalidOperationException();
             }
 
-            return this.numbers[this.position];
+            return this.current;
         }
     }
 
@@ -33,12 +39,54 @@ public sealed class FibonacciEnumerator : IEnumerator<int>
 
     public void Dispose()
     {
+        // No resources to dispose.
     }
 
-    public bool MoveNext() => ++this.position < this.numbers.Length;
+    public bool MoveNext()
+    {
+        if (this.position >= this.count)
+        {
+            return false;
+        }
+
+        if (this.position < this.skipCount)
+        {
+            while (this.position < this.skipCount)
+            {
+                int temp = this.current + this.previous;
+                this.previous = this.current;
+                this.current = temp;
+                this.position++;
+            }
+
+            return this.MoveNext();
+        }
+
+        if (this.position == this.skipCount)
+        {
+            this.position++;
+            return true;
+        }
+
+        if (this.current <= int.MaxValue - this.previous)
+        {
+            int temp = this.current + this.previous;
+            this.previous = this.current;
+            this.current = temp;
+        }
+        else
+        {
+            return false;
+        }
+
+        this.position++;
+        return true;
+    }
 
     public void Reset()
     {
-        this.position = -1;
+        this.current = 0;
+        this.previous = 1;
+        this.position = 0;
     }
 }
