@@ -2,9 +2,9 @@
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FibonacciIterator", "FibonacciIterator\FibonacciIterator.csproj", "{CD42F0C8-5FE9-4902-8B95-390A9EA86CA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PairBrackets", "PairBrackets\PairBrackets.csproj", "{CD42F0C8-5FE9-4902-8B95-390A9EA86CA6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FibonacciIterator.Tests", "FibonacciIterator.Tests\FibonacciIterator.Tests.csproj", "{6C2C0A2B-2D1A-4CFD-A3E8-3C4F9263F553}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PairBrackets.Tests", "PairBrackets.Tests\PairBrackets.Tests.csproj", "{6C2C0A2B-2D1A-4CFD-A3E8-3C4F9263F553}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5A447412-D8B9-4FFF-BE7B-E1E363952A05}"
 	ProjectSection(SolutionItems) = preProject

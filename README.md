@@ -1,61 +1,39 @@
-# Fibonacci Iterator
+# Pair Brackets
 
-Intermediate level task to practice explicit interface implementation and to implement the `IEnumerable<T>` and `IEnumerator<T>` interfaces for creating an iterator.
+An intermediate level task for practicing algorithms, collections, tuples and enumeration types.
 
 Estimated time to complete the task - 1h.
 
 The task requires .NET 8 SDK installed.
 
-
 ## Task Description
 
-In this task you have to [create an iterator](https://docs.microsoft.com/en-us/dotnet/csharp/iterators) to iterate over numbers in the [Fibonacci sequence](https://www.google.com/search?q=fibonacci+sequence).
+In this task you have to implement three [extension methods](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods) that process a text and searches for pair of brackets.
 
-The iterator should be implemented using the [IEnumerable&lt;T&gt;](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1) and  [IEnumerator&lt;T&gt;](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerator-1) [interfaces](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface), so the [foreach statement](https://docs.microsoft.com/en-us/dotnet/csharp/iterators#deeper-dive-into-foreach) can be used to iterate across all elements of the sequence.
+Use [.NET collections](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/collections) to solve this task. Implement a method using a different collection, so each method should use a collection that is not used in other methods.
 
-```cs
-var fibonacciEnumerable = new FibonacciEnumerable();
 
-foreach (int number in fibonacciEnumerable)
-{
-}
-```
+### 1. Bracket Pairs Number
 
-The `FibonacciEnumerable` class has a constructor with two [optional arguments](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments#optional-arguments) - `count` and `skipCount`. Each argument has a default value.
+Implement the [CountBracketPairs](PairBrackets/StringExtensions.cs#L10) method to return the number of bracket pairs in the `text`.
 
-```cs
-public FibonacciEnumerable(int count = int.MaxValue, int skipCount = 0) { ... }
-```
+The method should support these types of brackets:
+* Round brackets ()
+* Square brackets []
 
-The `count` parameter contains the number of elements that the iterator produces.
 
-```cs
-var fibonacciEnumerable = new FibonacciEnumerable(5); // produces { 0, 1, 1, 2, 3 } numbers
-```
+### 2. Bracket Pair Positions
 
-The `skipCount` parameter contains the number of elements to skip before an iterator will return the first sequence element.
+Implement the [GetBracketPairPositions](PairBrackets/StringExtensions.cs#L22) method to return the list of indexes of an open and closed positions of bracket pairs. The method returns a list of [tuples](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-tuples).
 
-```cs
-var fibonacciEnumerable = new FibonacciEnumerable(10, 5); // produces { 5, 8, 13, 21, 34 } numbers, the first five elements are skipped
-```
+The method should support these types of brackets:
+* Round brackets ()
+* Square brackets []
+* Curly brackets {}
 
-The iterator consists of two classes - `FibonacciEnumerable` and `FibonacciEnumerator`.
 
-* Implement the `IEnumerable<T>` interface in the [FibonacciEnumerable](FibonacciIterator/FibonacciEnumerable.cs#L6) class to define an enumerable object.
-* Implement the `IEnumerator<T>` interface in the [FibonacciEnumerator](FibonacciIterator/FibonacciEnumerator.cs#L6) class to define an enumerator. Some of the interface members should be [implemented explicitly](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/interfaces/explicit-interface-implementation).
+### 3. Bracket Validator
 
-If you are coding in the Visual Studio, you may use the [Implement Interface](https://docs.microsoft.com/en-us/visualstudio/ide/reference/implement-interface) refactoring to enhance your experience with declaring an interface methods in a class.
+Implement the [ValidateBrackets](PairBrackets/StringExtensions.cs#L35) method to examine the `text` and returns true if the pairs and the orders of brackets are balanced. Otherwise the method should return false.
 
-The `FibonacciEnumerator` class should have only `int` private fields.
-
-**Note**   
-_The solution will not compile until all required types with required members are declared.  For a smoother development experience, we recommend initially declaring all necessary types and creating "stub methods" as follows:_ 
-
-```csharp 
-public returnType MethodName(parameters list) 
-{ 
-    throw new NotImplementedException(); 
-} 
-``` 
-
-_This approach allows you to build and run your project incrementally while implementing each method._ 
+The method has the `bracketTypes` parameter that specifies what kind of brackets should be validated. The parameter is of the [enumeration type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum).
