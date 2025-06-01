@@ -12,8 +12,35 @@ public static class StringExtensions
     /// <returns>The number of bracket pairs in the <see cref="text"/>.</returns>
     public static int CountBracketPairs(this string text)
     {
-        // TODO #1. Analyze the method unit tests and add the method implementation.
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(text);
+
+        int count = 0;
+        List<char> symbols = [.. text];
+
+        for (int i = 0; i < symbols.Count; i++)
+        {
+            char item = symbols[i];
+            if (item == '(' || item == '[')
+            {
+                for (int j = 0; j < symbols.Count; j++)
+                {
+                    if (i == j)
+                    {
+                        continue;
+                    }
+
+                    char item2 = symbols[j];
+                    if ((item == '(' && item2 == ')') || (item == '[' && item2 == ']'))
+                    {
+                        count++;
+                        symbols.RemoveAt(j);
+                        break;
+                    }
+                }
+            }
+        }
+
+        return count;
     }
 
     /// <summary>
